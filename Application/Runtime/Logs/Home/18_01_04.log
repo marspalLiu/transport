@@ -1,0 +1,35 @@
+[ 2018-01-04T10:11:05+08:00 ] ::1 /trans/index.php/Home/Index/images/category05.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.110326s ]
+
+[ 2018-01-04T10:11:05+08:00 ] ::1 /trans/index.php/Home/Index/images/category04.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.100282s ]
+
+[ 2018-01-04T10:11:05+08:00 ] ::1 /trans/index.php/Home/Index/images/category02.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.110094s ]
+
+[ 2018-01-04T10:11:05+08:00 ] ::1 /trans/index.php/Home/Index/images/category07.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001069s ]
+
+[ 2018-01-04T10:11:05+08:00 ] ::1 /trans/index.php/Home/Index/images/background02.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000834s ]
+
+[ 2018-01-04T10:11:05+08:00 ] ::1 /trans/index.php/Home/Index/images/category03.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.109190s ]
+
+[ 2018-01-04T10:11:05+08:00 ] ::1 /trans/index.php/Home/Index/images/category01.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.101545s ]
+

@@ -1,0 +1,131 @@
+<include file="Public/header" />
+		<div class="responsive-menu">
+			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
+			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
+		</div> <!-- end .responsive-menu -->
+			
+		<div class="page-title" style="background-image: url('__PUBLIC__/images/background04.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background04.jpg*/;">
+			<div class="inner">
+				<p>Publish Task.</p>
+				<h2>发布任务</h2>
+				
+			</div> <!-- end .inner -->
+		</div> <!-- end .page-title -->
+
+		<div class="section boxed-section light">
+			<div class="inner">
+				<div class="container">
+					<div class="box">
+						<form class="add-listing-form light-inputs">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">任务名称 :</span>
+									<input type="text" placeholder="例如：运送一匹建材">
+								</div> <!-- end .input-group -->
+							</div> <!-- end .form-group -->
+							<!-- <div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">Tagline (optional) :</span>
+									<input type="text" placeholder="e.g Vitae Labortis Restaurant">
+								</div> 
+							</div> -->
+							<div class="form-group">              
+							    <textarea placeholder="任务描述，越详细越好" rows="4"></textarea>
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">选择分类 :</span>
+									<select>	    	
+										<option value="" disabled selected>选择一个准确货物的分类</option>
+										<option>设备制造</option>
+										<option>运输</option>
+										<option>仓储</option>
+										<option>装饰包装</option>
+										<option>配送</option>
+										<option>信息服务</option>
+									</select>
+								</div> <!-- end .input-group -->
+								<span class="help-block">分类必须要准确，如有运输触犯法律的货物，将会受到刑事处理</span>
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">起点 :</span>
+									<select>	    	
+											<option>北辰区</option>
+											<option>红桥区</option>
+											<option>南开区</option>
+											<option>滨海新区</option>
+											<option>西青区</option>
+											<option>静海县</option>
+									</select>
+								</div> <!-- end .input-group -->
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">目的地 :</span>
+									<select>	    	
+											<option>北辰区</option>
+											<option>红桥区</option>
+											<option>南开区</option>
+											<option>滨海新区</option>
+											<option>西青区</option>
+											<option>静海县</option>
+									</select>
+								</div> <!-- end .input-group -->
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">其他要求 :</span>
+									<input type="text" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
+								</div> <!-- end .input-group -->
+								<span class="help-block">可以根据到货后检查货物质量对司机进行申诉</span>
+							</div> <!-- end .form-group -->
+							<div class="form-group add_photo">
+								<button onclick="getElementById('file').click()" type="button" class="button">上传图片</button>
+								<input type="file" multiple="multiple" id="file" name='file' style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;"/><!--原来按钮的样式-->
+								<span>4 Photos ( 570px × 400px)</span>
+							</div> <!-- end .text-left .add_photo -->
+							<div class="form-group photo_thumbnails">
+								<div class="photo_preview_box"></div>
+								<div class="photo_preview_box"></div>
+								<div class="photo_preview_box"></div>
+								<div class="photo_preview_box"></div>
+							</div> <!-- end .form-group .photo_thumbnails -->
+							<div class="form-group listing-hours">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="input-group">
+											<span class="input-group-addon">日期 :</span>
+											<input type="text" placeholder="2018-03-15">
+										</div> <!-- end .input-group -->
+									</div> <!-- end .col-sm-4 -->
+									<div class="col-sm-4">
+										<div class="input-group">
+											<span class="input-group-addon">具体时间 :</span>
+											<input type="text">
+										</div> <!-- end .input-group -->
+									</div> <!-- end .col-sm-4 -->
+									<!-- <div class="col-sm-4">
+										<button type="button" class="button">Add Hours of Operation</button>
+									</div> --> <!-- end .col-sm-4 -->
+								</div> <!-- end .row -->
+								<!-- <div class="row">
+									<div class="col-sm-4">
+										<div class="hours">Monday - Sunday</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="hours">07:00 am – 22:00 pm</div>
+									</div> 
+									<div class="col-sm-4">
+										<a href="" class="remove"><i class="pe-7s-close-circle"></i></a>
+									</div> 
+								</div>  --><!-- end .row -->
+							</div> <!-- end .form-group -->
+							<div class="submit"><button type="submit" class="button">提交任务</button></div>
+						</form>
+					</div> <!-- end .box -->
+				</div> <!-- end .container -->
+			</div> <!-- end .inner -->
+		</div> <!-- end .section -->
+
+<include file="Public/footer" />

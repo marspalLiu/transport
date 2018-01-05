@@ -65,15 +65,12 @@
 								<li><a href="<?php echo U('NearBy/nearBy');?>">附近的信息</a></li>
 							</ul>
 						</li>
-						<!-- <?php if(strtoupper($_SESSION['userId']) != '' && strtoupper($_SESSION['role']) == '1'): ?>-->
-						<!--<?php endif; ?> -->
-							<li class="menu-item-has-children">
+						<?php if(strtoupper($_SESSION['userId']) != '' && strtoupper($_SESSION['type']) == '2'): ?><li class="menu-item-has-children">
 								<a href="<?php echo U('AddTask/addTask');?>">发布任务</a>
 								<ul>
 									<li><a href="<?php echo U('AddTask/addTask');?>">发布任务</a></li>
 								</ul>
-							</li>
-						
+							</li><?php endif; ?>
 						
 						<li class="menu-item-has-children">
 							<a href="<?php echo U('TaskList/taskList');?>">全部信息</a>
@@ -81,15 +78,12 @@
 								<li><a href="<?php echo U('TaskList/taskList');?>">全部信息</a></li>
 							</ul>
 						</li>
-						<!-- <?php if(strtoupper($_SESSION['userId']) != ''): ?>-->
-						<!--<?php endif; ?> -->
-							<li class="menu-item-has-children">
+						<?php if(strtoupper($_SESSION['userId'])): ?><li class="menu-item-has-children">
 								<a href="<?php echo U('SelfCenter/selfCenter');?>" >与我相关</a>
 								<ul>
 									<li><a href="<?php echo U('SelfCenter/selfCenter');?>">我的</a></li>
 								</ul>
-							</li>
-						
+							</li><?php endif; ?>
 						
 					</ul>
 				</nav> <!-- end .main-nav -->
@@ -103,7 +97,7 @@
 					<div class="right">
 						<div class="user">
 							<div class="avatar"><img src="/trans/Public/images/avatar04.jpg"></div>
-							Angelbi88 . <a href="">注销</a>
+							<?php echo (session('userName')); ?> <a href="<?php echo U('Index/loginOut');?>">注销</a>
 						</div>
 					</div><?php endif; ?>
 
@@ -112,13 +106,29 @@
 
 		<div class="login-wrapper">
 			<div class="login">
-				<form action="<?php echo U('Login/regiser');?>" method="POST" >
+				<form action="<?php echo U('Index/login');?>" method="POST" >
 					<div class="form-group">
-						<input type="text" id="login_userName" name="userName" placeholder="请输入您的用户名">
+						<input type="text" id="login_userName" name="account" placeholder="请输入您的用户名">
 					</div> <!-- end .form-group -->
 					<div class="form-group">
-						<input type="text" id="login_password" name="password" placeholder="请输入您的密码">
+						<input type="password" id="login_password" name="password" placeholder="请输入您的密码">
 					</div> <!-- end .form-group -->
+					<div class="clearfix">
+						<div class="checkbox" style="width:100%;height: 30px;">
+							<div style="width: 50%;float: left;padding-left: 60px;">
+								<label>
+									<input type="radio" onchange="changeRadio(this)"  name="type" checked="true" value="1"> 司机
+								</label>
+							</div>
+							<div style="width: 50%;float: right;padding-right: 60px;">
+								<label>
+									<input type="radio" onchange="changeRadio(this)"  name="type" value="2"> 货主
+								</label>
+							</div>
+							
+						</div>
+						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
+					</div>
 					<div class="clearfix">
 						<div class="checkbox">
 							<label>
@@ -127,7 +137,7 @@
 						</div>
 						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
 					</div> <!-- end .clearfix -->
-					<div class="button-wrapper"><button type="button" class="button" onclick="login()">登录</button></div>
+					<div class="button-wrapper"><button type="submit" class="button" onclick="login()">登录</button></div>
 					<div class="text-center">
 						<p>还没有账号 ? <a href="" class="signup-open">前往注册</a></p>
 					</div>
@@ -278,6 +288,124 @@
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
+
+		<!-- 任务详情Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="container" style="width:100%!important">
+					<div class="box">
+						<form  class="add-listing-form light-inputs">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">任务名称 :</span>
+									<input type="text" id="task_title" name="task_title" disabled="true" placeholder="例如：运送一匹建材">
+								</div> <!-- end .input-group -->
+							</div> <!-- end .form-group -->
+							<div class="form-group">              
+							    <!-- <textarea name="task_describe" rows="4"></textarea> -->
+							    <p id="task_describe" name="task_describe" disabled="true"></p>
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">选择分类 :</span>
+									<select name="task_type" id="task_type" disabled="true">	    	
+										<option value="1">设备制造</option>
+										<option value="2">运输</option>
+										<option value="3">仓储</option>
+										<option value="4">装饰包装</option>
+										<option value="5">配送</option>
+										<option value="6">信息服务</option>
+									</select>
+								</div> <!-- end .input-group -->
+								<span class="help-block">分类必须要准确，如有运输触犯法律的货物，将会受到刑事处理</span>
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">起点 :</span>
+									<select name="task_start" id="task_start" disabled="true">	    	
+											<option value="北辰区">北辰区</option>
+											<option value="红桥区">红桥区</option>
+											<option value="南开区">南开区</option>
+											<option value="滨海新区">滨海新区</option>
+											<option value="西青区">西青区</option>
+											<option value="静海县">静海县</option>
+									</select>
+								</div> <!-- end .input-group -->
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">目的地 :</span>
+									<select name="task_end" id="task_end" disabled="true">	    	
+											<option value="北辰区">北辰区</option>
+											<option value="红桥区">红桥区</option>
+											<option value="南开区">南开区</option>
+											<option value="滨海新区">滨海新区</option>
+											<option value="西青区">西青区</option>
+											<option value="静海县">静海县</option>
+									</select>
+								</div> <!-- end .input-group -->
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">其他要求 :</span>
+									<input type="text" name="task_require" id="task_require" disabled="true" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
+								</div> <!-- end .input-group -->
+								<span class="help-block">可以根据到货后检查货物质量对司机进行申诉</span>
+							</div> <!-- end .form-group -->
+							<div class="form-group photo_thumbnails">
+								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview1"></img>
+								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview2"></img>
+								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview3"></img>
+								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview4"></img>
+							</div> <!-- end .form-group .photo_thumbnails -->
+							<div class="form-group listing-hours">
+								<div class="row">
+									<div class="col-sm-4" style="width: 50%">
+										<div class="input-group">
+											<span class="input-group-addon">拉货日期 :</span>
+											<input type="text" name="task_time" id="task_time" disabled="true" placeholder="2018-03-15">
+										</div> <!-- end .input-group -->
+									</div> <!-- end .col-sm-4 -->
+									<div class="col-sm-4" style="width: 50%">
+										<div class="input-group">
+											<span class="input-group-addon">薪金 :</span>
+											<input type="number" id="task_price" name="task_price" disabled="true">
+										</div> <!-- end .input-group -->
+									</div> <!-- end .col-sm-4 -->
+									<!-- <div class="col-sm-4">
+										<button type="button" class="button">Add Hours of Operation</button>
+									</div> --> <!-- end .col-sm-4 -->
+								</div> <!-- end .row -->
+								<!-- <div class="row">
+									<div class="col-sm-4">
+										<div class="hours">Monday - Sunday</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="hours">07:00 am – 22:00 pm</div>
+									</div> 
+									<div class="col-sm-4">
+										<a href="" class="remove"><i class="pe-7s-close-circle"></i></a>
+									</div> 
+								</div>  --><!-- end .row -->
+							</div> <!-- end .form-group -->
+							<div class="submit"><button type="submit" class="button" onclick="beforeSubmit()">提交任务</button></div>
+						</form>
+					</div> <!-- end .box -->
+				</div> <!-- end .container -->
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		        <button type="button" class="btn btn-primary">确认承运</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		<script type="text/javascript">
 			window.onload=function(){
 				$.ajax({
@@ -286,61 +414,84 @@
 					dataType:"json",
 					success:function(res){
 						console.log(res)
-						var listTemplate = doT.template(document.getElementById("listTemplate").innerHTML);
-						document.getElementById("rowContainer").innerHTML = listTemplate(res);
+						var html;
+						for (var i = 0; i < res.length; i++) {
+							if (i%3==0) {
+								html += '<div class="row">'
+								html += '<div class="col-md-4 col-sm-6" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">'
+								html += '<div class="blog-post image">'
+								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
+								html += '<div class="overlay"></div>'
+								html += '<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>'
+								html += '<div class="content">'
+								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
+								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
+								html += '<div class="meta">'+res[i].task_price+' - <a href="#" >承运</a></div>'
+								html += '</div> <!-- end .content -->'
+								html += '</div> <!-- end .blog-post -->'
+								html += '</div> <!-- end .col-md-4 -->'
+								++i;
+								html += '<div class="col-md-4 col-sm-6" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">'
+								html += '<div class="blog-post image">'
+								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
+								html += '<div class="overlay"></div>'
+								html += '<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>'
+								html += '<div class="content">'
+								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
+								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
+								html += '<div class="meta">'+res[i].task_price+' - <a href="#" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">承运</a></div>'
+								html += '</div> <!-- end .content -->'
+								html += '</div> <!-- end .blog-post -->'
+								html += '</div> <!-- end .col-md-4 -->'
+								++i;
+								html += '<div class="col-md-4 col-sm-6" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">'
+								html += '<div class="blog-post image">'
+								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
+								html += '<div class="overlay"></div>'
+								html += '<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>'
+								html += '<div class="content">'
+								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
+								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
+								html += '<div class="meta">'+res[i].task_price+' - <a href="#" >承运</a></div>'
+								html += '</div> <!-- end .content -->'
+								html += '</div> <!-- end .blog-post -->'
+								html += '</div> <!-- end .col-md-4 -->'
+								html += '</div>'
+								document.getElementById("rowContainer").innerHTML = html;
+							}
+						}
+						
+						// var listTemplate = doT.template(document.getElementById("listTemplate").innerHTML);
+						// document.getElementById("rowContainer").innerHTML = listTemplate(res);
 					}
 				})
 			}
-		</script>
-		<!-- doT模板 -->
-		<script id="listTemplate" type="text/x-dot-template">
-			
-				{{ for(var x in it) {  if(x%3==0){ }}
-				<div class="row">
-					{{if(x%3==0){ }}
-					<div class="col-md-4 col-sm-6">
-						<div class="blog-post image">
-							<img src="http://localhost:8081/trans/{{=it[x].task_pic1}}" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>
-							<div class="content">
-								<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">{{=it[x].task_start}}</p>
-								<h3><a href="">{{=it[x].task_title}}</a></h3>
-								<div class="meta">{{=it[x].task_price}} - <a href="">承运</a></div>
-							</div> <!-- end .content -->
-						</div> <!-- end .blog-post -->
-					</div> <!-- end .col-md-4 -->	
-					{{x++}}}
-					<div class="col-md-4 col-sm-6">
-						<div class="blog-post image">
-							<img src="http://localhost:8081/trans/{{=it[x].task_pic1}}" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>
-							<div class="content">
-								<p>{{=it[x].task_start}}</p>
-								<h3><a href="">{{=it[x].task_title}}</a></h3>
-								<div class="meta">{{=it[x].task_price}} - <a href="">承运</a></div>
-							</div> <!-- end .content -->
-						</div> <!-- end .blog-post -->
-					</div> <!-- end .col-md-4 -->
-					
-					<div class="col-md-4 col-sm-6">
-						<div class="blog-post image">
-							<img src="http://localhost:8081/trans/{{=it[x].task_pic1}}" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>
-							<div class="content">
-								<p>{{=it[x].task_start}}</p>
-								<h3><a href="">{{=it[x].task_title}}</a></h3>
-								<div class="meta">{{=it[x].task_price}} - <a href="">承运</a></div>
-							</div> <!-- end .content -->
-						</div> <!-- end .blog-post -->
-					</div> <!-- end .col-md-4 -->		
-				</div> <!-- end .row -->
-				
-			{{ }}}}
-		</script>
 
+			function getTaskDetail(el){
+				var id = $(el).attr("data-taskId");
+				$.ajax({
+		           url:"getTaskDetail?taskId="+id,
+		           type:"GET",
+		           dataType:"JSON",
+		           success:function(data){
+		           		for(var i in data[0]){
+		           			console.log(i)
+		           			$("#"+i).val(data[0][i])
+		           		}
+		               $("#myModalLabel").text(data[0].task_title)
+		               for (var i = 0; i < 4; i++) {
+		               		if (data[0]["task_pic"+(i+1)]) {
+		               			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
+		               		}
+		               		
+		               }
+		               $("#task_describe").innerHTML(data[0].task_describe);
+		               
+		           }      
+		   		});
+			}
+		</script>
+		
 <footer class="footer">
 			<div class="top">
 				<div class="left">

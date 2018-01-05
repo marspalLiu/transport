@@ -65,15 +65,12 @@
 								<li><a href="<?php echo U('NearBy/nearBy');?>">附近的信息</a></li>
 							</ul>
 						</li>
-						<!-- <?php if(strtoupper($_SESSION['userId']) != '' && strtoupper($_SESSION['role']) == '1'): ?>-->
-						<!--<?php endif; ?> -->
-							<li class="menu-item-has-children">
+						<?php if(strtoupper($_SESSION['userId']) != '' && strtoupper($_SESSION['type']) == '2'): ?><li class="menu-item-has-children">
 								<a href="<?php echo U('AddTask/addTask');?>">发布任务</a>
 								<ul>
 									<li><a href="<?php echo U('AddTask/addTask');?>">发布任务</a></li>
 								</ul>
-							</li>
-						
+							</li><?php endif; ?>
 						
 						<li class="menu-item-has-children">
 							<a href="<?php echo U('TaskList/taskList');?>">全部信息</a>
@@ -81,15 +78,12 @@
 								<li><a href="<?php echo U('TaskList/taskList');?>">全部信息</a></li>
 							</ul>
 						</li>
-						<!-- <?php if(strtoupper($_SESSION['userId']) != ''): ?>-->
-						<!--<?php endif; ?> -->
-							<li class="menu-item-has-children">
+						<?php if(strtoupper($_SESSION['userId'])): ?><li class="menu-item-has-children">
 								<a href="<?php echo U('SelfCenter/selfCenter');?>" >与我相关</a>
 								<ul>
 									<li><a href="<?php echo U('SelfCenter/selfCenter');?>">我的</a></li>
 								</ul>
-							</li>
-						
+							</li><?php endif; ?>
 						
 					</ul>
 				</nav> <!-- end .main-nav -->
@@ -103,7 +97,7 @@
 					<div class="right">
 						<div class="user">
 							<div class="avatar"><img src="/trans/Public/images/avatar04.jpg"></div>
-							Angelbi88 . <a href="">注销</a>
+							<?php echo (session('userName')); ?> <a href="<?php echo U('Index/loginOut');?>">注销</a>
 						</div>
 					</div><?php endif; ?>
 
@@ -112,13 +106,29 @@
 
 		<div class="login-wrapper">
 			<div class="login">
-				<form action="<?php echo U('Login/regiser');?>" method="POST" >
+				<form action="<?php echo U('Index/login');?>" method="POST" >
 					<div class="form-group">
-						<input type="text" id="login_userName" name="userName" placeholder="请输入您的用户名">
+						<input type="text" id="login_userName" name="account" placeholder="请输入您的用户名">
 					</div> <!-- end .form-group -->
 					<div class="form-group">
-						<input type="text" id="login_password" name="password" placeholder="请输入您的密码">
+						<input type="password" id="login_password" name="password" placeholder="请输入您的密码">
 					</div> <!-- end .form-group -->
+					<div class="clearfix">
+						<div class="checkbox" style="width:100%;height: 30px;">
+							<div style="width: 50%;float: left;padding-left: 60px;">
+								<label>
+									<input type="radio" onchange="changeRadio(this)"  name="type" checked="true" value="1"> 司机
+								</label>
+							</div>
+							<div style="width: 50%;float: right;padding-right: 60px;">
+								<label>
+									<input type="radio" onchange="changeRadio(this)"  name="type" value="2"> 货主
+								</label>
+							</div>
+							
+						</div>
+						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
+					</div>
 					<div class="clearfix">
 						<div class="checkbox">
 							<label>
@@ -127,7 +137,7 @@
 						</div>
 						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
 					</div> <!-- end .clearfix -->
-					<div class="button-wrapper"><button type="button" class="button" onclick="login()">登录</button></div>
+					<div class="button-wrapper"><button type="submit" class="button" onclick="login()">登录</button></div>
 					<div class="text-center">
 						<p>还没有账号 ? <a href="" class="signup-open">前往注册</a></p>
 					</div>

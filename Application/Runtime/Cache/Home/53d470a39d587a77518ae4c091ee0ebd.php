@@ -65,15 +65,12 @@
 								<li><a href="<?php echo U('NearBy/nearBy');?>">附近的信息</a></li>
 							</ul>
 						</li>
-						<!-- <?php if(strtoupper($_SESSION['userId']) != '' && strtoupper($_SESSION['role']) == '1'): ?>-->
-						<!--<?php endif; ?> -->
-							<li class="menu-item-has-children">
+						<?php if(strtoupper($_SESSION['userId']) != '' && strtoupper($_SESSION['type']) == '2'): ?><li class="menu-item-has-children">
 								<a href="<?php echo U('AddTask/addTask');?>">发布任务</a>
 								<ul>
 									<li><a href="<?php echo U('AddTask/addTask');?>">发布任务</a></li>
 								</ul>
-							</li>
-						
+							</li><?php endif; ?>
 						
 						<li class="menu-item-has-children">
 							<a href="<?php echo U('TaskList/taskList');?>">全部信息</a>
@@ -81,15 +78,12 @@
 								<li><a href="<?php echo U('TaskList/taskList');?>">全部信息</a></li>
 							</ul>
 						</li>
-						<!-- <?php if(strtoupper($_SESSION['userId']) != ''): ?>-->
-						<!--<?php endif; ?> -->
-							<li class="menu-item-has-children">
+						<?php if(strtoupper($_SESSION['userId'])): ?><li class="menu-item-has-children">
 								<a href="<?php echo U('SelfCenter/selfCenter');?>" >与我相关</a>
 								<ul>
 									<li><a href="<?php echo U('SelfCenter/selfCenter');?>">我的</a></li>
 								</ul>
-							</li>
-						
+							</li><?php endif; ?>
 						
 					</ul>
 				</nav> <!-- end .main-nav -->
@@ -103,7 +97,7 @@
 					<div class="right">
 						<div class="user">
 							<div class="avatar"><img src="/trans/Public/images/avatar04.jpg"></div>
-							Angelbi88 . <a href="">注销</a>
+							<?php echo (session('userName')); ?> <a href="<?php echo U('Index/loginOut');?>">注销</a>
 						</div>
 					</div><?php endif; ?>
 
@@ -112,13 +106,29 @@
 
 		<div class="login-wrapper">
 			<div class="login">
-				<form action="<?php echo U('Login/regiser');?>" method="POST" >
+				<form action="<?php echo U('Index/login');?>" method="POST" >
 					<div class="form-group">
-						<input type="text" id="login_userName" name="userName" placeholder="请输入您的用户名">
+						<input type="text" id="login_userName" name="account" placeholder="请输入您的用户名">
 					</div> <!-- end .form-group -->
 					<div class="form-group">
-						<input type="text" id="login_password" name="password" placeholder="请输入您的密码">
+						<input type="password" id="login_password" name="password" placeholder="请输入您的密码">
 					</div> <!-- end .form-group -->
+					<div class="clearfix">
+						<div class="checkbox" style="width:100%;height: 30px;">
+							<div style="width: 50%;float: left;padding-left: 60px;">
+								<label>
+									<input type="radio" onchange="changeRadio(this)"  name="type" checked="true" value="1"> 司机
+								</label>
+							</div>
+							<div style="width: 50%;float: right;padding-right: 60px;">
+								<label>
+									<input type="radio" onchange="changeRadio(this)"  name="type" value="2"> 货主
+								</label>
+							</div>
+							
+						</div>
+						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
+					</div>
 					<div class="clearfix">
 						<div class="checkbox">
 							<label>
@@ -127,7 +137,7 @@
 						</div>
 						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
 					</div> <!-- end .clearfix -->
-					<div class="button-wrapper"><button type="button" class="button" onclick="login()">登录</button></div>
+					<div class="button-wrapper"><button type="submit" class="button" onclick="login()">登录</button></div>
 					<div class="text-center">
 						<p>还没有账号 ? <a href="" class="signup-open">前往注册</a></p>
 					</div>
@@ -268,250 +278,9 @@
 			<div class="inner">
 				<div class="container">
 					<div class="box transparent blog-grid">					
-						<div class="row">
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post05.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post05.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author04.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author04.jpg" alt="author"></div>
-									<div class="content">
-										<p>By Sagittis Tempor</p>
-										<h3><a href="">Etiquette tips for travellers.</a></h3>
-										<div class="meta">July 09, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post gallery">
-									<div class="blog-gallery">
-										<div><img src="/trans/Public/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-										<div><img src="/trans/Public/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-										<div><img src="/trans/Public/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-									</div> <!-- end .blog-gallery -->
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author02.jpg" alt="author"></div>
-									<div class="type"><img src="/trans/Public/images/blog-category-gallery.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-gallery.png" alt="gallery"></div>
-									<div class="content">
-										<p>By Nam Jacinia</p>
-										<h3><a href="">Central Park Bike Rentals</a></h3>
-										<div class="meta">July 07, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post04.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post04.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author05.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author05.jpg" alt="author"></div>
-									<div class="content">										
-										<p>By Vehicula Tincidunt</p>
-										<h3><a href="">The Modern Art of Coffee</a></h3>
-										<div class="meta">July 03, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-						</div> <!-- end .row -->
-						<div class="row">
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post quote">
-									<img src="/trans/Public/images/blog-post01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post01.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author01.jpg" alt="author"></div>
-									<div class="type"><img src="/trans/Public/images/blog-category-quote.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-quote.png" alt="quote"></div>
-									<div class="content">
-										<p>By Quam Lobortis</p>
-										<h3><a href="">“Sed ut perspiciatis unde omnis iste ... ”</a></h3>
-										<div class="meta">July 09, 2016 - <a href="">Food</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post07.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post07.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author06.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author06.jpg" alt="author"></div>	
-									<div class="content">
-										<p>By Nulla Facilisi</p>
-										<h3><a href="">The Famous Streets of NewYork</a></h3>
-										<div class="meta">July 09, 2016 - <a href="">Tips</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post06.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post06.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author07.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author07.jpg" alt="author"></div>
-									<div class="content">
-										<p>By Fusce Vehicula</p>
-										<h3><a href="">Top 15 Romantic Date Ideas </a></h3>
-										<div class="meta">July 03, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-						</div> <!-- end .row -->
-						<div class="row">
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post08.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post08.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author08.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author08.jpg" alt="author"></div>
-									<div class="content">
-										<p>By Justo Congue</p>
-										<h3><a href="">Top 15 Hotel at NewYork</a></h3>
-										<div class="meta">July 09, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post09.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post09.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author09.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author09.jpg" alt="author"></div>
-									<div class="content">
-										<p>By Ornare Suscipit</p>
-										<h3><a href="">Statue of Liberty and Ellis Island Tour</a></h3>
-										<div class="meta">July 09, 2016 - <a href="">Culture</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post video">
-									<img src="/trans/Public/images/blog-post03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post03.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author03.jpg" alt="author"></div>
-									<div class="type"><img src="/trans/Public/images/blog-category-video.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-video.png" alt="video"></div>
-									<div class="content">
-										<a href="" class="play-video"><i class="pe-7s-play"></i></a>
-										<p>By Proin Mattis</p>
-										<h3><a href="">Nightlife at NewYork</a></h3>
-										<div class="meta">July 03, 2016 - <a href="">Nightlife</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-						</div> <!-- end .row -->
-						<div class="row">
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post05.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post05.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author01.jpg" alt="author"></div>
-									<div class="content">
-										<p>By Sagittis Tempor</p>
-										<h3><a href="">Etiquette tips for travellers.</a></h3>
-										<div class="meta">July 09, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post gallery">
-									<div class="blog-gallery">
-										<div><img src="/trans/Public/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-										<div><img src="/trans/Public/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-										<div><img src="/trans/Public/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-									</div> <!-- end .blog-gallery -->
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author02.jpg" alt="author"></div>
-									<div class="type"><img src="/trans/Public/images/blog-category-gallery.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-gallery.png" alt="gallery"></div>
-									<div class="content">
-										<p>By Nam Jacinia</p>
-										<h3><a href="">Central Park Bike Rentals</a></h3>
-										<div class="meta">July 07, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post04.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post04.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author03.jpg" alt="author"></div>
-									<div class="content">										
-										<p>By Vehicula Tincidunt</p>
-										<h3><a href="">The Modern Art of Coffee</a></h3>
-										<div class="meta">July 03, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-						</div> <!-- end .row -->
-						<div class="row">
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post quote">
-									<img src="/trans/Public/images/blog-post01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post01.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author01.jpg" alt="author"></div>
-									<div class="type"><img src="/trans/Public/images/blog-category-quote.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-quote.png" alt="quote"></div>
-									<div class="content">
-										<p>By Quam Lobortis</p>
-										<h3><a href="">“Sed ut perspiciatis unde omnis iste ... ”</a></h3>
-										<div class="meta">July 09, 2016 - <a href="">Food</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post07.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post07.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author02.jpg" alt="author"></div>	
-									<div class="content">
-										<p>By Nulla Facilisi</p>
-										<h3><a href="">The Famous Streets of NewYork</a></h3>
-										<div class="meta">July 09, 2016 - <a href="">Tips</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post06.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post06.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author03.jpg" alt="author"></div>
-									<div class="content">
-										<p>By Fusce Vehicula</p>
-										<h3><a href="">Top 15 Romantic Date Ideas </a></h3>
-										<div class="meta">July 03, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-						</div> <!-- end .row -->
-						<div class="row">
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post08.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post08.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author01.jpg" alt="author"></div>
-									<div class="content">
-										<p>By Justo Congue</p>
-										<h3><a href="">Top 15 Hotel at NewYork</a></h3>
-										<div class="meta">July 09, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post image">
-									<img src="/trans/Public/images/blog-post09.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post09.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author02.jpg" alt="author"></div>
-									<div class="content">
-										<p>By Ornare Suscipit</p>
-										<h3><a href="">Statue of Liberty and Ellis Island Tour</a></h3>
-										<div class="meta">July 09, 2016 - <a href="">Culture</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-							<div class="col-md-4 col-sm-6">
-								<div class="blog-post video">
-									<img src="/trans/Public/images/blog-post03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post03.jpg" alt="image" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="avatar"><img src="/trans/Public/images/blog-author03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author03.jpg" alt="author"></div>
-									<div class="type"><img src="/trans/Public/images/blog-category-video.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-video.png" alt="video"></div>
-									<div class="content">
-										<a href="" class="play-video"><i class="pe-7s-play"></i></a>
-										<p>By Proin Mattis</p>
-										<h3><a href="">Nightlife at NewYork</a></h3>
-										<div class="meta">July 03, 2016 - <a href="">承运</a></div>
-									</div> <!-- end .content -->
-								</div> <!-- end .blog-post -->
-							</div> <!-- end .col-md-4 -->
-						</div> <!-- end .row -->
+						<div id="rowContainer">
+							
+						</div>
 						<div class="text-center">
 							<a href="" id="blog-load-more" class="button">LOAD MORE</a>
 						</div> <!-- end .blog-load-more -->
@@ -519,19 +288,100 @@
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
+
+		<!-- 任务详情Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		      </div>
+		      <div class="modal-body">
+		        ...
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		<script type="text/javascript">
 			window.onload=function(){
 				$.ajax({
-					url:"/trans/index.php/Home/TaskList/TaskList/getTaskList",
+					url:"/trans/index.php/Home/TaskList/getTaskList",
 					method:"get",
 					dataType:"json",
 					success:function(res){
 						console.log(res)
+						var html;
+						for (var i = 0; i < res.length; i++) {
+							if (i%3==0) {
+								html += '<div class="row">'
+								html += '<div class="col-md-4 col-sm-6">'
+								html += '<div class="blog-post image">'
+								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
+								html += '<div class="overlay"></div>'
+								html += '<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>'
+								html += '<div class="content">'
+								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
+								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
+								html += '<div class="meta">'+res[i].task_price+' - <a href="#" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">承运</a></div>'
+								html += '</div> <!-- end .content -->'
+								html += '</div> <!-- end .blog-post -->'
+								html += '</div> <!-- end .col-md-4 -->'
+								++i;
+								html += '<div class="col-md-4 col-sm-6">'
+								html += '<div class="blog-post image">'
+								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
+								html += '<div class="overlay"></div>'
+								html += '<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>'
+								html += '<div class="content">'
+								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
+								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
+								html += '<div class="meta">'+res[i].task_price+' - <a href="#" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">承运</a></div>'
+								html += '</div> <!-- end .content -->'
+								html += '</div> <!-- end .blog-post -->'
+								html += '</div> <!-- end .col-md-4 -->'
+								++i;
+								html += '<div class="col-md-4 col-sm-6">'
+								html += '<div class="blog-post image">'
+								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
+								html += '<div class="overlay"></div>'
+								html += '<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>'
+								html += '<div class="content">'
+								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
+								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
+								html += '<div class="meta">'+res[i].task_price+' - <a href="#" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">承运</a></div>'
+								html += '</div> <!-- end .content -->'
+								html += '</div> <!-- end .blog-post -->'
+								html += '</div> <!-- end .col-md-4 -->'
+								html += '</div>'
+								document.getElementById("rowContainer").innerHTML = html;
+							}
+						}
+						
+						// var listTemplate = doT.template(document.getElementById("listTemplate").innerHTML);
+						// document.getElementById("rowContainer").innerHTML = listTemplate(res);
 					}
 				})
 			}
-		</script>
 
+			function getTaskDetail(el){
+				var id = $(el).attr("data-taskId");
+				$.ajax({
+		           url:"TaskList/getTaskDetail?taskId="+id,
+		           type:"GET",
+		           dataType:"JSON",
+		           success:function(data){
+		               console.log(data)
+		               
+		           }      
+		   		});
+			}
+		</script>
+		
 <footer class="footer">
 			<div class="top">
 				<div class="left">

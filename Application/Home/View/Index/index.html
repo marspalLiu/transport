@@ -48,7 +48,7 @@
 								<div class="highlight-slider">
 									<div class="item">
 										<a href="" class="icon">
-											<img src="__PUBLIC__/images/highlight-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/highlight-food.png" alt="food">
+											<img src="__PUBLIC__/images/highlight-food.png">
 											<div class="overlay">设备制造</div>
 										</a> <!-- end .icon -->
 									</div> <!-- end .item -->
@@ -93,13 +93,13 @@
 		<div class="section light">
 			<div class="inner">
 				<div class="container">
-					<h2 class="text-center">种类概述<small>Explore some of the best tips from around the city from our partners and friends.</small></h2>
+					<h2 class="text-center">种类概况<small>Explore some of the best tips from around the city from our partners and friends.</small></h2>
 					<div class="row">
 						<div class="col-md-3 col-sm-6">
 							<a href="" class="category-box" style="background-image: url('images/category01.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category01.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon01.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon01.png" alt="icon">
-									<span class="number">8</span>
+									<span class="number" id="type1">8</span>
 									<span class="title">设备制造</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -108,7 +108,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category02.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category02.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon02.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon02.png" alt="icon">
-									<span class="number">36</span>
+									<span class="number" id="type2">36</span>
 									<span class="title">运输</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -117,7 +117,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category03.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category03.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon03.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon03.png" alt="icon">
-									<span class="number">26</span>
+									<span class="number" id="type3">26</span>
 									<span class="title">仓储</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -126,7 +126,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category04.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category04.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon04.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon04.png" alt="icon">
-									<span class="number">16</span>
+									<span class="number" id="type4">16</span>
 									<span class="title">装饰包装</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -135,7 +135,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category05.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category05.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon05.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon05.png" alt="icon">
-									<span class="number">12</span>
+									<span class="number" id="type5">12</span>
 									<span class="title">配送</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -144,7 +144,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category06.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category06.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon06.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon06.png" alt="icon">
-									<span class="number">4</span>
+									<span class="number" id="type6">4</span>
 									<span class="title">信息服务</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -153,7 +153,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category07.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category07.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon07.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon07.png" alt="icon">
-									<span class="number">39</span>
+									<span class="number" id="type7">39</span>
 									<span class="title">可重复利用的物资</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -170,125 +170,23 @@
 			<div class="inner">
 				<div class="container-fluid">
 					<h2 class="text-center">薪金  TOP10<small>下列的任务为薪金排行的前十，快来参观参观吧！</small></h2>
-					<div class="directory-slider">
+					<div class="directory-slider" id="topTemplateContainer">
 						<div class="directory-item">
-							<img src="__PUBLIC__/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">巴西咖啡豆</a></h3>
-								<p>5T，￥999,00</p>
-								<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">天津市 , 河北工业大学</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="__PUBLIC__/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-								<a href=""><img src="__PUBLIC__/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="__PUBLIC__/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">巴西咖啡豆</a></h3>
-								<p>5T，￥999,00</p>
-								<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">天津市 , 河北工业大学</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="__PUBLIC__/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-								<a href=""><img src="__PUBLIC__/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="__PUBLIC__/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">巴西咖啡豆</a></h3>
-								<p>5T，￥999,00</p>
-								<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">天津市 , 河北工业大学</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="__PUBLIC__/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-								<a href=""><img src="__PUBLIC__/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="__PUBLIC__/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">巴西咖啡豆</a></h3>
-								<p>5T，￥999,00</p>
-								<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">天津市 , 河北工业大学</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="__PUBLIC__/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-								<a href=""><img src="__PUBLIC__/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="__PUBLIC__/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">巴西咖啡豆</a></h3>
-								<p>5T，￥999,00</p>
-								<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">天津市 , 河北工业大学</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="__PUBLIC__/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-								<a href=""><img src="__PUBLIC__/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="__PUBLIC__/images/directory-slider02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider02.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">Nunc Restaurant</a></h3>
-								<p>Suspendisse tristique orci justo</p>
-								<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">Leonard St , NewYork</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="__PUBLIC__/images/directory-category-dining.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-dining.png" alt="dining"></a>
-								<a href=""><img src="__PUBLIC__/images/directory-category-wine.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-wine.png" alt="wine"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="__PUBLIC__/images/directory-slider03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider03.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">DJ Party</a></h3>
-								<p>Suspendisse tristique orci justo</p>
-								<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">Knightsbridge 66</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="__PUBLIC__/images/directory-category-party.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-party.png" alt="party"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="__PUBLIC__/images/directory-slider04.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider04.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">Quisque Tinibus Hotel</a></h3>
-								<p>Suspendisse tristique orci justo</p>
-								<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">Knightsbridge 66</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="__PUBLIC__/images/directory-category-hotel.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-hotel.png" alt="hotel"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
+									<img src="__PUBLIC__/images/directory-slider01.jpg" class="img-responsive">
+									<div class="overlay"></div>
+									<div class="rating">4.0</div>
+									<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png"></a>
+									<div class="content">
+										<h3><a href="">{{=it[x].taskName}}</a></h3>
+										<p>{{=it[x].price}}</p>
+										<div class="location"><img src="__PUBLIC__/images/directory-location.png">{{=it[x].location}}</div>
+									</div> <!-- end .content -->
+									<div class="category">
+										<a href=""><img src="__PUBLIC__/images/directory-category-food.png"></a>
+										<a href=""><img src="__PUBLIC__/images/directory-category-drink.png"></a>
+									</div> <!-- end .category -->
+								</div> <!-- end .directory-item -->s
+						
 					</div> <!-- end .directory-slider -->
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
@@ -393,5 +291,77 @@
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				//获取分类对应的各种数量
+				// $.ajax({
+				// 	url:"",
+				// 	method:"POST",
+				// 	data:"",
+				// 	success:function(res){
+				// 		for (var i = res.length - 1; i >= 0; i--) {
+				// 			$("#type"+res[i]["type"]).text(res[i]["count"])
+				// 		}
+				// 	}
+				// })
+
+				//获取前十名的薪金
+				$.ajax({
+					url:"http://localhost:8081/",
+					method:"POST",
+					data:"",
+					success:function(res){
+						
+						var topData = [{
+							"taskName":"巴西咖啡豆10T",
+							"price":"￥ 950.00",
+							"location":"河北工业大学",
+							"taskPic":"__PUBLIC__/images/directory-slider01.jpg"
+						},{
+							"taskName":"巴西咖啡豆10T",
+							"price":"￥ 950.00",
+							"location":"河北工业大学",
+							"taskPic":"__PUBLIC__/images/directory-slider01.jpg"
+						},{
+							"taskName":"巴西咖啡豆10T",
+							"price":"￥ 950.00",
+							"location":"河北工业大学",
+							"taskPic":"__PUBLIC__/images/directory-slider01.jpg"
+						},{
+							"taskName":"巴西咖啡豆10T",
+							"price":"￥ 950.00",
+							"location":"河北工业大学",
+							"taskPic":"__PUBLIC__/images/directory-slider01.jpg"
+						}];
+						var topTemplate = doT.template(document.getElementById("topTemplate").innerHTML);
+						document.getElementById("topTemplateContainer").innerHTML = topTemplate(topData);
+						
+				
+
+					}
+				})
+			}
+		</script>
+		<!-- doT模板 -->
+		<!-- <script id="topTemplate" type="text/x-dot-template">
+			{{ for(var x in it) { }}
+				<div class="directory-item">
+					<img src="{{=it[x].taskPic}}" class="img-responsive">
+					<div class="overlay"></div>
+					<div class="rating">4.0</div>
+					<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png"></a>
+					<div class="content">
+						<h3><a href="">{{=it[x].taskName}}</a></h3>
+						<p>{{=it[x].price}}</p>
+						<div class="location"><img src="__PUBLIC__/images/directory-location.png">{{=it[x].location}}</div>
+					</div> 
+					<div class="category">
+						<a href=""><img src="__PUBLIC__/images/directory-category-food.png"></a>
+						<a href=""><img src="__PUBLIC__/images/directory-category-drink.png"></a>
+					</div> 
+				</div>
+			{{ }}}
+		</script> -->
 		
 <include file="Public/footer" />

@@ -33,14 +33,17 @@
 		<link href="/trans/Public/css/jquery.nouislider.min.css"rel="stylesheet">
 		<!-- Style.css -->
 		<link href="/trans/Public/css/style.css" rel="stylesheet">
-		<link href="/trans/Public/css/openlogin.css" rel="stylesheet">
-		<script type="text/javascript" src="/trans/Public/js/openLogin.js"></script>
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-			<script src="../../../../../../oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js" tppabs="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="../../../../../../oss.maxcdn.com/respond/1.4.2/respond.min.js" tppabs="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+		
+		<!-- sweatAlert -->
+		<script src="/trans/Public/lib/sweetalert/sweetalert.min.js"></script>
+   		<link rel="stylesheet" type="text/css" href="/trans/Public/lib/sweetalert/sweetalert.css">
+
+   		<!-- doT.js -->
+   		<script src="/trans/Public/js/doT.min.js"></script>
+
+   		<!-- DateTime Picker-->
+	    <link href="/trans/Public/lib/bootstrapDatetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	    <script src="/trans/Public/lib/bootstrapDatetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
 	</head>
 	<body>
@@ -62,62 +65,71 @@
 								<li><a href="<?php echo U('NearBy/nearBy');?>">附近的信息</a></li>
 							</ul>
 						</li>
-						<li class="menu-item-has-children">
-							<a href="<?php echo U('AddTask/addTask');?>">发布任务</a>
-							<ul>
-								<li><a href="<?php echo U('AddTask/addTask');?>">发布任务</a></li>
+						<!-- <?php if(strtoupper($_SESSION['userId']) != '' && strtoupper($_SESSION['role']) == '1'): ?>-->
+						<!--<?php endif; ?> -->
+							<li class="menu-item-has-children">
+								<a href="<?php echo U('AddTask/addTask');?>">发布任务</a>
+								<ul>
+									<li><a href="<?php echo U('AddTask/addTask');?>">发布任务</a></li>
 								</ul>
-						</li>
+							</li>
+						
+						
 						<li class="menu-item-has-children">
 							<a href="<?php echo U('TaskList/taskList');?>">全部信息</a>
 							<ul>
 								<li><a href="<?php echo U('TaskList/taskList');?>">全部信息</a></li>
 							</ul>
 						</li>
-						<li class="menu-item-has-children">
-							<a href="<?php echo U('SelfCenter/selfCenter');?>" >与我相关</a>
-							<ul>
-								<li><a href="<?php echo U('SelfCenter/selfCenter');?>">我的</a></li>
-								<!-- <li><a href="shop-details.html" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/shop-details.html">Shop Details</a></li>
-								<li><a href="shop-cart.html" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/shop-cart.html">Shop Cart</a></li> -->
-							</ul>
-						</li>
+						<!-- <?php if(strtoupper($_SESSION['userId']) != ''): ?>-->
+						<!--<?php endif; ?> -->
+							<li class="menu-item-has-children">
+								<a href="<?php echo U('SelfCenter/selfCenter');?>" >与我相关</a>
+								<ul>
+									<li><a href="<?php echo U('SelfCenter/selfCenter');?>">我的</a></li>
+								</ul>
+							</li>
+						
+						
 					</ul>
 				</nav> <!-- end .main-nav -->
 				<a href="" class="responsive-menu-open"><i class="fa fa-bars"></i></a>
 			</div> <!-- end .navigation -->
-			<div class="right">
-				<a href="#" class="button signup-open border" >没有账号？注册</a> <!-- data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();" -->
-				<a href="#" class="button login-open" >登录</a><!-- data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();" -->
-			</div> <!-- end .left -->
+			<?php if(strtoupper($_SESSION['userId']) == ''): ?><div class="right">
+					<a href="#" class="button signup-open border" >没有账号？注册</a>
+					<a href="#" class="button login-open" >登录</a>
+				</div>
+				<?php else: ?>
+					<div class="right">
+						<div class="user">
+							<div class="avatar"><img src="/trans/Public/images/avatar04.jpg"></div>
+							Angelbi88 . <a href="">注销</a>
+						</div>
+					</div><?php endif; ?>
+
+			 <!-- end .left -->
 		</header> <!-- end .header -->
 
-<div class="login-wrapper">
+		<div class="login-wrapper">
 			<div class="login">
-				<form>
+				<form action="<?php echo U('Login/regiser');?>" method="POST" >
 					<div class="form-group">
-						<input type="text" placeholder="Username or Email Address *">
+						<input type="text" id="login_userName" name="userName" placeholder="请输入您的用户名">
 					</div> <!-- end .form-group -->
 					<div class="form-group">
-						<input type="text" placeholder="Password *">
+						<input type="text" id="login_password" name="password" placeholder="请输入您的密码">
 					</div> <!-- end .form-group -->
 					<div class="clearfix">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox"> Remember me
+								<input type="checkbox"> 记住密码
 							</label>
 						</div>
-						<a href="" class="lost-password">Lost your password ?</a>
+						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
 					</div> <!-- end .clearfix -->
-					<div class="button-wrapper"><button type="submit" class="button">Login</button></div>
+					<div class="button-wrapper"><button type="button" class="button" onclick="login()">登录</button></div>
 					<div class="text-center">
-						<p>Don't have an account ? <a href="" class="signup-open">Sign up</a></p>
-						<!-- <div class="social">
-							<p>Connect with Social Networks</p>
-							<a href=""><img src="/trans/Public/images/facebook.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/facebook.png" alt="facebook"></a>
-							<a href=""><img src="/trans/Public/images/twitter.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/twitter.png" alt="twitter"></a>
-							<a href=""><img src="/trans/Public/images/google-plus.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/google-plus.png" alt="google plus"></a>
-						</div> --> <!-- end .social -->
+						<p>还没有账号 ? <a href="" class="signup-open">前往注册</a></p>
 					</div>
 				</form>
 			</div> <!-- end .login -->
@@ -125,29 +137,121 @@
 
 		<div class="signup-wrapper">
 			<div class="signup">
-				<form>
+				<form action="/trans/index.php/Home/Index/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
 					<div class="form-group">
-						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="用户名">
+						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="姓名" id="register_name" name="name">
+					</div>
+					<div class="form-group">
+						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="用户名" id="register_userName" name="account">
 					</div> <!-- end .form-group -->
 					<div class="form-group">
-						<label style="color: red;display: inline-block;">*</label><input type="password" placeholder="密码">
+						<label style="color: red;display: inline-block;">*</label><input type="password" placeholder="密码" id="regiser_password" name="password">
 					</div> <!-- end .form-group -->
+					<div class="form-group">
+						<label style="color: red;display: inline-block;">*</label><input type="password" placeholder="确认密码" id="regiser_affirmPassword" name="affirmPassword">
+					</div> <!-- end .form-group -->
+					<div class="clearfix">
+						<div class="checkbox" style="width:100%;height: 30px;">
+							<div style="width: 50%;float: left;padding-left: 60px;">
+								<label>
+									<input type="radio" onchange="changeRadio(this)"  name="type" checked="true" value="1"> 司机
+								</label>
+							</div>
+							<div style="width: 50%;float: right;padding-right: 60px;">
+								<label>
+									<input type="radio" onchange="changeRadio(this)"  name="type" value="2"> 货主
+								</label>
+							</div>
+							
+						</div>
+						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
+					</div>
+					<div id="master" hidden="">
+            			<input id="tel1" class="form-control" type="text" placeholder="联系方式" name="tel">
+            			<input id="address" class="form-control" type="text" placeholder="住址" name="add">
+            		</div>
+            		<div id="car">
+            			<input id="tel2" class="form-control" type="text" placeholder="联系方式" name="tel">
+            		</div>
 					<div class="text-center">
 						<p>完成后请及时对信息进行完善</p>
 					</div> <!-- end .text-center -->
-					<div class="button-wrapper"><button type="submit" class="button">注册</button></div>
+					<div class="button-wrapper"><button type="submit" class="button" onclick="register()">注册</button></div>
 					<div class="text-center">
 						<p>Already have an account? <a href="" class="login-open">Log in</a></p>
-						<!-- <div class="social">
-							<p>Connect with Social Networks</p>
-							<a href=""><img src="/trans/Public/images/facebook.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/facebook.png" alt="facebook"></a>
-							<a href=""><img src="/trans/Public/images/twitter.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/twitter.png" alt="twitter"></a>
-							<a href=""><img src="/trans/Public/images/google-plus.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/google-plus.png" alt="google plus"></a>
-						</div> --> <!-- end .social -->
 					</div>
 				</form>
 			</div> <!-- end .signup -->
 		</div> <!-- end .signup-wrapper -->
+
+
+
+		<!-- 登录注册登出方法 -->
+		<script type="text/javascript">
+			function changeRadio(el){
+	    		var radioVal = $(el).val();
+	    		clearForm();
+	    		if (radioVal == 1) {
+	    			$("#master").hide();
+					$("#car").show();
+				}else{
+					$("#master").show();
+					$("#car").hide();
+				}
+	    	}
+	    	function clearForm(){
+	    		$(':input','#registerForm')
+
+			       .not(':button,:submit,:reset,:hidden,:radio')   //将myform表单中input元素type为button、submit、reset、hidden排除
+
+			       .val('')  //将input元素的value设为空值
+
+			       .removeAttr('checked')
+
+			       .removeAttr('checked') // 如果任何radio/checkbox/select inputs有checked or selected 属性，将其移除
+	    	}
+
+			//根据任务名称、出发地、到达地、类别（时间超过的就不在显示）
+			function search(){
+
+			}
+			window.alert = function(text){
+			    swal("提示",text);
+			}
+			window.confirm=function(text,type){
+			    swal("提示", text, type)
+			}
+			// 登录方法
+			// function login(){
+			// 	var login_userName= $("#login_userName").val();
+			// 	var login_password = $("#login_password").val();
+			// 	if(login_userName=='' || login_password==''){
+			// 		alert("您还有信息未输入");
+			// 		return false;
+			// 	};
+			// }
+
+			//登出方法
+			function loginOut(){
+
+			}
+
+			//注册方法
+			// function register(){
+			// 	var register_userName= $("#register_userName").val();
+			// 	var register_password = $.trim($("#register_password").val());
+			// 	var register_affirmPassword = $.trim($("#register_affirmPassword").val());
+			// 	if(register_userName=='' || register_password=='' || register_affirmPassword == ''){
+			// 		alert("您还有信息未输入");
+			// 		return false;
+			// 	};
+			// 	if (register_password != register_affirmPassword) {
+			// 		alert("两次密码输入不正确，请您检查一下！");
+			// 		return false;
+			// 	}
+			// }
+</script>
+
 		<div class="responsive-menu">
 			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
 			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
@@ -197,7 +301,7 @@
 								<div class="highlight-slider">
 									<div class="item">
 										<a href="" class="icon">
-											<img src="/trans/Public/images/highlight-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/highlight-food.png" alt="food">
+											<img src="/trans/Public/images/highlight-food.png">
 											<div class="overlay">设备制造</div>
 										</a> <!-- end .icon -->
 									</div> <!-- end .item -->
@@ -242,13 +346,13 @@
 		<div class="section light">
 			<div class="inner">
 				<div class="container">
-					<h2 class="text-center">种类概述<small>Explore some of the best tips from around the city from our partners and friends.</small></h2>
+					<h2 class="text-center">种类概况<small>Explore some of the best tips from around the city from our partners and friends.</small></h2>
 					<div class="row">
 						<div class="col-md-3 col-sm-6">
 							<a href="" class="category-box" style="background-image: url('images/category01.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category01.jpg*/;">
 								<div class="inner">
 									<img src="/trans/Public/images/category-icon01.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon01.png" alt="icon">
-									<span class="number">8</span>
+									<span class="number" id="type1">8</span>
 									<span class="title">设备制造</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -257,7 +361,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category02.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category02.jpg*/;">
 								<div class="inner">
 									<img src="/trans/Public/images/category-icon02.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon02.png" alt="icon">
-									<span class="number">36</span>
+									<span class="number" id="type2">36</span>
 									<span class="title">运输</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -266,7 +370,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category03.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category03.jpg*/;">
 								<div class="inner">
 									<img src="/trans/Public/images/category-icon03.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon03.png" alt="icon">
-									<span class="number">26</span>
+									<span class="number" id="type3">26</span>
 									<span class="title">仓储</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -275,7 +379,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category04.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category04.jpg*/;">
 								<div class="inner">
 									<img src="/trans/Public/images/category-icon04.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon04.png" alt="icon">
-									<span class="number">16</span>
+									<span class="number" id="type4">16</span>
 									<span class="title">装饰包装</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -284,7 +388,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category05.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category05.jpg*/;">
 								<div class="inner">
 									<img src="/trans/Public/images/category-icon05.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon05.png" alt="icon">
-									<span class="number">12</span>
+									<span class="number" id="type5">12</span>
 									<span class="title">配送</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -293,7 +397,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category06.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category06.jpg*/;">
 								<div class="inner">
 									<img src="/trans/Public/images/category-icon06.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon06.png" alt="icon">
-									<span class="number">4</span>
+									<span class="number" id="type6">4</span>
 									<span class="title">信息服务</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -302,7 +406,7 @@
 							<a href="" class="category-box" style="background-image: url('images/category07.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category07.jpg*/;">
 								<div class="inner">
 									<img src="/trans/Public/images/category-icon07.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon07.png" alt="icon">
-									<span class="number">39</span>
+									<span class="number" id="type7">39</span>
 									<span class="title">可重复利用的物资</span>
 								</div> <!-- end .inner -->
 							</a> <!-- end .category-box -->
@@ -319,125 +423,23 @@
 			<div class="inner">
 				<div class="container-fluid">
 					<h2 class="text-center">薪金  TOP10<small>下列的任务为薪金排行的前十，快来参观参观吧！</small></h2>
-					<div class="directory-slider">
+					<div class="directory-slider" id="topTemplateContainer">
 						<div class="directory-item">
-							<img src="/trans/Public/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="/trans/Public/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">巴西咖啡豆</a></h3>
-								<p>5T，￥999,00</p>
-								<div class="location"><img src="/trans/Public/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">天津市 , 河北工业大学</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="/trans/Public/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-								<a href=""><img src="/trans/Public/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="/trans/Public/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="/trans/Public/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">巴西咖啡豆</a></h3>
-								<p>5T，￥999,00</p>
-								<div class="location"><img src="/trans/Public/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">天津市 , 河北工业大学</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="/trans/Public/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-								<a href=""><img src="/trans/Public/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="/trans/Public/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="/trans/Public/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">巴西咖啡豆</a></h3>
-								<p>5T，￥999,00</p>
-								<div class="location"><img src="/trans/Public/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">天津市 , 河北工业大学</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="/trans/Public/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-								<a href=""><img src="/trans/Public/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="/trans/Public/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="/trans/Public/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">巴西咖啡豆</a></h3>
-								<p>5T，￥999,00</p>
-								<div class="location"><img src="/trans/Public/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">天津市 , 河北工业大学</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="/trans/Public/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-								<a href=""><img src="/trans/Public/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="/trans/Public/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="/trans/Public/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">巴西咖啡豆</a></h3>
-								<p>5T，￥999,00</p>
-								<div class="location"><img src="/trans/Public/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">天津市 , 河北工业大学</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="/trans/Public/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-								<a href=""><img src="/trans/Public/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="/trans/Public/images/directory-slider02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider02.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="/trans/Public/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">Nunc Restaurant</a></h3>
-								<p>Suspendisse tristique orci justo</p>
-								<div class="location"><img src="/trans/Public/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">Leonard St , NewYork</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="/trans/Public/images/directory-category-dining.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-dining.png" alt="dining"></a>
-								<a href=""><img src="/trans/Public/images/directory-category-wine.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-wine.png" alt="wine"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="/trans/Public/images/directory-slider03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider03.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="/trans/Public/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">DJ Party</a></h3>
-								<p>Suspendisse tristique orci justo</p>
-								<div class="location"><img src="/trans/Public/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">Knightsbridge 66</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="/trans/Public/images/directory-category-party.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-party.png" alt="party"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
-						<div class="directory-item">
-							<img src="/trans/Public/images/directory-slider04.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider04.jpg" alt="bg" class="img-responsive">
-							<div class="overlay"></div>
-							<div class="rating">4.0</div>
-							<a href="" class="wishlist"><img src="/trans/Public/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-							<div class="content">
-								<h3><a href="">Quisque Tinibus Hotel</a></h3>
-								<p>Suspendisse tristique orci justo</p>
-								<div class="location"><img src="/trans/Public/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">Knightsbridge 66</div>
-							</div> <!-- end .content -->
-							<div class="category">
-								<a href=""><img src="/trans/Public/images/directory-category-hotel.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-hotel.png" alt="hotel"></a>
-							</div> <!-- end .category -->
-						</div> <!-- end .directory-item -->
+									<img src="/trans/Public/images/directory-slider01.jpg" class="img-responsive">
+									<div class="overlay"></div>
+									<div class="rating">4.0</div>
+									<a href="" class="wishlist"><img src="/trans/Public/images/directory-heart.png"></a>
+									<div class="content">
+										<h3><a href="">{{=it[x].taskName}}</a></h3>
+										<p>{{=it[x].price}}</p>
+										<div class="location"><img src="/trans/Public/images/directory-location.png">{{=it[x].location}}</div>
+									</div> <!-- end .content -->
+									<div class="category">
+										<a href=""><img src="/trans/Public/images/directory-category-food.png"></a>
+										<a href=""><img src="/trans/Public/images/directory-category-drink.png"></a>
+									</div> <!-- end .category -->
+								</div> <!-- end .directory-item -->s
+						
 					</div> <!-- end .directory-slider -->
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
@@ -542,6 +544,78 @@
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				//获取分类对应的各种数量
+				// $.ajax({
+				// 	url:"",
+				// 	method:"POST",
+				// 	data:"",
+				// 	success:function(res){
+				// 		for (var i = res.length - 1; i >= 0; i--) {
+				// 			$("#type"+res[i]["type"]).text(res[i]["count"])
+				// 		}
+				// 	}
+				// })
+
+				//获取前十名的薪金
+				$.ajax({
+					url:"http://localhost:8081/",
+					method:"POST",
+					data:"",
+					success:function(res){
+						
+						var topData = [{
+							"taskName":"巴西咖啡豆10T",
+							"price":"￥ 950.00",
+							"location":"河北工业大学",
+							"taskPic":"/trans/Public/images/directory-slider01.jpg"
+						},{
+							"taskName":"巴西咖啡豆10T",
+							"price":"￥ 950.00",
+							"location":"河北工业大学",
+							"taskPic":"/trans/Public/images/directory-slider01.jpg"
+						},{
+							"taskName":"巴西咖啡豆10T",
+							"price":"￥ 950.00",
+							"location":"河北工业大学",
+							"taskPic":"/trans/Public/images/directory-slider01.jpg"
+						},{
+							"taskName":"巴西咖啡豆10T",
+							"price":"￥ 950.00",
+							"location":"河北工业大学",
+							"taskPic":"/trans/Public/images/directory-slider01.jpg"
+						}];
+						var topTemplate = doT.template(document.getElementById("topTemplate").innerHTML);
+						document.getElementById("topTemplateContainer").innerHTML = topTemplate(topData);
+						
+				
+
+					}
+				})
+			}
+		</script>
+		<!-- doT模板 -->
+		<!-- <script id="topTemplate" type="text/x-dot-template">
+			{{ for(var x in it) { }}
+				<div class="directory-item">
+					<img src="{{=it[x].taskPic}}" class="img-responsive">
+					<div class="overlay"></div>
+					<div class="rating">4.0</div>
+					<a href="" class="wishlist"><img src="/trans/Public/images/directory-heart.png"></a>
+					<div class="content">
+						<h3><a href="">{{=it[x].taskName}}</a></h3>
+						<p>{{=it[x].price}}</p>
+						<div class="location"><img src="/trans/Public/images/directory-location.png">{{=it[x].location}}</div>
+					</div> 
+					<div class="category">
+						<a href=""><img src="/trans/Public/images/directory-category-food.png"></a>
+						<a href=""><img src="/trans/Public/images/directory-category-drink.png"></a>
+					</div> 
+				</div>
+			{{ }}}
+		</script> -->
 		
 <footer class="footer">
 			<div class="top">

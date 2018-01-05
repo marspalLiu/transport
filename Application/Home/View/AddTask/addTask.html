@@ -1,4 +1,5 @@
 <include file="Public/header" />
+<script src="__PUBLIC__/lib/ckeditor/ckeditor.js"></script>
 		<div class="responsive-menu">
 			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
 			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
@@ -16,33 +17,27 @@
 			<div class="inner">
 				<div class="container">
 					<div class="box">
-						<form class="add-listing-form light-inputs">
+						<form action="__URL__/addTaskFun" method="post" enctype="multipart/form-data" class="add-listing-form light-inputs">
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">任务名称 :</span>
-									<input type="text" placeholder="例如：运送一匹建材">
+									<input type="text" name="task_title" placeholder="例如：运送一匹建材">
 								</div> <!-- end .input-group -->
 							</div> <!-- end .form-group -->
-							<!-- <div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Tagline (optional) :</span>
-									<input type="text" placeholder="e.g Vitae Labortis Restaurant">
-								</div> 
-							</div> -->
 							<div class="form-group">              
-							    <textarea placeholder="任务描述，越详细越好" rows="4"></textarea>
+							    <!-- <textarea name="task_describe" rows="4"></textarea> -->
+							    <textarea id="TextArea1" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" class="ckeditor"></textarea>
 							</div> <!-- end .form-group -->
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">选择分类 :</span>
-									<select>	    	
-										<option value="" disabled selected>选择一个准确货物的分类</option>
-										<option>设备制造</option>
-										<option>运输</option>
-										<option>仓储</option>
-										<option>装饰包装</option>
-										<option>配送</option>
-										<option>信息服务</option>
+									<select name="task_type">	    	
+										<option value="1">设备制造</option>
+										<option value="2">运输</option>
+										<option value="3">仓储</option>
+										<option value="4">装饰包装</option>
+										<option value="5">配送</option>
+										<option value="6">信息服务</option>
 									</select>
 								</div> <!-- end .input-group -->
 								<span class="help-block">分类必须要准确，如有运输触犯法律的货物，将会受到刑事处理</span>
@@ -50,59 +45,59 @@
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">起点 :</span>
-									<select>	    	
-											<option>北辰区</option>
-											<option>红桥区</option>
-											<option>南开区</option>
-											<option>滨海新区</option>
-											<option>西青区</option>
-											<option>静海县</option>
+									<select name="task_start">	    	
+											<option value="北辰区">北辰区</option>
+											<option value="红桥区">红桥区</option>
+											<option value="南开区">南开区</option>
+											<option value="滨海新区">滨海新区</option>
+											<option value="西青区">西青区</option>
+											<option value="静海县">静海县</option>
 									</select>
 								</div> <!-- end .input-group -->
 							</div> <!-- end .form-group -->
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">目的地 :</span>
-									<select>	    	
-											<option>北辰区</option>
-											<option>红桥区</option>
-											<option>南开区</option>
-											<option>滨海新区</option>
-											<option>西青区</option>
-											<option>静海县</option>
+									<select name="task_end">	    	
+											<option value="北辰区">北辰区</option>
+											<option value="红桥区">红桥区</option>
+											<option value="南开区">南开区</option>
+											<option value="滨海新区">滨海新区</option>
+											<option value="西青区">西青区</option>
+											<option value="静海县">静海县</option>
 									</select>
 								</div> <!-- end .input-group -->
 							</div> <!-- end .form-group -->
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">其他要求 :</span>
-									<input type="text" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
+									<input type="text" name="task_require" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
 								</div> <!-- end .input-group -->
 								<span class="help-block">可以根据到货后检查货物质量对司机进行申诉</span>
 							</div> <!-- end .form-group -->
 							<div class="form-group add_photo">
 								<button onclick="getElementById('file').click()" type="button" class="button">上传图片</button>
-								<input type="file" multiple="multiple" id="file" name='file' style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;"/><!--原来按钮的样式-->
+								<input type="file" multiple="multiple" id="file" name='task_pic[]' style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" onchange="preview(this)" /><!--原来按钮的样式-->
 								<span>4 Photos ( 570px × 400px)</span>
 							</div> <!-- end .text-left .add_photo -->
 							<div class="form-group photo_thumbnails">
-								<div class="photo_preview_box"></div>
-								<div class="photo_preview_box"></div>
-								<div class="photo_preview_box"></div>
-								<div class="photo_preview_box"></div>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview1"></img>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview2"></img>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview3"></img>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview4"></img>
 							</div> <!-- end .form-group .photo_thumbnails -->
 							<div class="form-group listing-hours">
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="input-group">
-											<span class="input-group-addon">日期 :</span>
-											<input type="text" placeholder="2018-03-15">
+											<span class="input-group-addon">拉货日期 :</span>
+											<input type="text" name="task_time" id="time" placeholder="2018-03-15">
 										</div> <!-- end .input-group -->
 									</div> <!-- end .col-sm-4 -->
 									<div class="col-sm-4">
 										<div class="input-group">
-											<span class="input-group-addon">具体时间 :</span>
-											<input type="text">
+											<span class="input-group-addon">薪金 :</span>
+											<input type="number" name="task_price">
 										</div> <!-- end .input-group -->
 									</div> <!-- end .col-sm-4 -->
 									<!-- <div class="col-sm-4">
@@ -121,11 +116,124 @@
 									</div> 
 								</div>  --><!-- end .row -->
 							</div> <!-- end .form-group -->
-							<div class="submit"><button type="submit" class="button">提交任务</button></div>
+							<div class="submit"><button type="submit" class="button" onclick="beforeSubmit()">提交任务</button></div>
 						</form>
 					</div> <!-- end .box -->
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
+<script type="text/javascript">
+	window.onload=function(){
+		CKEDITOR.replace('TextArea1');
+		$("#time").datetimepicker({
+            format: 'yyyy-mm',
+            minView:'month',
+            language: 'zh-CN',
+            autoclose:true,
 
+        }).on("click",function(){
+           $("#time").datetimepicker("setEndDate",$("#time").val())
+        });
+	}
+	function preview(el){
+		for (var i = 0; i < 4; i++) {
+			$("#preview"+(i+1)).attr("src","");
+		}
+		var fileData = el.files
+		
+		if (fileData.length ==1) {
+			var reader = new FileReader();   
+	        reader.readAsDataURL(fileData[0]);   
+	        reader.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}   
+
+		}else if(fileData.length == 2){
+			var reader1 = new FileReader();   
+	        reader1.readAsDataURL(fileData[0]);   
+	        reader1.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader2 = new FileReader();   
+	        reader2.readAsDataURL(fileData[1]);   
+	        reader2.onload = function(e){   
+	        	$("#preview2").attr("src",this.result);
+	        	
+   			}  
+
+
+		}else if(fileData.length == 3){
+			var reader1 = new FileReader();   
+	        reader1.readAsDataURL(fileData[0]);   
+	        reader1.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader2 = new FileReader();   
+	        reader2.readAsDataURL(fileData[1]);   
+	        reader2.onload = function(e){   
+	        	$("#preview2").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader3 = new FileReader();   
+	        reader3.readAsDataURL(fileData[2]);   
+	        reader3.onload = function(e){   
+	        	$("#preview3").attr("src",this.result);
+	        	
+   			}
+
+		}else if(fileData.length == 4){
+			var reader1 = new FileReader();   
+	        reader1.readAsDataURL(fileData[0]);   
+	        reader1.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader2 = new FileReader();   
+	        reader2.readAsDataURL(fileData[1]);   
+	        reader2.onload = function(e){   
+	        	$("#preview2").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader3 = new FileReader();   
+	        reader3.readAsDataURL(fileData[2]);   
+	        reader3.onload = function(e){   
+	        	$("#preview3").attr("src",this.result);
+	        	
+   			}
+
+   			var reader4 = new FileReader();   
+	        reader4.readAsDataURL(fileData[3]);   
+	        reader4.onload = function(e){   
+	        	$("#preview4").attr("src",this.result);
+	        	
+   			}
+		}
+
+        
+    }
+	function getObjectURL(file) {
+	    var url = new Array() ; 
+	    if (window.createObjectURL!=undefined) { // basic
+	        url = window.createObjectURL(file) ;
+	    } else if (window.URL!=undefined) { // mozilla(firefox)
+	        url = window.URL.createObjectURL(file) ;
+	    } else if (window.webkitURL!=undefined) { // webkit or chrome
+	        url = window.webkitURL.createObjectURL(file) ;
+	    }
+	    return url ;
+	}
+
+	function beforeSubmit(){
+		for (instance in CKEDITOR.instances)
+            CKEDITOR.instances[instance].updateElement();
+	}
+</script>
 <include file="Public/footer" />

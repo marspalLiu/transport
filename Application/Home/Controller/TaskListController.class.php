@@ -6,4 +6,10 @@ class TaskListController extends Controller {
     public function taskList(){
         $this->show();
     }
+
+    public function getTaskList(){
+    	$sql = "select * FROM task where task_carrier = 0 having substring(task_time,1,11)> ".date("Y-m-d");
+    	$data = D()->query($sql);
+    	echo json_encode($data);
+    }
 }

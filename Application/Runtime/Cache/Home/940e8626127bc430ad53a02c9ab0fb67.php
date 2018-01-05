@@ -33,14 +33,17 @@
 		<link href="/trans/Public/css/jquery.nouislider.min.css"rel="stylesheet">
 		<!-- Style.css -->
 		<link href="/trans/Public/css/style.css" rel="stylesheet">
-		<link href="/trans/Public/css/openlogin.css" rel="stylesheet">
-		<script type="text/javascript" src="/trans/Public/js/openLogin.js"></script>
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-			<script src="../../../../../../oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js" tppabs="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="../../../../../../oss.maxcdn.com/respond/1.4.2/respond.min.js" tppabs="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+		
+		<!-- sweatAlert -->
+		<script src="/trans/Public/lib/sweetalert/sweetalert.min.js"></script>
+   		<link rel="stylesheet" type="text/css" href="/trans/Public/lib/sweetalert/sweetalert.css">
+
+   		<!-- doT.js -->
+   		<script src="/trans/Public/js/doT.min.js"></script>
+
+   		<!-- DateTime Picker-->
+	    <link href="/trans/Public/lib/bootstrapDatetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	    <script src="/trans/Public/lib/bootstrapDatetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
 	</head>
 	<body>
@@ -62,62 +65,71 @@
 								<li><a href="<?php echo U('NearBy/nearBy');?>">附近的信息</a></li>
 							</ul>
 						</li>
-						<li class="menu-item-has-children">
-							<a href="<?php echo U('AddTask/addTask');?>">发布任务</a>
-							<ul>
-								<li><a href="<?php echo U('AddTask/addTask');?>">发布任务</a></li>
+						<!-- <?php if(strtoupper($_SESSION['userId']) != '' && strtoupper($_SESSION['role']) == '1'): ?>-->
+						<!--<?php endif; ?> -->
+							<li class="menu-item-has-children">
+								<a href="<?php echo U('AddTask/addTask');?>">发布任务</a>
+								<ul>
+									<li><a href="<?php echo U('AddTask/addTask');?>">发布任务</a></li>
 								</ul>
-						</li>
+							</li>
+						
+						
 						<li class="menu-item-has-children">
 							<a href="<?php echo U('TaskList/taskList');?>">全部信息</a>
 							<ul>
 								<li><a href="<?php echo U('TaskList/taskList');?>">全部信息</a></li>
 							</ul>
 						</li>
-						<li class="menu-item-has-children">
-							<a href="<?php echo U('SelfCenter/selfCenter');?>" >与我相关</a>
-							<ul>
-								<li><a href="<?php echo U('SelfCenter/selfCenter');?>">我的</a></li>
-								<!-- <li><a href="shop-details.html" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/shop-details.html">Shop Details</a></li>
-								<li><a href="shop-cart.html" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/shop-cart.html">Shop Cart</a></li> -->
-							</ul>
-						</li>
+						<!-- <?php if(strtoupper($_SESSION['userId']) != ''): ?>-->
+						<!--<?php endif; ?> -->
+							<li class="menu-item-has-children">
+								<a href="<?php echo U('SelfCenter/selfCenter');?>" >与我相关</a>
+								<ul>
+									<li><a href="<?php echo U('SelfCenter/selfCenter');?>">我的</a></li>
+								</ul>
+							</li>
+						
+						
 					</ul>
 				</nav> <!-- end .main-nav -->
 				<a href="" class="responsive-menu-open"><i class="fa fa-bars"></i></a>
 			</div> <!-- end .navigation -->
-			<div class="right">
-				<a href="#" class="button signup-open border" >没有账号？注册</a> <!-- data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();" -->
-				<a href="#" class="button login-open" >登录</a><!-- data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();" -->
-			</div> <!-- end .left -->
+			<?php if(strtoupper($_SESSION['userId']) == ''): ?><div class="right">
+					<a href="#" class="button signup-open border" >没有账号？注册</a>
+					<a href="#" class="button login-open" >登录</a>
+				</div>
+				<?php else: ?>
+					<div class="right">
+						<div class="user">
+							<div class="avatar"><img src="/trans/Public/images/avatar04.jpg"></div>
+							Angelbi88 . <a href="">注销</a>
+						</div>
+					</div><?php endif; ?>
+
+			 <!-- end .left -->
 		</header> <!-- end .header -->
 
-<div class="login-wrapper">
+		<div class="login-wrapper">
 			<div class="login">
-				<form>
+				<form action="<?php echo U('Login/regiser');?>" method="POST" >
 					<div class="form-group">
-						<input type="text" placeholder="Username or Email Address *">
+						<input type="text" id="login_userName" name="userName" placeholder="请输入您的用户名">
 					</div> <!-- end .form-group -->
 					<div class="form-group">
-						<input type="text" placeholder="Password *">
+						<input type="text" id="login_password" name="password" placeholder="请输入您的密码">
 					</div> <!-- end .form-group -->
 					<div class="clearfix">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox"> Remember me
+								<input type="checkbox"> 记住密码
 							</label>
 						</div>
-						<a href="" class="lost-password">Lost your password ?</a>
+						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
 					</div> <!-- end .clearfix -->
-					<div class="button-wrapper"><button type="submit" class="button">Login</button></div>
+					<div class="button-wrapper"><button type="button" class="button" onclick="login()">登录</button></div>
 					<div class="text-center">
-						<p>Don't have an account ? <a href="" class="signup-open">Sign up</a></p>
-						<!-- <div class="social">
-							<p>Connect with Social Networks</p>
-							<a href=""><img src="/trans/Public/images/facebook.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/facebook.png" alt="facebook"></a>
-							<a href=""><img src="/trans/Public/images/twitter.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/twitter.png" alt="twitter"></a>
-							<a href=""><img src="/trans/Public/images/google-plus.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/google-plus.png" alt="google plus"></a>
-						</div> --> <!-- end .social -->
+						<p>还没有账号 ? <a href="" class="signup-open">前往注册</a></p>
 					</div>
 				</form>
 			</div> <!-- end .login -->
@@ -125,29 +137,122 @@
 
 		<div class="signup-wrapper">
 			<div class="signup">
-				<form>
+				<form action="/trans/index.php/Home/AddTask/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
 					<div class="form-group">
-						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="用户名">
+						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="姓名" id="register_name" name="name">
+					</div>
+					<div class="form-group">
+						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="用户名" id="register_userName" name="account">
 					</div> <!-- end .form-group -->
 					<div class="form-group">
-						<label style="color: red;display: inline-block;">*</label><input type="password" placeholder="密码">
+						<label style="color: red;display: inline-block;">*</label><input type="password" placeholder="密码" id="regiser_password" name="password">
 					</div> <!-- end .form-group -->
+					<div class="form-group">
+						<label style="color: red;display: inline-block;">*</label><input type="password" placeholder="确认密码" id="regiser_affirmPassword" name="affirmPassword">
+					</div> <!-- end .form-group -->
+					<div class="clearfix">
+						<div class="checkbox" style="width:100%;height: 30px;">
+							<div style="width: 50%;float: left;padding-left: 60px;">
+								<label>
+									<input type="radio" onchange="changeRadio(this)"  name="type" checked="true" value="1"> 司机
+								</label>
+							</div>
+							<div style="width: 50%;float: right;padding-right: 60px;">
+								<label>
+									<input type="radio" onchange="changeRadio(this)"  name="type" value="2"> 货主
+								</label>
+							</div>
+							
+						</div>
+						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
+					</div>
+					<div id="master" hidden="">
+            			<input id="tel1" class="form-control" type="text" placeholder="联系方式" name="tel">
+            			<input id="address" class="form-control" type="text" placeholder="住址" name="add">
+            		</div>
+            		<div id="car">
+            			<input id="tel2" class="form-control" type="text" placeholder="联系方式" name="tel">
+            		</div>
 					<div class="text-center">
 						<p>完成后请及时对信息进行完善</p>
 					</div> <!-- end .text-center -->
-					<div class="button-wrapper"><button type="submit" class="button">注册</button></div>
+					<div class="button-wrapper"><button type="submit" class="button" onclick="register()">注册</button></div>
 					<div class="text-center">
 						<p>Already have an account? <a href="" class="login-open">Log in</a></p>
-						<!-- <div class="social">
-							<p>Connect with Social Networks</p>
-							<a href=""><img src="/trans/Public/images/facebook.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/facebook.png" alt="facebook"></a>
-							<a href=""><img src="/trans/Public/images/twitter.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/twitter.png" alt="twitter"></a>
-							<a href=""><img src="/trans/Public/images/google-plus.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/google-plus.png" alt="google plus"></a>
-						</div> --> <!-- end .social -->
 					</div>
 				</form>
 			</div> <!-- end .signup -->
 		</div> <!-- end .signup-wrapper -->
+
+
+
+		<!-- 登录注册登出方法 -->
+		<script type="text/javascript">
+			function changeRadio(el){
+	    		var radioVal = $(el).val();
+	    		clearForm();
+	    		if (radioVal == 1) {
+	    			$("#master").hide();
+					$("#car").show();
+				}else{
+					$("#master").show();
+					$("#car").hide();
+				}
+	    	}
+	    	function clearForm(){
+	    		$(':input','#registerForm')
+
+			       .not(':button,:submit,:reset,:hidden,:radio')   //将myform表单中input元素type为button、submit、reset、hidden排除
+
+			       .val('')  //将input元素的value设为空值
+
+			       .removeAttr('checked')
+
+			       .removeAttr('checked') // 如果任何radio/checkbox/select inputs有checked or selected 属性，将其移除
+	    	}
+
+			//根据任务名称、出发地、到达地、类别（时间超过的就不在显示）
+			function search(){
+
+			}
+			window.alert = function(text){
+			    swal("提示",text);
+			}
+			window.confirm=function(text,type){
+			    swal("提示", text, type)
+			}
+			// 登录方法
+			// function login(){
+			// 	var login_userName= $("#login_userName").val();
+			// 	var login_password = $("#login_password").val();
+			// 	if(login_userName=='' || login_password==''){
+			// 		alert("您还有信息未输入");
+			// 		return false;
+			// 	};
+			// }
+
+			//登出方法
+			function loginOut(){
+
+			}
+
+			//注册方法
+			// function register(){
+			// 	var register_userName= $("#register_userName").val();
+			// 	var register_password = $.trim($("#register_password").val());
+			// 	var register_affirmPassword = $.trim($("#register_affirmPassword").val());
+			// 	if(register_userName=='' || register_password=='' || register_affirmPassword == ''){
+			// 		alert("您还有信息未输入");
+			// 		return false;
+			// 	};
+			// 	if (register_password != register_affirmPassword) {
+			// 		alert("两次密码输入不正确，请您检查一下！");
+			// 		return false;
+			// 	}
+			// }
+</script>
+
+<script src="/trans/Public/lib/ckeditor/ckeditor.js"></script>
 		<div class="responsive-menu">
 			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
 			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
@@ -165,33 +270,27 @@
 			<div class="inner">
 				<div class="container">
 					<div class="box">
-						<form class="add-listing-form light-inputs">
+						<form action="/trans/index.php/Home/AddTask/addTaskFun" method="post" enctype="multipart/form-data" class="add-listing-form light-inputs">
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">任务名称 :</span>
-									<input type="text" placeholder="例如：运送一匹建材">
+									<input type="text" name="task_title" placeholder="例如：运送一匹建材">
 								</div> <!-- end .input-group -->
 							</div> <!-- end .form-group -->
-							<!-- <div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">Tagline (optional) :</span>
-									<input type="text" placeholder="e.g Vitae Labortis Restaurant">
-								</div> 
-							</div> -->
 							<div class="form-group">              
-							    <textarea placeholder="任务描述，越详细越好" rows="4"></textarea>
+							    <!-- <textarea name="task_describe" rows="4"></textarea> -->
+							    <textarea id="TextArea1" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" class="ckeditor"></textarea>
 							</div> <!-- end .form-group -->
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">选择分类 :</span>
-									<select>	    	
-										<option value="" disabled selected>选择一个准确货物的分类</option>
-										<option>设备制造</option>
-										<option>运输</option>
-										<option>仓储</option>
-										<option>装饰包装</option>
-										<option>配送</option>
-										<option>信息服务</option>
+									<select name="task_type">	    	
+										<option value="1">设备制造</option>
+										<option value="2">运输</option>
+										<option value="3">仓储</option>
+										<option value="4">装饰包装</option>
+										<option value="5">配送</option>
+										<option value="6">信息服务</option>
 									</select>
 								</div> <!-- end .input-group -->
 								<span class="help-block">分类必须要准确，如有运输触犯法律的货物，将会受到刑事处理</span>
@@ -199,59 +298,59 @@
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">起点 :</span>
-									<select>	    	
-											<option>北辰区</option>
-											<option>红桥区</option>
-											<option>南开区</option>
-											<option>滨海新区</option>
-											<option>西青区</option>
-											<option>静海县</option>
+									<select name="task_start">	    	
+											<option value="北辰区">北辰区</option>
+											<option value="红桥区">红桥区</option>
+											<option value="南开区">南开区</option>
+											<option value="滨海新区">滨海新区</option>
+											<option value="西青区">西青区</option>
+											<option value="静海县">静海县</option>
 									</select>
 								</div> <!-- end .input-group -->
 							</div> <!-- end .form-group -->
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">目的地 :</span>
-									<select>	    	
-											<option>北辰区</option>
-											<option>红桥区</option>
-											<option>南开区</option>
-											<option>滨海新区</option>
-											<option>西青区</option>
-											<option>静海县</option>
+									<select name="task_end">	    	
+											<option value="北辰区">北辰区</option>
+											<option value="红桥区">红桥区</option>
+											<option value="南开区">南开区</option>
+											<option value="滨海新区">滨海新区</option>
+											<option value="西青区">西青区</option>
+											<option value="静海县">静海县</option>
 									</select>
 								</div> <!-- end .input-group -->
 							</div> <!-- end .form-group -->
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">其他要求 :</span>
-									<input type="text" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
+									<input type="text" name="task_require" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
 								</div> <!-- end .input-group -->
 								<span class="help-block">可以根据到货后检查货物质量对司机进行申诉</span>
 							</div> <!-- end .form-group -->
 							<div class="form-group add_photo">
 								<button onclick="getElementById('file').click()" type="button" class="button">上传图片</button>
-								<input type="file" multiple="multiple" id="file" name='file' style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;"/><!--原来按钮的样式-->
+								<input type="file" multiple="multiple" id="file" name='task_pic[]' style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" onchange="preview(this)" /><!--原来按钮的样式-->
 								<span>4 Photos ( 570px × 400px)</span>
 							</div> <!-- end .text-left .add_photo -->
 							<div class="form-group photo_thumbnails">
-								<div class="photo_preview_box"></div>
-								<div class="photo_preview_box"></div>
-								<div class="photo_preview_box"></div>
-								<div class="photo_preview_box"></div>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview1"></img>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview2"></img>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview3"></img>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview4"></img>
 							</div> <!-- end .form-group .photo_thumbnails -->
 							<div class="form-group listing-hours">
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="input-group">
-											<span class="input-group-addon">日期 :</span>
-											<input type="text" placeholder="2018-03-15">
+											<span class="input-group-addon">拉货日期 :</span>
+											<input type="text" name="task_time" id="time" placeholder="2018-03-15">
 										</div> <!-- end .input-group -->
 									</div> <!-- end .col-sm-4 -->
 									<div class="col-sm-4">
 										<div class="input-group">
-											<span class="input-group-addon">具体时间 :</span>
-											<input type="text">
+											<span class="input-group-addon">薪金 :</span>
+											<input type="number" name="task_price">
 										</div> <!-- end .input-group -->
 									</div> <!-- end .col-sm-4 -->
 									<!-- <div class="col-sm-4">
@@ -270,13 +369,126 @@
 									</div> 
 								</div>  --><!-- end .row -->
 							</div> <!-- end .form-group -->
-							<div class="submit"><button type="submit" class="button">提交任务</button></div>
+							<div class="submit"><button type="submit" class="button" onclick="beforeSubmit()">提交任务</button></div>
 						</form>
 					</div> <!-- end .box -->
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
+<script type="text/javascript">
+	window.onload=function(){
+		CKEDITOR.replace('TextArea1');
+		$("#time").datetimepicker({
+            format: 'yyyy-mm',
+            minView:'month',
+            language: 'zh-CN',
+            autoclose:true,
 
+        }).on("click",function(){
+           $("#time").datetimepicker("setEndDate",$("#time").val())
+        });
+	}
+	function preview(el){
+		for (var i = 0; i < 4; i++) {
+			$("#preview"+(i+1)).attr("src","");
+		}
+		var fileData = el.files
+		
+		if (fileData.length ==1) {
+			var reader = new FileReader();   
+	        reader.readAsDataURL(fileData[0]);   
+	        reader.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}   
+
+		}else if(fileData.length == 2){
+			var reader1 = new FileReader();   
+	        reader1.readAsDataURL(fileData[0]);   
+	        reader1.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader2 = new FileReader();   
+	        reader2.readAsDataURL(fileData[1]);   
+	        reader2.onload = function(e){   
+	        	$("#preview2").attr("src",this.result);
+	        	
+   			}  
+
+
+		}else if(fileData.length == 3){
+			var reader1 = new FileReader();   
+	        reader1.readAsDataURL(fileData[0]);   
+	        reader1.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader2 = new FileReader();   
+	        reader2.readAsDataURL(fileData[1]);   
+	        reader2.onload = function(e){   
+	        	$("#preview2").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader3 = new FileReader();   
+	        reader3.readAsDataURL(fileData[2]);   
+	        reader3.onload = function(e){   
+	        	$("#preview3").attr("src",this.result);
+	        	
+   			}
+
+		}else if(fileData.length == 4){
+			var reader1 = new FileReader();   
+	        reader1.readAsDataURL(fileData[0]);   
+	        reader1.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader2 = new FileReader();   
+	        reader2.readAsDataURL(fileData[1]);   
+	        reader2.onload = function(e){   
+	        	$("#preview2").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader3 = new FileReader();   
+	        reader3.readAsDataURL(fileData[2]);   
+	        reader3.onload = function(e){   
+	        	$("#preview3").attr("src",this.result);
+	        	
+   			}
+
+   			var reader4 = new FileReader();   
+	        reader4.readAsDataURL(fileData[3]);   
+	        reader4.onload = function(e){   
+	        	$("#preview4").attr("src",this.result);
+	        	
+   			}
+		}
+
+        
+    }
+	function getObjectURL(file) {
+	    var url = new Array() ; 
+	    if (window.createObjectURL!=undefined) { // basic
+	        url = window.createObjectURL(file) ;
+	    } else if (window.URL!=undefined) { // mozilla(firefox)
+	        url = window.URL.createObjectURL(file) ;
+	    } else if (window.webkitURL!=undefined) { // webkit or chrome
+	        url = window.webkitURL.createObjectURL(file) ;
+	    }
+	    return url ;
+	}
+
+	function beforeSubmit(){
+		for (instance in CKEDITOR.instances)
+            CKEDITOR.instances[instance].updateElement();
+	}
+</script>
 <footer class="footer">
 			<div class="top">
 				<div class="left">

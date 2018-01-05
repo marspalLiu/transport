@@ -309,7 +309,7 @@
 							</div> <!-- end .form-group -->
 							<div class="form-group">              
 							    <!-- <textarea name="task_describe" rows="4"></textarea> -->
-							    <p id="task_describe" name="task_describe" disabled="true"></p>
+							    <textarea id="task_describe" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" class="ckeditor" disabled="true"></textarea>
 							</div> <!-- end .form-group -->
 							<div class="form-group">
 								<div class="input-group">
@@ -426,7 +426,7 @@
 								html += '<div class="content">'
 								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
 								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
-								html += '<div class="meta">'+res[i].task_price+' - <a href="#" >承运</a></div>'
+								html += '<div class="meta">￥ '+res[i].task_price+' - <a href="#" >承运</a></div>'
 								html += '</div> <!-- end .content -->'
 								html += '</div> <!-- end .blog-post -->'
 								html += '</div> <!-- end .col-md-4 -->'
@@ -439,7 +439,7 @@
 								html += '<div class="content">'
 								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
 								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
-								html += '<div class="meta">'+res[i].task_price+' - <a href="#" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">承运</a></div>'
+								html += '<div class="meta">￥ '+res[i].task_price+' - <a href="#">承运</a></div>'
 								html += '</div> <!-- end .content -->'
 								html += '</div> <!-- end .blog-post -->'
 								html += '</div> <!-- end .col-md-4 -->'
@@ -452,7 +452,7 @@
 								html += '<div class="content">'
 								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
 								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
-								html += '<div class="meta">'+res[i].task_price+' - <a href="#" >承运</a></div>'
+								html += '<div class="meta">￥ '+res[i].task_price+' - <a href="#" >承运</a></div>'
 								html += '</div> <!-- end .content -->'
 								html += '</div> <!-- end .blog-post -->'
 								html += '</div> <!-- end .col-md-4 -->'
@@ -485,10 +485,22 @@
 		               		}
 		               		
 		               }
-		               $("#task_describe").innerHTML(data[0].task_describe);
+		               var html = htmldecode(data[0].task_describe);
+		               $("#task_describe").innerHTML(html);
 		               
 		           }      
 		   		});
+			}
+
+			function htmldecode(str) {
+				 str = str.replace(/&amp;/gi, '&');
+				 //str = str.replace(/&nbsp;/gi, '');
+				 str = str.replace(/&quot;/gi, '"');
+				 str = str.replace(/&#39;/g, "'");
+				 str = str.replace(/&lt;/gi, '<');
+				 str = str.replace(/&gt;/gi, '>');
+				//  str = str.replace(/<br[^>]*>(?:(rn)|r|n)?/gi, 'n');
+				 return str;
 			}
 		</script>
 		

@@ -1,0 +1,147 @@
+<include file="Public/header" />
+<div class="responsive-menu">
+	<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
+	<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
+</div> <!-- end .responsive-menu -->
+
+<div class="page-title" style="background-image: url('__PUBLIC__/images/background16.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background16.jpg*/;">
+	<div class="inner">
+		<h2>个人中心</h2>
+		<p>You can see the tasks of you</p>
+	</div> <!-- end .inner -->
+</div> <!-- end .page-title -->
+
+<div class="section boxed-section light">
+	<div class="inner">
+		<div class="container">
+			<div class="box transparent">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="shop-sidebar">
+							<div class="sidebar-widget">
+								<h5>功能表</h5>
+								<form class="searchform">
+									<input type="text" placeholder="Search there...">
+									<button><i class="pe-7s-search"></i></button>
+								</form>
+							</div> <!-- end .sidebar-widget -->
+							<div class="sidebar-widget">
+								<h5>操作列表</h5>
+								<div class="categories" id="func">
+									<a href="{:U('SelfCenter/selfCenter')}"  >所有任务<i class="pe-7s-right-arrow"></i></a>
+									<a href="{:U('SelfCenter/applying')}">申请中<i class="pe-7s-right-arrow"></i></a>
+									<a  href="{:U('SelfCenter/waittrans')}">申请成功未处理<i class="pe-7s-right-arrow"></i></a>
+									<a  href="{:U('SelfCenter/transing')}">运输中<i class="pe-7s-right-arrow"></i></a>
+									<a href="{:U('SelfCenter/done')}">已完成<i class="pe-7s-right-arrow"></i></a>
+									<a href="{:U('SelfCenter/myCar')}" class="active" id="my_car">我的车辆<i class="pe-7s-right-arrow"></i></a>
+									<a href="" id="add_car" data-toggle="modal" data-target="#add_car_modal" >添加车辆<i class="pe-7s-right-arrow"></i></a>
+
+								</div>
+							</div> <!-- end .sidebar-widget -->
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="row products" id="allTaskContainer">
+
+
+							<div class="col-sm-6">
+								<div class="product">
+									<div id="rowContainer">
+
+									</div>
+								</div> <!-- end .content -->
+
+							</div> <!-- end .product -->
+						</div> <!-- end .col-sm-6 -->
+					</div> <!-- end .row -->
+				</div> <!-- end .col-md-8 -->
+			</div> <!-- end .row -->
+			<div class="text-center">
+				<a href="" id="products-load-more" class="button">Load More</a>
+			</div> <!-- end .blog-load-more -->
+		</div> <!-- end .box -->
+	</div> <!-- end .container -->
+</div> <!-- end .inner -->
+</div> <!-- end .section -->
+
+<include file="Public/footer" />
+
+
+<script>
+	window.onload=function(){
+		$.ajax({
+			url:"__URL__/carList",
+			method:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res)
+				var topTemplate = doT.template(document.getElementById("selfCenterTemplate").innerHTML);
+				document.getElementById("allTaskContainer").innerHTML = topTemplate(res);
+			}
+		})
+	}
+	
+	function deleteCar(el){
+		var carId = $(el).attr("data-carId")
+		swal({ 
+		  title: "提示", 
+		  text: "您确定要删除该车辆吗？", 
+		  type: "warning", 
+		  showCancelButton: true, 
+		  closeOnConfirm: true,
+		},
+		function(res){ 
+			if (res == true) {
+		  		$.ajax({
+		           url:"deleteCar?car_id="+carId,
+		           type:"GET",
+		           dataType:"text",
+		           success:function(data){
+		           		if (data == "success") {
+		           			swal({ 
+							  title: "删除成功！", 
+							  text: "", 
+							  type: "success",
+							  showCancelButton: false, 
+							  confirmButtonColor: "#DD6B55",
+							  confirmButtonText: "确定", 
+							  closeOnConfirm: true, 
+							},
+							function(isConfirm){ 
+							  if (isConfirm) { 
+							    	location.reload()
+							  } 
+							});
+		           			return ;
+		  				}else if(data == "fail"){
+		           			alert("删除失败，请重试！")
+		  				}
+		           }     
+		   		});
+			}else{
+		  		swal.close();
+		  	}
+		});
+	}
+
+
+</script>
+
+<script  id="selfCenterTemplate" type="text/x-dot-template">
+	{{ for(var x in it) { }}
+	<div class="col-sm-6">
+		<div class="product">
+			<img src="http://localhost:8081/trans{{=it[x].car_pic}}"  class="img-responsive" ><!--http:localhost:80/transport{{=it[x].task_pic1}}-->
+			<div class="overlay"></div>
+			<div class="content">
+				<h3><a href="">{{=it[x].car_no}}</a></h3>
+				<p>车长（m）:{{=it[x].car_length}}</p>
+				<p>车宽（m）:{{=it[x].car_width}}</p>
+				<p>载重（kg）{{=it[x].car_weight}}</p>
+			</div>
+			<a href="javascript:void(0)" class="button" style="background: red;" onclick="deleteCar(this)" data-carId="{{=it[x].car_id}}">删除该车辆</a>
+		</div>
+	</div>
+	{{ }}}
+
+</script>

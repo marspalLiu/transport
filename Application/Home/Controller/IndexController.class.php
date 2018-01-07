@@ -90,11 +90,28 @@ class IndexController extends Controller {
 
     }
 
+    //登出方法
     public function loginOut(){
         $_SESSION = array();
         session_destroy();
         setcookie(session_name,'',time()-3600);
         $this->redirect("index");
+    }
+
+    public function getTopPriceTask(){
+        $sql = "SELECT
+                    *
+                FROM
+                    task t
+                WHERE
+                    t.task_carrier = 0 and substring(task_time, 1, 11) > ".date("Y-m-d");
+        if ($_SESSION["userId"]) {
+            $sql .= " and t.task_id NOT in(select task_id from driver_list d WHERE d.driver_id = ".$_SESSION["userId"].") ";
+        }
+        $sql .= " order by task_price desc";
+        $sql .= " limit 0,10";
+        $data = D()->query($sql);
+        echo json_encode($data);
     }
 
 

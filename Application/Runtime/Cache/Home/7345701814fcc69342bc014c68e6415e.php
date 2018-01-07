@@ -158,7 +158,7 @@
 
 		<div class="signup-wrapper">
 			<div class="signup">
-				<form action="/trans/index.php/Home/TaskList/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
+				<form action="/trans/index.php/Home/SelfCenter/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
 					<div class="form-group">
 						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="姓名" id="register_name" name="name">
 					</div>
@@ -275,261 +275,181 @@
 			// }
 </script>
 
-<script src="/trans/Public/lib/ckeditor/ckeditor.js"></script>
-<!-- <input type="text" id="search_task_title" value="<?php echo ($param["task_title"]); ?>" style="display: none">
-<input type="text" id="search_task_start" value="<?php echo ($param["task_start"]); ?>" style="display: none">
-<input type="text" id="search_task_end" value="<?php echo ($param["task_end"]); ?>" style="display: none"> -->
-		<div class="responsive-menu">
-			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
-			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
-		</div> <!-- end .responsive-menu -->
-		
-		<div class="page-title" style="background-image: url('/trans/Public/images/background14.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background14.jpg*/;">
-			<div class="inner">
-				<h2>所有信息全在这里</h2>
-				<p>All the information here.</p>
-			</div> <!-- end .inner -->
-		</div> <!-- end .page-title -->
+<div class="responsive-menu">
+	<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
+	<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
+</div> <!-- end .responsive-menu -->
 
-		<div class="section boxed-section light">
-			<div class="inner">
-				<div class="container">
-					<div class="box transparent blog-grid">					
-						<div>
-							<div class="row"  id="rowContainer">
-								
-							</div>
+<div class="page-title" style="background-image: url('/trans/Public/images/background16.jpg');">
+	<div class="inner">
+		<h2>个人中心</h2>
+		<p>You can see the tasks of you</p>
+	</div> <!-- end .inner -->
+</div> <!-- end .page-title -->
+
+<div class="section boxed-section light">
+	<div class="inner">
+		<div class="container">
+			<div class="box transparent">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="shop-sidebar">
+							<!-- <div class="sidebar-widget">
+                                <select>
+                                    <option>Default sorting</option>
+                                    <option>High to Low</option>
+                                </select>
+                            </div> --> <!-- end .sidebar-widget -->
+							<div class="sidebar-widget">
+								<h5>功能表</h5>
+								<form class="searchform">
+									<input type="text" placeholder="Search there...">
+									<button><i class="pe-7s-search"></i></button>
+								</form>
+							</div> <!-- end .sidebar-widget -->
+							<div class="sidebar-widget">
+								<h5>操作列表</h5>
+								<div class="categories" id="func">
+									<a href="<?php echo U('SelfCenter/selfCenter');?>" >所有任务<i class="pe-7s-right-arrow"></i></a>
+									<a href="<?php echo U('SelfCenter/applying');?>" >申请中<i class="pe-7s-right-arrow"></i></a>
+									<a  href="<?php echo U('SelfCenter/waittrans');?>">申请成功未处理<i class="pe-7s-right-arrow"></i></a>
+									<a  href="<?php echo U('SelfCenter/transing');?>" >运输中<i class="pe-7s-right-arrow"></i></a>
+									<a href="<?php echo U('SelfCenter/done');?>" class="active" id="all_tesk">已完成<i class="pe-7s-right-arrow"></i></a>
+									<a href="<?php echo U('SelfCenter/myCar');?>" id="my_car">我的车辆<i class="pe-7s-right-arrow"></i></a>
+									<a href="" id="add_car" data-toggle="modal" data-target="#add_car_modal" >添加车辆<i class="pe-7s-right-arrow"></i></a>
+									<!-- <a href="">Nightlife<i class="pe-7s-right-arrow"></i></a>
+                                    <a href="">Visit<i class="pe-7s-right-arrow"></i></a>
+                                    <a href="">Shop<i class="pe-7s-right-arrow"></i></a> -->
+								</div>
+							</div> <!-- end .sidebar-widget -->
 						</div>
-						<div class="text-center">
-							<a href="" id="blog-load-more" class="button">LOAD MORE</a>
-						</div> <!-- end .blog-load-more -->
-					</div> <!-- end .box -->
-				</div> <!-- end .container -->
-			</div> <!-- end .inner -->
-		</div> <!-- end .section -->
+					</div>
+					<div class="col-md-8">
+						<div class="row products" id="allTaskContainer">
 
-		<!-- 任务详情Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-		      </div>
-		      <div class="modal-body">
-		        <div class="container" style="width:100%!important">
-					<div class="box">
-						<form  class="add-listing-form light-inputs">
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">任务名称 :</span>
-									<input type="text" id="task_title" name="task_title" disabled="true" placeholder="例如：运送一匹建材">
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">              
-							    <!-- <textarea name="task_describe" rows="4"></textarea> -->
-							    <!-- <textarea id="TextArea1" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" disabled="true"></textarea> -->
-							    <div style="width: 100%;height: auto;background:#f1f2f6;font-size:14px;line-height:48px;padding:5px 10px" id="task_describe"></div>
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">选择分类 :</span>
-									<select name="task_type" id="task_type" disabled="true">	    	
-										<option value="1">设备制造</option>
-										<option value="2">运输</option>
-										<option value="3">仓储</option>
-										<option value="4">装饰包装</option>
-										<option value="5">配送</option>
-										<option value="6">信息服务</option>
-									</select>
-								</div> <!-- end .input-group -->
-								<span class="help-block">分类必须要准确，如有运输触犯法律的货物，将会受到刑事处理</span>
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">起点 :</span>
-									<select name="task_start" id="task_start" disabled="true">	    	
-											<option value="北辰区">北辰区</option>
-											<option value="红桥区">红桥区</option>
-											<option value="南开区">南开区</option>
-											<option value="滨海新区">滨海新区</option>
-											<option value="西青区">西青区</option>
-											<option value="静海县">静海县</option>
-									</select>
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">目的地 :</span>
-									<select name="task_end" id="task_end" disabled="true">	    	
-											<option value="北辰区">北辰区</option>
-											<option value="红桥区">红桥区</option>
-											<option value="南开区">南开区</option>
-											<option value="滨海新区">滨海新区</option>
-											<option value="西青区">西青区</option>
-											<option value="静海县">静海县</option>
-									</select>
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">其他要求 :</span>
-									<input type="text" name="task_require" id="task_require" disabled="true" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
-								</div> <!-- end .input-group -->
-								<span class="help-block">可以根据到货后检查货物质量对司机进行申诉</span>
-							</div> <!-- end .form-group -->
-							<div class="form-group photo_thumbnails">
-								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview1"></img>
-								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview2"></img>
-								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview3"></img>
-								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview4"></img>
-							</div> <!-- end .form-group .photo_thumbnails -->
-							<div class="form-group listing-hours">
-								<div class="row">
-									<div class="col-sm-4" style="width: 50%">
-										<div class="input-group">
-											<span class="input-group-addon">拉货日期 :</span>
-											<input type="text" name="task_time" id="task_time" disabled="true" placeholder="2018-03-15">
-										</div> <!-- end .input-group -->
-									</div> <!-- end .col-sm-4 -->
-									<div class="col-sm-4" style="width: 50%">
-										<div class="input-group">
-											<span class="input-group-addon">薪金 :</span>
-											<input type="number" id="task_price" name="task_price" disabled="true">
-										</div> <!-- end .input-group -->
-									</div> <!-- end .col-sm-4 -->
-									<!-- <div class="col-sm-4">
-										<button type="button" class="button">Add Hours of Operation</button>
-									</div> --> <!-- end .col-sm-4 -->
-								</div> <!-- end .row -->
-							</div> <!-- end .form-group -->
-							<!-- <div class="submit"><button type="submit" class="button" onclick="beforeSubmit()">提交任务</button></div> -->
-						</form>
-					</div> <!-- end .box -->
-				</div> <!-- end .container -->
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-		        <button type="button" class="btn btn-primary" id="affirmCarry"  onclick="affirmCarry(this)">确认承运</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		<script type="text/javascript">
-			window.onload=function(){
-				var data = 
-				$.ajax({
-					url:"/trans/index.php/Home/TaskList/getTaskList?task_title=<?php echo ($param["task_title"]); ?>&task_start=<?php echo ($param["task_start"]); ?>&task_end=<?php echo ($param["task_end"]); ?>",
-					method:"get",
-					dataType:"json",
-					success:function(res){
-						var html;
-						for (var i = 0; i < res.length; i++) {
 							
-								html = '<div class="col-md-4 col-sm-6" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">'
-								html += '<div class="blog-post image">'
-								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
-								html += '<div class="overlay"></div>'
-								html += '<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>'
-								html += '<div class="content">'
-								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
-								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
-								html += '<div class="meta">￥ '+res[i].task_price+' - <a href="#" >承运</a></div>'
-								html += '</div> <!-- end .content -->'
-								html += '</div> <!-- end .blog-post -->'
-								html += '</div> <!-- end .col-md-4 -->'
-								$("#rowContainer").append(html);
-							}
-							
-						}
-					
-				})
-			}
+							<div class="col-sm-6">
+								<div class="product">
+									<div id="rowContainer">
 
-			function getTaskDetail(el){
-				$("#affirmCarry").attr("data-taskId",'')
-				var id = $(el).attr("data-taskId");
-				if (!id) {
-					alert("出错了！");
-					return ;
-				}
-				$("#affirmCarry").attr("data-taskId",id)
-				$.ajax({
-		           url:"getTaskDetail?taskId="+id,
-		           type:"GET",
-		           dataType:"JSON",
-		           success:function(data){
-		           		for(var i in data[0]){
-		           			$("#"+i).val(data[0][i])
-		           		}
-		               $("#myModalLabel").text(data[0].task_title)
-		               for (var i = 0; i < 4; i++) {
-		               		if (data[0]["task_pic"+(i+1)]) {
-		               			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
-		               		}else{
-	               			$("#preview"+(i+1)).attr("style","display:none")
-	               		}
-		               		
-		               }
-		               var html = (data[0].task_describe);
-		               document.getElementById("task_describe").innerHTML = html;
-		           }      
-		   		});
-			}
+									</div>
+								</div> <!-- end .content -->
+								<a href="" class="button">查看详情</a>
+							</div> <!-- end .product -->
+						</div> <!-- end .col-sm-6 -->
+					</div> <!-- end .row -->
+				</div> <!-- end .col-md-8 -->
+			</div> <!-- end .row -->
+			<div class="text-center">
+				<a href="" id="products-load-more" class="button">Load More</a>
+			</div> <!-- end .blog-load-more -->
+		</div> <!-- end .box -->
+	</div> <!-- end .container -->
+</div> <!-- end .inner -->
+</div> <!-- end .section -->
 
-			function affirmCarry(el){
-				var taskId = $("#affirmCarry").attr("data-taskId")
-				if (!taskId) {
-					alert("出错了！");
-					return ;
-				}
-				swal({ 
-				  title: "提示", 
-				  text: "您确定要承运嘛？", 
-				  type: "info", 
-				  showCancelButton: true, 
-				  closeOnConfirm: true,
-				},
-				function(res){ 
-					if (res == true) {
-				  		$.ajax({
-				           url:"affirmCarry?taskId="+taskId,
-				           type:"GET",
-				           dataType:"text",
-				           success:function(data){
-				           		if (data == "success") {
-				           			swal({ 
-									  title: "报名成功！", 
-									  text: "", 
-									  type: "success",
-									  showCancelButton: false, 
-									  confirmButtonColor: "#DD6B55",
-									  confirmButtonText: "确定", 
-									  closeOnConfirm: true, 
-									},
-									function(isConfirm){ 
-									  if (isConfirm) { 
-									    	location.reload() 
-									  } 
-									});
-				  				}else if (data == "haveAffirm") {
-									alert("您已报过名！")
-				  				}else if(data == "fail"){
-				           			alert("报名失败，请重试！")
-				  				}
-				  				else if (data == "nologinIn"){
-				  					alert("您还未登录！")
-				  				}
-				           }     
-				   		});
-					}else{
-				  		swal.close();
-				  	}
-				});
-			}
-
-		</script>
-		
+<!-- 任务详情Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container" style="width:100%!important">
+			<div class="box">
+				<form  class="add-listing-form light-inputs">
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">任务名称 :</span>
+							<input type="text" id="task_title" name="task_title" disabled="true" placeholder="例如：运送一匹建材">
+						</div> <!-- end .input-group -->
+					</div> <!-- end .form-group -->
+					<div class="form-group">              
+					    <!-- <textarea name="task_describe" rows="4"></textarea> -->
+					    <!-- <textarea id="TextArea1" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" disabled="true"></textarea> -->
+					    <div style="width: 100%;height: auto;background:#f1f2f6;font-size:14px;line-height:48px;padding:5px 10px" id="task_describe"></div>
+					</div> <!-- end .form-group -->
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">选择分类 :</span>
+							<select name="task_type" id="task_type" disabled="true">	    	
+								<option value="1">设备制造</option>
+								<option value="2">运输</option>
+								<option value="3">仓储</option>
+								<option value="4">装饰包装</option>
+								<option value="5">配送</option>
+								<option value="6">信息服务</option>
+							</select>
+						</div> <!-- end .input-group -->
+						<span class="help-block">分类必须要准确，如有运输触犯法律的货物，将会受到刑事处理</span>
+					</div> <!-- end .form-group -->
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">起点 :</span>
+							<select name="task_start" id="task_start" disabled="true">	    	
+									<option value="北辰区">北辰区</option>
+									<option value="红桥区">红桥区</option>
+									<option value="南开区">南开区</option>
+									<option value="滨海新区">滨海新区</option>
+									<option value="西青区">西青区</option>
+									<option value="静海县">静海县</option>
+							</select>
+						</div> <!-- end .input-group -->
+					</div> <!-- end .form-group -->
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">目的地 :</span>
+							<select name="task_end" id="task_end" disabled="true">	    	
+									<option value="北辰区">北辰区</option>
+									<option value="红桥区">红桥区</option>
+									<option value="南开区">南开区</option>
+									<option value="滨海新区">滨海新区</option>
+									<option value="西青区">西青区</option>
+									<option value="静海县">静海县</option>
+							</select>
+						</div> <!-- end .input-group -->
+					</div> <!-- end .form-group -->
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">其他要求 :</span>
+							<input type="text" name="task_require" id="task_require" disabled="true" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
+						</div> <!-- end .input-group -->
+						<span class="help-block">可以根据到货后检查货物质量对司机进行申诉</span>
+					</div> <!-- end .form-group -->
+					<div class="form-group photo_thumbnails">
+						<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview1"></img>
+						<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview2"></img>
+						<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview3"></img>
+						<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview4"></img>
+					</div> <!-- end .form-group .photo_thumbnails -->
+					<div class="form-group listing-hours">
+						<div class="row">
+							<div class="col-sm-4" style="width: 50%">
+								<div class="input-group">
+									<span class="input-group-addon">拉货日期 :</span>
+									<input type="text" name="task_time" id="task_time" disabled="true" placeholder="2018-03-15">
+								</div> <!-- end .input-group -->
+							</div> <!-- end .col-sm-4 -->
+							<div class="col-sm-4" style="width: 50%">
+								<div class="input-group">
+									<span class="input-group-addon">薪金 :</span>
+									<input type="number" id="task_price" name="task_price" disabled="true">
+								</div> <!-- end .input-group -->
+							</div> <!-- end .col-sm-4 -->
+						</div> <!-- end .row -->
+					</div> <!-- end .form-group -->
+				</form>
+			</div> <!-- end .box -->
+		</div> <!-- end .container -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
 <footer class="footer">
 	<div class="top">
 		<div class="left">
@@ -557,7 +477,7 @@
 				<h4 class="modal-title" style="text-align: left" id="header">添加车辆</h4>
 			</div>
 			<div class="modal-body" style"padding-bottom: 0px">
-			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/Home/TaskList/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
+			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/Home/SelfCenter/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
 				<div class="row" >
 					<div class="col-md-2">
 						<h6>车牌号</h6>
@@ -635,3 +555,59 @@
 
 </body>
 </html>
+<script>
+	window.onload=function(){
+		$.ajax({
+			url:"/trans/index.php/Home/SelfCenter/doneList",
+			method:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res)
+				var topTemplate = doT.template(document.getElementById("selfCenterTemplate").innerHTML);
+				document.getElementById("allTaskContainer").innerHTML = topTemplate(res);
+			}
+		})
+	}
+	
+	function getTaskDetail(el){
+		var id = $(el).attr("data-taskId");
+		$.ajax({
+			url:"getTaskDetail?taskId="+id,
+			type:"GET",
+			dataType:"JSON",
+			success:function(data){
+				for(var i in data[0]){
+           			$("#"+i).val(data[0][i])
+           		}
+               $("#myModalLabel").text(data[0].task_title)
+               for (var i = 0; i < 4; i++) {
+               		if (data[0]["task_pic"+(i+1)]) {
+               			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
+               		}else{
+               			$("#preview"+(i+1)).attr("style","display:none")
+               		}
+               		
+               }
+               var html = (data[0].task_describe);
+               document.getElementById("task_describe").innerHTML = html;
+
+			}
+		});
+	}
+</script>
+<script  id="selfCenterTemplate" type="text/x-dot-template">
+	{{ for(var x in it) { }}
+	<div class="col-sm-6">
+		<div class="product">
+			<img src="/trans/Public/images/product08.jpg"  class="img-responsive"><!--http:localhost:80/transport{{=it[x].task_pic1}}-->
+			<div class="overlay"></div>
+			<div class="content">
+				<h3><a href="">{{=it[x].task_title}}</a></h3>
+				<p>￥ {{=it[x].task_price}}</p>
+			</div>
+			<a href="" class="button" data-taskId= {{=it[x].task_id}} data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">查看详情</a>
+		</div>
+	</div>
+	{{ }}}
+
+</script>

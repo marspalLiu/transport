@@ -30,7 +30,7 @@
 		<link href="__PUBLIC__/scripts/Nivo-Lightbox/nivo-lightbox.css"  rel="stylesheet">
 		<link href="__PUBLIC__/scripts/Nivo-Lightbox/themes/default/default.css" rel="stylesheet">
 		<!-- NoUISlider -->
-		<link href="__PUBLIC__/css/jquery.nouislider.min.css"rel="stylesheet">
+		<link href="__PUBLIC__/css/jquery.nouislider.min.css" rel="stylesheet">
 		<!-- Style.css -->
 		<link href="__PUBLIC__/css/style.css" rel="stylesheet">
 		
@@ -44,7 +44,12 @@
    		<!-- DateTime Picker-->
 	    <link href="__PUBLIC__/lib/bootstrapDatetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 	    <script src="__PUBLIC__/lib/bootstrapDatetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	    <style type="text/css">
 
+	    	/*.photo_preview_box{
+	    		display: none;
+	    	}*/
+	    </style>
 	</head>
 	<body>
 		
@@ -60,9 +65,9 @@
 				<nav class="main-nav">
 					<ul class="list-unstyled">
 						<li class="menu-item-has-children">
-							<a href="{:U('NearBy/nearBy')}">附近10km的信息</a>
+							<a href="{:U('NearBy/nearBy')}">地图查询</a>
 							<ul>
-								<li><a href="{:U('NearBy/nearBy')}">附近的信息</a></li>
+								<li><a href="{:U('NearBy/nearBy')}">地图查询</a></li>
 							</ul>
 						</li>
 						<if condition="strtoupper($_SESSION['userId']) neq '' && strtoupper($_SESSION['type']) eq '2'">
@@ -81,11 +86,19 @@
 								<li><a href="{:U('TaskList/taskList')}">全部信息</a></li>
 							</ul>
 						</li>
-						<if condition="strtoupper($_SESSION['userId'])">
+						<if condition="strtoupper($_SESSION['userId']) && strtoupper($_SESSION['type']) eq '1'">
 							<li class="menu-item-has-children">
 								<a href="{:U('SelfCenter/selfCenter')}" >与我相关</a>
 								<ul>
-									<li><a href="{:U('SelfCenter/selfCenter')}">我的</a></li>
+									<li><a href="{:U('SelfCenter/selfCenter')}">司机中心</a></li>
+								</ul>
+							</li>
+						</if>
+						<if condition="strtoupper($_SESSION['userId']) && strtoupper($_SESSION['type']) eq '2'">
+							<li class="menu-item-has-children">
+								<a href="{:U('OwnerSelfCenter/ownerSelfCenter')}" >与我相关</a>
+								<ul>
+									<li><a href="{:U('OwnerSelfCenter/ownerSelfCenter')}">货主中心</a></li>
 								</ul>
 							</li>
 						</if>
@@ -236,7 +249,9 @@
 			    swal("提示",text);
 			}
 			window.confirm=function(text,type){
-			    swal("提示", text, type)
+			    swal("提示", text, type,function(res){
+			    	return res;
+			    })
 			}
 			// 登录方法
 			// function login(){

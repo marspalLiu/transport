@@ -1,4 +1,9 @@
 <include file="Public/header" />
+<style type="text/css">
+	.affirmTask{
+		background: #fff!important;color: #646e7b;font-size: 15px;text-align: center;width: 140px;height: 40px;line-height: 40px;border-radius: 30px;padding: 0px 10px
+	}
+</style>
 		<div class="responsive-menu">
 			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
 			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
@@ -13,18 +18,37 @@
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="form-group">
-									<input type="text" placeholder="请输入您感兴趣的">
+									<input type="text" id="task_title1" name="task_title" placeholder="请输入您感兴趣的">
 								</div> <!-- end .form-group -->
 							</div> <!-- end .col-sm-4 -->
 							<div class="col-sm-4">
 								<div class="form-group">
-									<input type="text" placeholder="出发地点">
+									<!-- <input type="text" placeholder="出发地点"> -->
+									<select id="task_start1">
+										<option value="0">请选择</option>
+										<option value="北辰区">北辰区</option>
+										<option value="北辰区">北辰区</option>
+										<option value="红桥区">红桥区</option>
+										<option value="南开区">南开区</option>
+										<option value="滨海新区">滨海新区</option>
+										<option value="西青区">西青区</option>
+										<option value="静海县">静海县</option>
+									</select>
 									<i class="pe-7s-world"></i>
 								</div> <!-- end .form-group -->
 							</div> <!-- end .col-sm-4 -->
 							<div class="col-sm-4">
 								<div class="form-group">
-									<input type="text" placeholder="目的地点">
+									<!-- <input type="text" placeholder="目的地点"> -->
+									<select id="task_end1">
+										<option value="0">请选择</option>
+										<option value="北辰区">北辰区</option>
+										<option value="红桥区">红桥区</option>
+										<option value="南开区">南开区</option>
+										<option value="滨海新区">滨海新区</option>
+										<option value="西青区">西青区</option>
+										<option value="静海县">静海县</option>
+									</select>
 									<i class="pe-7s-world"></i>
 								</div> <!-- end .form-group -->
 							</div> <!-- end .col-sm-4 -->
@@ -39,7 +63,7 @@
 								</div>
 							</div> -->
 						</div> <!-- end .row -->
-						<button type="submit" class="button">搜索</button>
+						<button type="button" class="button" onclick="search(this)">搜索</button>
 					</form>
 					<div class="highlight-slider-wrapper">
 						<div class="row">
@@ -96,7 +120,7 @@
 					<h2 class="text-center">种类概况<small>Explore some of the best tips from around the city from our partners and friends.</small></h2>
 					<div class="row">
 						<div class="col-md-3 col-sm-6">
-							<a href="" class="category-box" style="background-image: url('images/category01.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category01.jpg*/;">
+							<a href="" class="category-box" style="background-image: url('__PUBLIC__/images/category01.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category01.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon01.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon01.png" alt="icon">
 									<span class="number" id="type1">8</span>
@@ -105,7 +129,7 @@
 							</a> <!-- end .category-box -->
 						</div> <!-- end .col-md-3 -->
 						<div class="col-md-3 col-sm-6">
-							<a href="" class="category-box" style="background-image: url('images/category02.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category02.jpg*/;">
+							<a href="" class="category-box" style="background-image: url('__PUBLIC__/images/category02.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category02.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon02.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon02.png" alt="icon">
 									<span class="number" id="type2">36</span>
@@ -114,7 +138,7 @@
 							</a> <!-- end .category-box -->
 						</div> <!-- end .col-md-3 -->
 						<div class="col-md-3 col-sm-6">
-							<a href="" class="category-box" style="background-image: url('images/category03.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category03.jpg*/;">
+							<a href="" class="category-box" style="background-image: url('__PUBLIC__/images/category03.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category03.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon03.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon03.png" alt="icon">
 									<span class="number" id="type3">26</span>
@@ -123,7 +147,7 @@
 							</a> <!-- end .category-box -->
 						</div> <!-- end .col-md-3 -->
 						<div class="col-md-3 col-sm-6">
-							<a href="" class="category-box" style="background-image: url('images/category04.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category04.jpg*/;">
+							<a href="" class="category-box" style="background-image: url('__PUBLIC__/images/category04.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category04.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon04.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon04.png" alt="icon">
 									<span class="number" id="type4">16</span>
@@ -132,7 +156,7 @@
 							</a> <!-- end .category-box -->
 						</div> <!-- end .col-md-3 -->
 						<div class="col-sm-6">
-							<a href="" class="category-box" style="background-image: url('images/category05.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category05.jpg*/;">
+							<a href="" class="category-box" style="background-image: url('__PUBLIC__/images/category05.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category05.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon05.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon05.png" alt="icon">
 									<span class="number" id="type5">12</span>
@@ -141,7 +165,7 @@
 							</a> <!-- end .category-box -->
 						</div> <!-- end .col-sm-6 -->
 						<div class="col-md-3 col-sm-6">
-							<a href="" class="category-box" style="background-image: url('images/category06.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category06.jpg*/;">
+							<a href="" class="category-box" style="background-image: url('__PUBLIC__/images/category06.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category06.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon06.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon06.png" alt="icon">
 									<span class="number" id="type6">4</span>
@@ -150,7 +174,7 @@
 							</a> <!-- end .category-box -->
 						</div> <!-- end .col-md-3 -->
 						<div class="col-md-3 col-sm-6">
-							<a href="" class="category-box" style="background-image: url('images/category07.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category07.jpg*/;">
+							<a href="" class="category-box" style="background-image: url('__PUBLIC__/images/category07.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category07.jpg*/;">
 								<div class="inner">
 									<img src="__PUBLIC__/images/category-icon07.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/category-icon07.png" alt="icon">
 									<span class="number" id="type7">39</span>
@@ -160,7 +184,7 @@
 						</div> <!-- end .col-md-3 -->
 					</div> <!-- end .row -->
 					<div class="text-center">
-						<a href="" class="button">查看全部物流信息</a>
+						<a href="#" onclick="openAllTask()" class="button">查看全部物流信息</a>
 					</div> <!-- end .text-center -->
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
@@ -171,53 +195,208 @@
 				<div class="container-fluid">
 					<h2 class="text-center">薪金  TOP10<small>下列的任务为薪金排行的前十，快来参观参观吧！</small></h2>
 					<div class="directory-slider" id="topTemplateContainer">
-						<div class="directory-item">
-									<img src="__PUBLIC__/images/directory-slider01.jpg" class="img-responsive">
-									<div class="overlay"></div>
-									<div class="rating">4.0</div>
-									<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png"></a>
-									<div class="content">
-										<h3><a href="">{{=it[x].taskName}}</a></h3>
-										<p>{{=it[x].price}}</p>
-										<div class="location"><img src="__PUBLIC__/images/directory-location.png">{{=it[x].location}}</div>
-									</div> <!-- end .content -->
-									<div class="category">
-										<a href=""><img src="__PUBLIC__/images/directory-category-food.png"></a>
-										<a href=""><img src="__PUBLIC__/images/directory-category-drink.png"></a>
-									</div> <!-- end .category -->
-								</div> <!-- end .directory-item -->s
+						<div class="directory-item" id="top1"  data-taskId="" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">
+							<img id="top1_pic1" src="__PUBLIC__/images/directory-slider02.jpg" class="img-responsive">
+							<div class="overlay"></div>
+							<!-- <div class="rating">4.0</div>
+							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" ></a> -->
+							<div class="content">
+								<h3><a href="" id="top1_title">Not Just Coffee</a></h3>
+								<p id="top1_describe">Suspendisse tristique orci justo</p>
+								<div class="location"><img src="__PUBLIC__/images/directory-location.png" ><span id="top1_start">Thomas St , NewYork</span></div>
+								
+							</div> <!-- end .content -->
+							<div class="category">
+								<div  class="affirmTask">
+									￥ <span id="top1_price"></span> - 承运
+								</div>
+							</div> <!-- end .category -->
+						</div> <!-- end .directory-item -->
+						<div class="directory-item" id="top2" data-taskId="" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">
+							<img id="top2_pic1" src="__PUBLIC__/images/directory-slider02.jpg" class="img-responsive">
+							<div class="overlay"></div>
+							<!-- <div class="rating">4.0</div>
+							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" ></a> -->
+							<div class="content">
+								<h3><a href="" id="top2_title">Not Just Coffee</a></h3>
+								<p id="top1_describe">Suspendisse tristique orci justo</p>
+								<div class="location"><img src="__PUBLIC__/images/directory-location.png" ><span id="top2_start">Thomas St , NewYork</span></div>
+								
+							</div> <!-- end .content -->
+							<div class="category">
+								<div  class="affirmTask">
+									￥ <span id="top2_price"></span> - 承运
+								</div>
+							</div> <!-- end .category -->
+						</div> <!-- end .directory-item -->
+						<div class="directory-item" id="top3" data-taskId="" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">
+							<img id="top3_pic1" src="__PUBLIC__/images/directory-slider02.jpg" class="img-responsive">
+							<div class="overlay"></div>
+							<!-- <div class="rating">4.0</div>
+							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" ></a> -->
+							<div class="content">
+								<h3><a href="" id="top3_title">Not Just Coffee</a></h3>
+								<p id="top3_describe">Suspendisse tristique orci justo</p>
+								<div class="location"><img src="__PUBLIC__/images/directory-location.png" ><span id="top3_start">Thomas St , NewYork</span></div>
+								
+							</div> <!-- end .content -->
+							<div class="category">
+								<div  class="affirmTask">
+									￥ <span id="top3_price"></span> - 承运
+								</div>
+							</div> <!-- end .category -->
+						</div> <!-- end .directory-item -->
+						<div class="directory-item" id="top4" data-taskId="" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">
+							<img id="top4_pic1" src="__PUBLIC__/images/directory-slider02.jpg" class="img-responsive">
+							<div class="overlay"></div>
+							<!-- <div class="rating">4.0</div>
+							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" ></a> -->
+							<div class="content">
+								<h3><a href="" id="top4_title">Not Just Coffee</a></h3>
+								<p id="top4_describe">Suspendisse tristique orci justo</p>
+								<div class="location"><img src="__PUBLIC__/images/directory-location.png" ><span id="top4_start">Thomas St , NewYork</span></div>
+								
+							</div> <!-- end .content -->
+							<div class="category">
+								<div  class="affirmTask">
+									￥ <span id="top4_price"></span> - 承运
+								</div>
+							</div> <!-- end .category -->
+						</div>
+						<div class="directory-item" id="top5" data-taskId="" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">
+							<img id="top5_pic1" src="__PUBLIC__/images/directory-slider02.jpg" class="img-responsive">
+							<div class="overlay"></div>
+							<!-- <div class="rating">4.0</div>
+							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" ></a> -->
+							<div class="content">
+								<h3><a href="" id="top5_title">Not Just Coffee</a></h3>
+								<p id="top5_describe">Suspendisse tristique orci justo</p>
+								<div class="location"><img src="__PUBLIC__/images/directory-location.png" ><span id="top5_start">Thomas St , NewYork</span></div>
+								
+							</div> <!-- end .content -->
+							<div class="category">
+								<div  class="affirmTask">
+									￥ <span id="top5_price"></span> - 承运
+								</div>
+							</div> <!-- end .category -->
+						</div>
+						<div class="directory-item" id="top6" data-taskId="" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">
+							<img id="top6_pic1" src="__PUBLIC__/images/directory-slider02.jpg" class="img-responsive">
+							<div class="overlay"></div>
+							<!-- <div class="rating">4.0</div>
+							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" ></a> -->
+							<div class="content">
+								<h3><a href="" id="top6_title">Not Just Coffee</a></h3>
+								<p id="top6_describe">Suspendisse tristique orci justo</p>
+								<div class="location"><img src="__PUBLIC__/images/directory-location.png" ><span id="top6_start">Thomas St , NewYork</span></div>
+								
+							</div> <!-- end .content -->
+							<div class="category">
+								<div  class="affirmTask">
+									￥ <span id="top6_price"></span> - 承运
+								</div>
+							</div> <!-- end .category -->
+						</div>
+						<div class="directory-item" id="top7" data-taskId="" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">
+							<img id="top7_pic1" src="__PUBLIC__/images/directory-slider02.jpg" class="img-responsive">
+							<div class="overlay"></div>
+							<!-- <div class="rating">4.0</div>
+							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" ></a> -->
+							<div class="content">
+								<h3><a href="" id="top7_title">Not Just Coffee</a></h3>
+								<p id="top7_describe">Suspendisse tristique orci justo</p>
+								<div class="location"><img src="__PUBLIC__/images/directory-location.png" ><span id="top7_start">Thomas St , NewYork</span></div>
+								
+							</div> <!-- end .content -->
+							<div class="category">
+								<div  class="affirmTask">
+									￥ <span id="top7_price"></span> - 承运
+								</div>
+							</div> <!-- end .category -->
+						</div>
+						<div class="directory-item" id="top8" data-taskId="" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">
+							<img id="top8_pic1" src="__PUBLIC__/images/directory-slider02.jpg" class="img-responsive">
+							<div class="overlay"></div>
+							<!-- <div class="rating">4.0</div>
+							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" ></a> -->
+							<div class="content">
+								<h3><a href="" id="top8_title">Not Just Coffee</a></h3>
+								<p id="top8_describe">Suspendisse tristique orci justo</p>
+								<div class="location"><img src="__PUBLIC__/images/directory-location.png" ><span id="top8_start">Thomas St , NewYork</span></div>
+								
+							</div> <!-- end .content -->
+							<div class="category">
+								<div  class="affirmTask">
+									￥ <span id="top8_price"></span> - 承运
+								</div>
+							</div> <!-- end .category -->
+						</div>
+						<div class="directory-item" id="top9" data-taskId="" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">
+							<img id="top9_pic1" src="__PUBLIC__/images/directory-slider02.jpg" class="img-responsive">
+							<div class="overlay"></div>
+							<!-- <div class="rating">4.0</div>
+							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" ></a> -->
+							<div class="content">
+								<h3><a href="" id="top9_title">Not Just Coffee</a></h3>
+								<p id="top9_describe">Suspendisse tristique orci justo</p>
+								<div class="location"><img src="__PUBLIC__/images/directory-location.png" ><span id="top9_start">Thomas St , NewYork</span></div>
+								
+							</div> <!-- end .content -->
+							<div class="category">
+								<div  class="affirmTask">
+									￥ <span id="top9_price"></span> - 承运
+								</div>
+							</div> <!-- end .category -->
+						</div>
+						<div class="directory-item" id="top10" data-taskId="" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">
+							<img id="top10_pic1" src="__PUBLIC__/images/directory-slider02.jpg" class="img-responsive">
+							<div class="overlay"></div>
+							<!-- <div class="rating">4.0</div>
+							<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" ></a> -->
+							<div class="content">
+								<h3><a href="" id="top10_title">Not Just Coffee</a></h3>
+								<p id="top10_describe">Suspendisse tristique orci justo</p>
+								<div class="location"><img src="__PUBLIC__/images/directory-location.png" ><span id="top10_start">Thomas St , NewYork</span></div>
+								
+							</div> <!-- end .content -->
+							<div class="category">
+								<div  class="affirmTask">
+									￥ <span id="top10_price"></span> - 承运
+								</div>
+							</div> <!-- end .category -->
+						</div>
 						
 					</div> <!-- end .directory-slider -->
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
 
-		<div class="section light transparent" style="background-image: url('images/background02.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background02.jpg*/;">
+		<div class="section light transparent" style="background-image: url('__PUBLIC__/images/background02.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background02.jpg*/;">
 			<div class="inner">
 				<div class="container">
-					<h2 class="text-center">How it Works<small>Discover how EXploreCity can you help you find everything you want.</small></h2>
+					<h2 class="text-center">我们提供的<small>There are what we can offer to you.</small></h2>
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="services">
 								<img src="__PUBLIC__/images/services-icon01.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/services-icon01.png" alt="icon" class="img-responsive center-block">
-								<h3>Choose<br>What To Do</h3>
-								<p>Looking for a cozy hotel to stay, a restaurant to eat, a museum to visit or a mall to do some shopping?</p>
+								<h3>集中的<br>物流信息</h3>
+								<p>物流信息全在这里，司机不必忙于寻找运输机会</p>
 								<div class="process"><i class="pe-7s-angle-right-circle"></i></div>
 							</div> <!-- end .services -->
 						</div> <!-- end .col-sm-4 -->
 						<div class="col-sm-4">
 							<div class="services">
 								<img src="__PUBLIC__/images/services-icon02.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/services-icon02.png" alt="icon" class="img-responsive center-block">
-								<h3>Find<br>What You Want</h3>
-								<p>Search and filter hundreds of listings, read reviews, explore photos and find the perfect spot.</p>
+								<h3>安全的<br>交易环境</h3>
+								<p>实名认证的用户，您不用再猜测对方的真实性</p>
 								<div class="process"><i class="pe-7s-angle-right-circle"></i></div>
 							</div> <!-- end .services -->
 						</div> <!-- end .col-sm-4 -->
 						<div class="col-sm-4">
 							<div class="services">
 								<img src="__PUBLIC__/images/services-icon03.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/services-icon03.png" alt="icon" class="img-responsive center-block">
-								<h3>Explore<br>Amazing Places</h3>
-								<p>Go and have a good time or even make a booking directly from the listing page. All of those, thanks to ExploreCity!</p>
+								<h3>零中间<br>商费用</h3>
+								<p>本平台只作为信息提供平台，承诺不在交易中收取任何费用!</p>
 							</div> <!-- end .services -->
 						</div> <!-- end .col-sm-4 -->
 					</div> <!-- end .row -->
@@ -225,7 +404,7 @@
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
 
-		<div class="section dark">
+		<!-- <div class="section dark">
 			<div class="inner">
 				<div class="container">
 					<h2 class="text-center">Share Your Experience<small>Browse the latest articles and tips from our blog.</small></h2>
@@ -240,16 +419,16 @@
 									<p>By Quam Lobortis</p>
 									<h3><a href="">“Sed ut perspiciatis unde omnis iste ... ”</a></h3>
 									<div class="meta">July 09, 2016 - <a href="">Food</a></div>
-								</div> <!-- end .content -->
-							</div> <!-- end .blog-post -->
-						</div> <!-- end .col-md-4 -->
+								</div>
+							</div> 
+						</div>
 						<div class="col-md-4 col-sm-6">
 							<div class="blog-post gallery">
 								<div class="blog-gallery">
 									<div><img src="__PUBLIC__/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
 									<div><img src="__PUBLIC__/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
 									<div><img src="__PUBLIC__/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-								</div> <!-- end .blog-gallery -->
+								</div>
 								<div class="overlay"></div>
 								<div class="avatar"><img src="__PUBLIC__/images/blog-author02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author02.jpg" alt="author"></div>
 								<div class="type"><img src="__PUBLIC__/images/blog-category-gallery.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-gallery.png" alt="gallery"></div>
@@ -257,90 +436,249 @@
 									<p>By Nam Jacinia</p>
 									<h3><a href="">Central Park Bike Rentals</a></h3>
 									<div class="meta">July 07, 2016 - <a href="">Sales</a> , <a href="">Tips</a></div>
-								</div> <!-- end .content -->
-							</div> <!-- end .blog-post -->
-						</div> <!-- end .col-md-4 -->
+								</div>
+							</div>
+						</div>
 						<div class="col-md-4 col-sm-6">
 							<div class="blog-post video">
-								<img src="__PUBLIC__/images/blog-post03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post03.jpg" alt="image" class="img-responsive">
+								<img src="__PUBLIC__/images/blog-post03.jpg" class="img-responsive">
 								<div class="overlay"></div>
-								<div class="avatar"><img src="__PUBLIC__/images/blog-author03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author03.jpg" alt="author"></div>
-								<div class="type"><img src="__PUBLIC__/images/blog-category-video.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-video.png" alt="video"></div>
+								<div class="avatar"><img src="__PUBLIC__/images/blog-author03.jpg" ></div>
+								<div class="type"><img src="__PUBLIC__/images/blog-category-video.png" ></div>
 								<div class="content">
 									<a href="" class="play-video"><i class="pe-7s-play"></i></a>
 									<p>By Proin Mattis</p>
 									<h3><a href="">Nightlife at NewYork</a></h3>
 									<div class="meta">July 03, 2016 - <a href="">Nightlife</a></div>
-								</div> <!-- end .content -->
-							</div> <!-- end .blog-post -->
-						</div> <!-- end .col-md-4 -->
-					</div> <!-- end .row -->
+								</div> 
+							</div> 
+						</div> 
+					</div>
 					<div class="blog-view-more"><a href="" class="button">View All</a></div>
-				</div> <!-- end .container -->
-			</div> <!-- end .inner -->
-		</div> <!-- end .section -->
+				</div>
+			</div>
+		</div> -->
 
-		<div class="section light">
+		<div class="section dark">
 			<div class="inner">
 				<div class="container">
-					<h2 class="text-center">Our Newsletter<small>Get an extra 39% off for next your holiday</small></h2>
-					<form action="https://johneyboy.us7.list-manage.com/subscribe/post-json?u=3210d74dbf054134a29daf97c&id=50ad235761&c=?" method="get" id="mc-embedded-subscribe-form" class="newsletter-form">
-						<input type="email" id="mce-EMAIL" name="EMAIL" placeholder="YourEmail@domain.com">
+					<h2 class="text-center">Our Email<small>Get an e-mail to us when you have any question</small></h2>
+					<form  method="get" id="mc-embedded-subscribe-form" class="newsletter-form">
+						<input type="email" id="mce-EMAIL" name="EMAIL" value="consult@tjLogistics.cn" placeholder="YourEmail@domain.com" disabled="true">
 						<button type="submit" id="mc-embedded-subscribe" name="subscribe" class="button">Subscribe</button>
 					</form>
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
+
+		<!-- 任务详情Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="container" style="width:100%!important">
+					<div class="box">
+						<form  class="add-listing-form light-inputs">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">任务名称 :</span>
+									<input type="text" id="task_title" name="task_title" disabled="true" placeholder="例如：运送一匹建材">
+								</div> <!-- end .input-group -->
+							</div> <!-- end .form-group -->
+							<div class="form-group">              
+							    <!-- <textarea name="task_describe" rows="4"></textarea> -->
+							    <!-- <textarea id="TextArea1" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" disabled="true"></textarea> -->
+							    <div style="width: 100%;height: auto;background:#f1f2f6;font-size:14px;line-height:48px;padding:5px 10px" id="task_describe"></div>
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">选择分类 :</span>
+									<select name="task_type" id="task_type" disabled="true">	    	
+										<option value="1">设备制造</option>
+										<option value="2">运输</option>
+										<option value="3">仓储</option>
+										<option value="4">装饰包装</option>
+										<option value="5">配送</option>
+										<option value="6">信息服务</option>
+									</select>
+								</div> <!-- end .input-group -->
+								<span class="help-block">分类必须要准确，如有运输触犯法律的货物，将会受到刑事处理</span>
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">起点 :</span>
+									<select name="task_start" id="task_start" disabled="true">	    	
+											<option value="北辰区">北辰区</option>
+											<option value="红桥区">红桥区</option>
+											<option value="南开区">南开区</option>
+											<option value="滨海新区">滨海新区</option>
+											<option value="西青区">西青区</option>
+											<option value="静海县">静海县</option>
+									</select>
+								</div> <!-- end .input-group -->
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">目的地 :</span>
+									<select name="task_end" id="task_end" disabled="true">	    	
+											<option value="北辰区">北辰区</option>
+											<option value="红桥区">红桥区</option>
+											<option value="南开区">南开区</option>
+											<option value="滨海新区">滨海新区</option>
+											<option value="西青区">西青区</option>
+											<option value="静海县">静海县</option>
+									</select>
+								</div> <!-- end .input-group -->
+							</div> <!-- end .form-group -->
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">其他要求 :</span>
+									<input type="text" name="task_require" id="task_require" disabled="true" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
+								</div> <!-- end .input-group -->
+								<span class="help-block">可以根据到货后检查货物质量对司机进行申诉</span>
+							</div> <!-- end .form-group -->
+							<div class="form-group photo_thumbnails">
+								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview1"></img>
+								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview2"></img>
+								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview3"></img>
+								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview4"></img>
+							</div> <!-- end .form-group .photo_thumbnails -->
+							<div class="form-group listing-hours">
+								<div class="row">
+									<div class="col-sm-4" style="width: 50%">
+										<div class="input-group">
+											<span class="input-group-addon">拉货日期 :</span>
+											<input type="text" name="task_time" id="task_time" disabled="true" placeholder="2018-03-15">
+										</div> <!-- end .input-group -->
+									</div> <!-- end .col-sm-4 -->
+									<div class="col-sm-4" style="width: 50%">
+										<div class="input-group">
+											<span class="input-group-addon">薪金 :</span>
+											<input type="number" id="task_price" name="task_price" disabled="true">
+										</div> <!-- end .input-group -->
+									</div> <!-- end .col-sm-4 -->
+								</div> <!-- end .row -->
+							</div> <!-- end .form-group -->
+						</form>
+					</div> <!-- end .box -->
+				</div> <!-- end .container -->
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		        <button type="button" class="btn btn-primary" id="affirmCarry"  onclick="affirmCarry(this)">确认承运</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		
 		<script type="text/javascript">
 			window.onload = function(){
-				//获取分类对应的各种数量
-				// $.ajax({
-				// 	url:"",
-				// 	method:"POST",
-				// 	data:"",
-				// 	success:function(res){
-				// 		for (var i = res.length - 1; i >= 0; i--) {
-				// 			$("#type"+res[i]["type"]).text(res[i]["count"])
-				// 		}
-				// 	}
-				// })
-
 				//获取前十名的薪金
 				$.ajax({
-					url:"http://localhost:8081/",
+					url:"__URL__/getTopPriceTask",
 					method:"POST",
 					data:"",
+					dataType:"json",
 					success:function(res){
-						
-						var topData = [{
-							"taskName":"巴西咖啡豆10T",
-							"price":"￥ 950.00",
-							"location":"河北工业大学",
-							"taskPic":"__PUBLIC__/images/directory-slider01.jpg"
-						},{
-							"taskName":"巴西咖啡豆10T",
-							"price":"￥ 950.00",
-							"location":"河北工业大学",
-							"taskPic":"__PUBLIC__/images/directory-slider01.jpg"
-						},{
-							"taskName":"巴西咖啡豆10T",
-							"price":"￥ 950.00",
-							"location":"河北工业大学",
-							"taskPic":"__PUBLIC__/images/directory-slider01.jpg"
-						},{
-							"taskName":"巴西咖啡豆10T",
-							"price":"￥ 950.00",
-							"location":"河北工业大学",
-							"taskPic":"__PUBLIC__/images/directory-slider01.jpg"
-						}];
-						var topTemplate = doT.template(document.getElementById("topTemplate").innerHTML);
-						document.getElementById("topTemplateContainer").innerHTML = topTemplate(topData);
-						
-				
-
+						for (var i = 0; i < res.length; i++) {
+							$("#top"+(i+1)).css("display:block")
+							$("#top"+(i+1)).attr("data-taskId",res[i]["task_id"])
+							$("#top"+(i+1)+"_pic1").attr("src","http://localhost:8081/trans/"+res[i]["task_pic1"])
+							$("#top"+(i+1)+"_title").text(res[i]["task_title"])
+							$("#top"+(i+1)+"_describe").html(res[i]["task_describe"])
+							$("#top"+(i+1)+"_price").text(res[i]["task_price"])
+							$("#top"+(i+1)+"_start").text(res[i]["task_start"])
+						}
 					}
 				})
+			}
+
+
+			function getTaskDetail(el){
+				$("#affirmCarry").attr("data-taskId",'')
+				var id = $(el).attr("data-taskId");
+				if (!id) {
+					alert("出错了！");
+					return ;
+				}
+				$("#affirmCarry").attr("data-taskId",id)
+				$.ajax({
+		           url:"../TaskList/getTaskDetail?taskId="+id,
+		           type:"GET",
+		           dataType:"JSON",
+		           success:function(data){
+		           		for(var i in data[0]){
+		           			$("#"+i).val(data[0][i])
+		           		}
+		               $("#myModalLabel").text(data[0].task_title)
+		               for (var i = 0; i < 4; i++) {
+		               		if (data[0]["task_pic"+(i+1)]) {
+		               			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
+		               		}else{
+		               			$("#preview"+(i+1)).attr("style","display:none")
+		               		}
+		               		
+		               }
+		               var html = (data[0].task_describe);
+		               document.getElementById("task_describe").innerHTML = html;
+		           }      
+		   		});
+			}
+
+			function affirmCarry(el){
+				var taskId = $("#affirmCarry").attr("data-taskId")
+				if (!taskId) {
+					alert("出错了！");
+					return ;
+				}
+				swal({ 
+				  title: "提示", 
+				  text: "您确定要承运嘛？", 
+				  type: "info", 
+				  showCancelButton: true, 
+				  closeOnConfirm: false,
+				},
+				function(res){ 
+					if (res == true) {
+				  		$.ajax({
+				           url:"../TaskList/affirmCarry?taskId="+taskId,
+				           type:"GET",
+				           dataType:"text",
+				           success:function(data){
+				           		if (data == "success") {
+				           			swal("报名成功！")
+				  				}else if (data == "haveAffirm") {
+									swal("您已报过名！")
+				  				}else if(data == "fail"){
+				           			swal("报名失败，请重试！")
+				  				}
+				  				else if (data == "nologinIn"){
+				  					swal("您还未登录！")
+				  				}
+				           }     
+				   		});
+					}else{
+				  		swal.close();
+				  	}
+				});
+			}
+
+			function search(el){
+				var task_title = $("#task_title1").val();
+				var task_start = $("#task_start1").val();
+				var task_end   = $("#task_end1").val();
+				// var html = "{:U('TaskList/taskList?task_title="+task_title+"&task_start="+task_start+"&task_end="+task_end+"')}";
+				var html = "{:U('TaskList/taskList')}?task_title="+task_title+"&task_start="+task_start+"&task_end="+task_end;
+				location.assign(html);
+			}
+
+			function openAllTask(){
+				var html = "{:U('TaskList/taskList')}";
+				location.assign(html);
 			}
 		</script>
 		<!-- doT模板 -->

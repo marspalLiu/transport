@@ -11,134 +11,75 @@
 			<div class="right">
 				<div class="inner">
 					<div class="directory-filters">
-						<form>
+						<!-- <form> -->
 							<div class="row">
 								<div class="col-sm-4">
 									<div class="form-group">
-										<select>
+									<input type="start" name="start" id="start" placeholder="请输入起始位置">
+										<!-- <select>
 											<option>设备制造</option>
 											<option>运输</option>
 											<option>仓储</option>
 											<option>装饰包装</option>
 											<option>配送</option>
 											<option>信息服务</option>
-										</select>
+										</select> -->
 									</div> <!-- end .form-group -->
 								</div> <!-- end .col-sm-4 -->
 								<div class="col-sm-4">
 									<div class="form-group">
-										<select>
+									<input type="end" name="end" id="end" placeholder="请输入目的地">
+										<!-- <select>
 											<option>北辰区</option>
 											<option>红桥区</option>
 											<option>南开区</option>
 											<option>滨海新区</option>
 											<option>西青区</option>
 											<option>静海县</option>
-										</select>
+										</select> -->
 									</div> <!-- end .form-group -->
 								</div> <!-- end .col-sm-4 -->
 								<div class="col-sm-4">
 									<div class="form-group">
-										<select>
+									<button id="search" class="button" onclick="search()">搜索线路</button>
+										<!-- <select>
 											<option>北辰区</option>
 											<option>红桥区</option>
 											<option>南开区</option>
 											<option>滨海新区</option>
 											<option>西青区</option>
 											<option>静海县</option>
-										</select>
+										</select> -->
 									</div> <!-- end .form-group -->
 								</div> <!-- end .col-sm-4 -->
 							</div> <!-- end .row -->
-						</form>
+						<!-- </form> -->
 					</div> <!-- end .directory-filters -->
+					<div id="searchResultPanel1" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+					<div id="searchResultPanel2" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
 					<!-- <div class="directory-tags">
 						<div class="tag">Accepts Credit Cards<a href=""><i class="pe-7s-close"></i></a></div>
 						<div class="tag">Parking Street<a href=""><i class="pe-7s-close"></i></a></div>
 						<div class="tag">Wireless Internet<a href=""><i class="pe-7s-close"></i></a></div>
 					</div> --> <!-- end .directory-tags -->
-					<div class="directory-list-info">
+					<!-- <div class="directory-list-info">
 						<p>下列为您筛选条件所筛选的结果：</p>
 						<p class="results">79 条 - <a href="">Reset</a></p>
-					</div>
-					<div class="directory-list row">
-						<div class="col-sm-6">
-							<div class="directory-item">
-								<img src="__PUBLIC__/images/directory-slider01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg" alt="bg" class="img-responsive">
-								<div class="overlay"></div>
-								<div class="rating">4.0</div>
-								<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-								<div class="content">
-									<h3><a href="">Not Just Coffee</a></h3>
-									<p>Suspendisse tristique orci justo</p>
-									<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">Thomas St , NewYork</div>
-								</div> <!-- end .content -->
-								<div class="category">
-									<a href=""><img src="__PUBLIC__/images/directory-category-food.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png" alt="food"></a>
-									<a href=""><img src="__PUBLIC__/images/directory-category-drink.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png" alt="drink"></a>
-								</div> <!-- end .category -->
-							</div> <!-- end .directory-item -->
-						</div> <!-- end .col-sm-6 -->
-						<div class="col-sm-6">
-							<div class="directory-item">
-								<img src="__PUBLIC__/images/directory-slider02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider02.jpg" alt="bg" class="img-responsive">
-								<div class="overlay"></div>
-								<div class="rating">4.0</div>
-								<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-								<div class="content">
-									<h3><a href="">Nunc Restaurant</a></h3>
-									<p>Suspendisse tristique orci justo</p>
-									<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">Leonard St , NewYork</div>
-								</div> <!-- end .content -->
-								<div class="category">
-									<a href=""><img src="__PUBLIC__/images/directory-category-dining.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-dining.png" alt="dining"></a>
-									<a href=""><img src="__PUBLIC__/images/directory-category-wine.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-wine.png" alt="wine"></a>
-								</div> <!-- end .category -->
-							</div> <!-- end .directory-item -->
-						</div> <!-- end .col-sm-6 -->
-						<div class="col-sm-6">
-							<div class="directory-item">
-								<img src="__PUBLIC__/images/directory-slider03.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider03.jpg" alt="bg" class="img-responsive">
-								<div class="overlay"></div>
-								<div class="rating">4.0</div>
-								<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-								<div class="content">
-									<h3><a href="">DJ Party</a></h3>
-									<p>Suspendisse tristique orci justo</p>
-									<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">Knightsbridge 66</div>
-								</div> <!-- end .content -->
-								<div class="category">
-									<a href=""><img src="__PUBLIC__/images/directory-category-party.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-party.png" alt="party"></a>
-								</div> <!-- end .category -->
-							</div> <!-- end .directory-item -->
-						</div> <!-- end .col-sm-6 -->
-						<div class="col-sm-6">
-							<div class="directory-item">
-								<img src="__PUBLIC__/images/directory-slider04.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider04.jpg" alt="bg" class="img-responsive">
-								<div class="overlay"></div>
-								<div class="rating">4.0</div>
-								<a href="" class="wishlist"><img src="__PUBLIC__/images/directory-heart.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-heart.png" alt="wishlist"></a>
-								<div class="content">
-									<h3><a href="">Quisque Tinibus Hotel</a></h3>
-									<p>Suspendisse tristique orci justo</p>
-									<div class="location"><img src="__PUBLIC__/images/directory-location.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png" alt="location">Knightsbridge 66</div>
-								</div> <!-- end .content -->
-								<div class="category">
-									<a href=""><img src="__PUBLIC__/images/directory-category-hotel.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-hotel.png" alt="hotel"></a>
-								</div> <!-- end .category -->
-							</div> <!-- end .directory-item -->
-						</div> <!-- end .col-sm-6 -->
+					</div> -->
+					<div class="directory-list row" id="line">
+						
 					</div> <!-- end .directory-list -->
 				</div> <!-- end .inner -->
 			</div> <!-- end .right -->
 		</div> <!-- end .section -->
 
+		<!-- BaiDu maps -->
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=	kh7UFEyOR81HUvnaY81VFVxqGu0SimDa"></script>
+		
 		<!-- jQuery -->
 		<script src="__PUBLIC__/js/jquery-3.1.0.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/jquery-3.1.0.min.js"></script>
 		<!-- Bootstrap -->
 		<script src="__PUBLIC__/js/bootstrap.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/bootstrap.min.js"></script>
-		<!-- google maps -->
-		<script src="__PUBLIC__/lib/ditu.google.cn/maps/api/js-key=AIzaSyAy-PboZ3O_A25CcJ9eoiSrKokTnWyAmt8.js" ></script>
 		<!-- rich marker -->
 		<script src="__PUBLIC__/js/richmarker.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/richmarker.js"></script>
 		<!-- Owl Carousel -->
@@ -157,123 +98,241 @@
 		<script>
 
 			/*==========  Map  ==========*/
+			
+			// function initialize_map() {
+			// 	if ($('.map').length) {
+			// 		var myLatLng = new google.maps.LatLng(117.065189,39.242459);
+			// 		var mapOptions = {
+			// 			zoom: 17,
+			// 			center: myLatLng,
+			// 			scrollwheel: false,
+			// 			zoomControl: false,
+			// 			scaleControl: false,
+			// 			mapTypeControl: false,
+			// 			streetViewControl: false
+			// 		};
+			// 		map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			// 	} else {
+			// 		return false;
+			// 	}
+
+			// 	var marker1LatLng = new google.maps.LatLng(40.715756,-74.005339);
+			// 	marker1 = new RichMarker({
+			// 		position: marker1LatLng,
+			// 		map: map,
+			// 		draggable: false,
+			// 		flat: true,
+			// 		content: '<div class="marker-wrapper" id="marker1">' +
+			// 			'<div class="marker"><div class="hover"></div><div class="inner"><img src="__PUBLIC__/images/directory-category-drink.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png*/ alt="icon"></div></div>' +
+			// 			'<div class="directory-item">' +
+			// 				'<img src="__PUBLIC__/images/directory-slider01.jpg"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg*/ alt="bg" class="img-responsive">' +
+			// 				'<div class="overlay"></div>' +
+			// 				'<div class="rating">4.0</div>' +
+			// 				'<div class="content">' +
+			// 					'<h3><a href="">Not Just Coffee</a></h3>' +
+			// 					'<div class="location"><img src="__PUBLIC__/images/directory-location.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png*/ alt="location">Thomas St , NewYork</div>' +
+			// 				'</div> <!-- end .content -->' +
+			// 			'</div> <!-- end .directory-item -->' +
+			// 		'</div>'
+			// 	});
+			// 	google.maps.event.addListener(marker1, 'click', function() {
+			// 		$('.marker-wrapper').removeClass('open');
+			// 		$('#marker1').toggleClass('open');
+			// 	});
+
+			// 	var marker2LatLng = new google.maps.LatLng(40.716715,-74.003352);
+			// 	marker2 = new RichMarker({
+			// 		position: marker2LatLng,
+			// 		map: map,
+			// 		draggable: false,
+			// 		flat: true,
+			// 		content: '<div class="marker-wrapper" id="marker2">' +
+			// 			'<div class="marker"><div class="hover"></div><div class="inner"><img src="__PUBLIC__/images/directory-category-dining.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-dining.png*/ alt="icon"></div></div>' +
+			// 			'<div class="directory-item">' +
+			// 				'<img src="__PUBLIC__/images/directory-slider02.jpg"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider02.jpg*/ alt="bg" class="img-responsive">' +
+			// 				'<div class="overlay"></div>' +
+			// 				'<div class="rating">4.0</div>' +
+			// 				'<div class="content">' +
+			// 					'<h3><a href="">Consequat Restaurant</a></h3>' +
+			// 					'<div class="location"><img src="__PUBLIC__/images/directory-location.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png*/ alt="location">Leonard St , NewYork</div>' +
+			// 				'</div> <!-- end .content -->' +
+			// 			'</div> <!-- end .directory-item -->' +
+			// 		'</div>'
+			// 	});
+			// 	google.maps.event.addListener(marker2, 'click', function() {
+			// 		$('.marker-wrapper').removeClass('open');
+			// 		$('#marker2').toggleClass('open');
+			// 	});
+
+			// 	var marker3LatLng = new google.maps.LatLng(40.716622,-74.007976);
+			// 	marker3 = new RichMarker({
+			// 		position: marker3LatLng,
+			// 		map: map,
+			// 		draggable: false,
+			// 		flat: true,
+			// 		content: '<div class="marker-wrapper" id="marker3">' +
+			// 			'<div class="marker"><div class="hover"></div><div class="inner"><img src="__PUBLIC__/images/directory-category-food.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png*/ alt="icon"></div></div>' +
+			// 			'<div class="directory-item">' +
+			// 				'<img src="__PUBLIC__/images/directory-slider04.jpg"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider04.jpg*/ alt="bg" class="img-responsive">' +
+			// 				'<div class="overlay"></div>' +
+			// 				'<div class="rating">4.0</div>' +
+			// 				'<div class="content">' +
+			// 					'<h3><a href="">Quisque Tinibus Hotel</a></h3>' +
+			// 					'<div class="location"><img src="__PUBLIC__/images/directory-location.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png*/ alt="location">Knightsbridge 66</div>' +
+			// 				'</div> <!-- end .content -->' +
+			// 			'</div> <!-- end .directory-item -->' +
+			// 		'</div>'
+			// 	});
+			// 	google.maps.event.addListener(marker3, 'click', function() {
+			// 		$('.marker-wrapper').removeClass('open');
+			// 		$('#marker3').toggleClass('open');
+			// 	});
+
+			// 	var marker4LatLng = new google.maps.LatLng(40.714898,-74.004500);
+			// 	marker4 = new RichMarker({
+			// 		position: marker4LatLng,
+			// 		map: map,
+			// 		draggable: false,
+			// 		flat: true,
+			// 		content: '<div class="marker-wrapper" id="marker4">' +
+			// 			'<div class="marker"><div class="hover"></div><div class="inner"><img src="__PUBLIC__/images/directory-category-party.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-party.png*/ alt="icon"></div></div>' +
+			// 			'<div class="directory-item">' +
+			// 				'<img src="__PUBLIC__/images/directory-slider03.jpg"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider03.jpg*/ alt="bg" class="img-responsive">' +
+			// 				'<div class="overlay"></div>' +
+			// 				'<div class="rating">4.0</div>' +
+			// 				'<div class="content">' +
+			// 					'<h3><a href="">DJ Party</a></h3>' +
+			// 					'<div class="location"><img src="__PUBLIC__/images/directory-location.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png*/ alt="location">Knightsbridge 66</div>' +
+			// 				'</div> <!-- end .content -->' +
+			// 			'</div> <!-- end .directory-item -->' +
+			// 		'</div>'
+			// 	});
+			// 	google.maps.event.addListener(marker4, 'click', function() {
+			// 		$('.marker-wrapper').removeClass('open');
+			// 		$('#marker4').toggleClass('open');
+			// 	});
+
+			// 	return false;
+			// }
+			// google.maps.event.addDomListener(window, 'load', initialize_map);
 			var map;
-			function initialize_map() {
-				if ($('.map').length) {
-					var myLatLng = new google.maps.LatLng(40.716269,-74.004566);
-					var mapOptions = {
-						zoom: 17,
-						center: myLatLng,
-						scrollwheel: false,
-						zoomControl: false,
-						scaleControl: false,
-						mapTypeControl: false,
-						streetViewControl: false
-					};
-					map = new google.maps.Map(document.getElementById('map'), mapOptions);
-				} else {
-					return false;
-				}
-
-				var marker1LatLng = new google.maps.LatLng(40.715756,-74.005339);
-				marker1 = new RichMarker({
-					position: marker1LatLng,
-					map: map,
-					draggable: false,
-					flat: true,
-					content: '<div class="marker-wrapper" id="marker1">' +
-						'<div class="marker"><div class="hover"></div><div class="inner"><img src="__PUBLIC__/images/directory-category-drink.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-drink.png*/ alt="icon"></div></div>' +
-						'<div class="directory-item">' +
-							'<img src="__PUBLIC__/images/directory-slider01.jpg"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider01.jpg*/ alt="bg" class="img-responsive">' +
-							'<div class="overlay"></div>' +
-							'<div class="rating">4.0</div>' +
-							'<div class="content">' +
-								'<h3><a href="">Not Just Coffee</a></h3>' +
-								'<div class="location"><img src="__PUBLIC__/images/directory-location.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png*/ alt="location">Thomas St , NewYork</div>' +
-							'</div> <!-- end .content -->' +
-						'</div> <!-- end .directory-item -->' +
-					'</div>'
+			window.onload=function(){
+				map = new BMap.Map("map");    
+				var lon,lat;
+				var geolocation = new BMap.Geolocation();
+				geolocation.getCurrentPosition(function(r){
+					if(this.getStatus() == BMAP_STATUS_SUCCESS){
+						var mk = new BMap.Marker(r.point);
+						map.addOverlay(mk);
+						map.panTo(r.point);
+						lon = r.point.lng;
+						lat = r.point.lat
+					}
+					else {
+						alert('failed'+this.getStatus());
+					}        
 				});
-				google.maps.event.addListener(marker1, 'click', function() {
-					$('.marker-wrapper').removeClass('open');
-					$('#marker1').toggleClass('open');
-				});
-
-				var marker2LatLng = new google.maps.LatLng(40.716715,-74.003352);
-				marker2 = new RichMarker({
-					position: marker2LatLng,
-					map: map,
-					draggable: false,
-					flat: true,
-					content: '<div class="marker-wrapper" id="marker2">' +
-						'<div class="marker"><div class="hover"></div><div class="inner"><img src="__PUBLIC__/images/directory-category-dining.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-dining.png*/ alt="icon"></div></div>' +
-						'<div class="directory-item">' +
-							'<img src="__PUBLIC__/images/directory-slider02.jpg"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider02.jpg*/ alt="bg" class="img-responsive">' +
-							'<div class="overlay"></div>' +
-							'<div class="rating">4.0</div>' +
-							'<div class="content">' +
-								'<h3><a href="">Consequat Restaurant</a></h3>' +
-								'<div class="location"><img src="__PUBLIC__/images/directory-location.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png*/ alt="location">Leonard St , NewYork</div>' +
-							'</div> <!-- end .content -->' +
-						'</div> <!-- end .directory-item -->' +
-					'</div>'
-				});
-				google.maps.event.addListener(marker2, 'click', function() {
-					$('.marker-wrapper').removeClass('open');
-					$('#marker2').toggleClass('open');
-				});
-
-				var marker3LatLng = new google.maps.LatLng(40.716622,-74.007976);
-				marker3 = new RichMarker({
-					position: marker3LatLng,
-					map: map,
-					draggable: false,
-					flat: true,
-					content: '<div class="marker-wrapper" id="marker3">' +
-						'<div class="marker"><div class="hover"></div><div class="inner"><img src="__PUBLIC__/images/directory-category-food.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-food.png*/ alt="icon"></div></div>' +
-						'<div class="directory-item">' +
-							'<img src="__PUBLIC__/images/directory-slider04.jpg"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider04.jpg*/ alt="bg" class="img-responsive">' +
-							'<div class="overlay"></div>' +
-							'<div class="rating">4.0</div>' +
-							'<div class="content">' +
-								'<h3><a href="">Quisque Tinibus Hotel</a></h3>' +
-								'<div class="location"><img src="__PUBLIC__/images/directory-location.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png*/ alt="location">Knightsbridge 66</div>' +
-							'</div> <!-- end .content -->' +
-						'</div> <!-- end .directory-item -->' +
-					'</div>'
-				});
-				google.maps.event.addListener(marker3, 'click', function() {
-					$('.marker-wrapper').removeClass('open');
-					$('#marker3').toggleClass('open');
-				});
-
-				var marker4LatLng = new google.maps.LatLng(40.714898,-74.004500);
-				marker4 = new RichMarker({
-					position: marker4LatLng,
-					map: map,
-					draggable: false,
-					flat: true,
-					content: '<div class="marker-wrapper" id="marker4">' +
-						'<div class="marker"><div class="hover"></div><div class="inner"><img src="__PUBLIC__/images/directory-category-party.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-category-party.png*/ alt="icon"></div></div>' +
-						'<div class="directory-item">' +
-							'<img src="__PUBLIC__/images/directory-slider03.jpg"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-slider03.jpg*/ alt="bg" class="img-responsive">' +
-							'<div class="overlay"></div>' +
-							'<div class="rating">4.0</div>' +
-							'<div class="content">' +
-								'<h3><a href="">DJ Party</a></h3>' +
-								'<div class="location"><img src="__PUBLIC__/images/directory-location.png"/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/directory-location.png*/ alt="location">Knightsbridge 66</div>' +
-							'</div> <!-- end .content -->' +
-						'</div> <!-- end .directory-item -->' +
-					'</div>'
-				});
-				google.maps.event.addListener(marker4, 'click', function() {
-					$('.marker-wrapper').removeClass('open');
-					$('#marker4').toggleClass('open');
-				});
-
-				return false;
+				var point = new BMap.Point(lon, lat);    
+				map.centerAndZoom(point, 15);    
+				map.addControl(new BMap.NavigationControl());    
+				map.addControl(new BMap.ScaleControl());    
+				map.addControl(new BMap.OverviewMapControl());    
+				map.addControl(new BMap.MapTypeControl());    
+				map.setCurrentCity("天津"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用 
 			}
-			google.maps.event.addDomListener(window, 'load', initialize_map);
+
+			function search(){
+				var start = $("#start").val()
+				var end   = $("#end").val()
+				var driving = new BMap.DrivingRoute(map, {    
+				    renderOptions: {    
+				        map   : map,     
+				        panel : "line",    
+				        autoViewport: true    
+				    }    
+				});   
+				driving.search(start, end);
+			}
+
+			function G(id) {
+				return document.getElementById(id);
+			}
+			var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+				{"input" : "start"
+				,"location" : map
+			});
+
+			ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+			var str = "";
+				var _value = e.fromitem.value;
+				var value = "";
+				if (e.fromitem.index > -1) {
+					value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				}    
+				str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+				
+				value = "";
+				if (e.toitem.index > -1) {
+					_value = e.toitem.value;
+					value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				}    
+				str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+				G("searchResultPanel1").innerHTML = str;
+			});
+
+			var myValue;
+			ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+			var _value = e.item.value;
+				myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				G("searchResultPanel1").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+				
+				setPlace();
+			});
+
+			var ac1 = new BMap.Autocomplete(    //建立一个自动完成的对象
+				{"input" : "end"
+				,"location" : map
+			});
+
+			ac1.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+			var str = "";
+				var _value = e.fromitem.value;
+				var value = "";
+				if (e.fromitem.index > -1) {
+					value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				}    
+				str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+				
+				value = "";
+				if (e.toitem.index > -1) {
+					_value = e.toitem.value;
+					value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				}    
+				str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+				G("searchResultPanel2").innerHTML = str;
+			});
+
+			var myValue;
+			ac1.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+			var _value = e.item.value;
+				myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				G("searchResultPanel2").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+				
+				setPlace();
+			});
+
+			function setPlace(){
+				map.clearOverlays();    //清除地图上所有覆盖物
+				function myFun(){
+					var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+					map.centerAndZoom(pp, 18);
+					map.addOverlay(new BMap.Marker(pp));    //添加标注
+				}
+				var local = new BMap.LocalSearch(map, { //智能搜索
+				  onSearchComplete: myFun
+				});
+				local.search(myValue);
+			}
 
 		</script>
 

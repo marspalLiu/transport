@@ -153,7 +153,7 @@
 
 		<div class="signup-wrapper">
 			<div class="signup">
-				<form action="/trans/index.php/Home/AddTask/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
+				<form action="/trans/index.php/Home/OwnerSelfCenter/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
 					<div class="form-group">
 						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="姓名" id="register_name" name="name">
 					</div>
@@ -270,241 +270,323 @@
 			// }
 </script>
 
-<script src="/trans/Public/lib/ckeditor/ckeditor.js"></script>
 		<div class="responsive-menu">
 			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
 			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
 		</div> <!-- end .responsive-menu -->
-			
-		<div class="page-title" style="background-image: url('/trans/Public/images/background04.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background04.jpg*/;">
+
+		<div class="page-title" style="background-image: url('/trans/Public/images/background16.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background16.jpg*/;">
 			<div class="inner">
-				<p>Publish Task.</p>
-				<h2>发布任务</h2>
-				
+				<h2>个人中心</h2>
+				<p>You can see the tasks of you</p>
 			</div> <!-- end .inner -->
 		</div> <!-- end .page-title -->
 
 		<div class="section boxed-section light">
 			<div class="inner">
 				<div class="container">
-					<div class="box">
-						<form action="/trans/index.php/Home/AddTask/addTaskFun" method="post" enctype="multipart/form-data" class="add-listing-form light-inputs">
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">任务名称 :</span>
-									<input type="text" name="task_title" placeholder="例如：运送一匹建材">
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">              
-							    <!-- <textarea name="task_describe" rows="4"></textarea> -->
-							    <textarea id="TextArea1" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" class="ckeditor"></textarea>
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">选择分类 :</span>
-									<select name="task_type">	    	
-										<option value="1">设备制造</option>
-										<option value="2">运输</option>
-										<option value="3">仓储</option>
-										<option value="4">装饰包装</option>
-										<option value="5">配送</option>
-										<option value="6">信息服务</option>
-									</select>
-								</div> <!-- end .input-group -->
-								<span class="help-block">分类必须要准确，如有运输触犯法律的货物，将会受到刑事处理</span>
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">起点 :</span>
-									<select name="task_start">	    	
-											<option value="北辰区">北辰区</option>
-											<option value="红桥区">红桥区</option>
-											<option value="南开区">南开区</option>
-											<option value="滨海新区">滨海新区</option>
-											<option value="西青区">西青区</option>
-											<option value="静海县">静海县</option>
-									</select>
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">目的地 :</span>
-									<select name="task_end">	    	
-											<option value="北辰区">北辰区</option>
-											<option value="红桥区">红桥区</option>
-											<option value="南开区">南开区</option>
-											<option value="滨海新区">滨海新区</option>
-											<option value="西青区">西青区</option>
-											<option value="静海县">静海县</option>
-									</select>
-								</div> <!-- end .input-group -->
-							</div> <!-- end .form-group -->
-							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon">其他要求 :</span>
-									<input type="text" name="task_require" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
-								</div> <!-- end .input-group -->
-								<span class="help-block">可以根据到货后检查货物质量对司机进行申诉</span>
-							</div> <!-- end .form-group -->
-							<div class="form-group add_photo">
-								<button onclick="getElementById('file').click()" type="button" class="button">上传图片</button>
-								<input type="file" multiple="multiple" id="file" name='task_pic[]' style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" onchange="preview(this)" /><!--原来按钮的样式-->
-								<span>4 Photos ( 570px × 400px)</span>
-							</div> <!-- end .text-left .add_photo -->
-							<div class="form-group photo_thumbnails">
-								<img class="photo_preview_box" style="vertical-align:top;" id="preview1"></img>
-								<img class="photo_preview_box" style="vertical-align:top;" id="preview2"></img>
-								<img class="photo_preview_box" style="vertical-align:top;" id="preview3"></img>
-								<img class="photo_preview_box" style="vertical-align:top;" id="preview4"></img>
-							</div> <!-- end .form-group .photo_thumbnails -->
-							<div class="form-group listing-hours">
-								<div class="row">
-									<div class="col-sm-4">
-										<div class="input-group">
-											<span class="input-group-addon">拉货日期 :</span>
-											<input type="text" name="task_time" id="time" placeholder="2018-03-15">
-										</div> <!-- end .input-group -->
-									</div> <!-- end .col-sm-4 -->
-									<div class="col-sm-4">
-										<div class="input-group">
-											<span class="input-group-addon">薪金 :</span>
-											<input type="number" name="task_price">
-										</div> <!-- end .input-group -->
-									</div> <!-- end .col-sm-4 -->
-									<!-- <div class="col-sm-4">
-										<button type="button" class="button">Add Hours of Operation</button>
-									</div> --> <!-- end .col-sm-4 -->
+					<div class="box transparent">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="shop-sidebar">
+									<div class="sidebar-widget">
+										<h5>功能表</h5>
+										<form class="searchform">
+											<input type="text" placeholder="Search there...">
+											<button><i class="pe-7s-search"></i></button>
+										</form>
+									</div> <!-- end .sidebar-widget -->
+									<div class="sidebar-widget">
+										<h5>Product Categories</h5>
+										<div class="categories">
+											<a class="tab active" data-tab="1" onclick="changeTab(this)">全部<i class="pe-7s-right-arrow"></i></a>
+											<a class="tab" data-tab="2" onclick="changeTab(this)">待选司机<i class="pe-7s-right-arrow"></i></a>
+											<a class="tab" data-tab="3" onclick="changeTab(this)">申请成功未处理<i class="pe-7s-right-arrow"></i></a>
+											<a class="tab" data-tab="4" onclick="changeTab(this)">运输中<i class="pe-7s-right-arrow"></i></a>
+											<a class="tab" data-tab="5" onclick="changeTab(this)">已完成<i class="pe-7s-right-arrow"></i></a>
+										</div>
+									</div> <!-- end .sidebar-widget -->
+								</div> 
+							</div> 
+							<div class="col-md-8">
+								<div class="row products" id="selfCenterContainer">
+									
+									
 								</div> <!-- end .row -->
-								<!-- <div class="row">
-									<div class="col-sm-4">
-										<div class="hours">Monday - Sunday</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="hours">07:00 am – 22:00 pm</div>
-									</div> 
-									<div class="col-sm-4">
-										<a href="" class="remove"><i class="pe-7s-close-circle"></i></a>
-									</div> 
-								</div>  --><!-- end .row -->
-							</div> <!-- end .form-group -->
-							<div class="submit"><button type="submit" class="button" onclick="beforeSubmit()">提交任务</button></div>
-						</form>
+							</div> <!-- end .col-md-8 -->
+						</div> <!-- end .row -->
+						<div class="text-center">
+							<a href="" id="products-load-more" class="button">Load More</a>
+						</div> <!-- end .blog-load-more -->
 					</div> <!-- end .box -->
 				</div> <!-- end .container -->
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
+
+<!-- 任务详情Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container" style="width:100%!important">
+			<div class="box">
+				<form  class="add-listing-form light-inputs">
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">任务名称 :</span>
+							<input type="text" id="task_title" name="task_title" disabled="true" placeholder="例如：运送一匹建材">
+						</div> <!-- end .input-group -->
+					</div> <!-- end .form-group -->
+					<div class="form-group">              
+					    <!-- <textarea name="task_describe" rows="4"></textarea> -->
+					    <!-- <textarea id="TextArea1" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" disabled="true"></textarea> -->
+					    <div style="width: 100%;height: auto;background:#f1f2f6;font-size:14px;line-height:48px;padding:5px 10px" id="task_describe"></div>
+					</div> <!-- end .form-group -->
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">选择分类 :</span>
+							<select name="task_type" id="task_type" disabled="true">	    	
+								<option value="1">设备制造</option>
+								<option value="2">运输</option>
+								<option value="3">仓储</option>
+								<option value="4">装饰包装</option>
+								<option value="5">配送</option>
+								<option value="6">信息服务</option>
+							</select>
+						</div> <!-- end .input-group -->
+						<span class="help-block">分类必须要准确，如有运输触犯法律的货物，将会受到刑事处理</span>
+					</div> <!-- end .form-group -->
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">起点 :</span>
+							<select name="task_start" id="task_start" disabled="true">	    	
+									<option value="北辰区">北辰区</option>
+									<option value="红桥区">红桥区</option>
+									<option value="南开区">南开区</option>
+									<option value="滨海新区">滨海新区</option>
+									<option value="西青区">西青区</option>
+									<option value="静海县">静海县</option>
+							</select>
+						</div> <!-- end .input-group -->
+					</div> <!-- end .form-group -->
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">目的地 :</span>
+							<select name="task_end" id="task_end" disabled="true">	    	
+									<option value="北辰区">北辰区</option>
+									<option value="红桥区">红桥区</option>
+									<option value="南开区">南开区</option>
+									<option value="滨海新区">滨海新区</option>
+									<option value="西青区">西青区</option>
+									<option value="静海县">静海县</option>
+							</select>
+						</div> <!-- end .input-group -->
+					</div> <!-- end .form-group -->
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">其他要求 :</span>
+							<input type="text" name="task_require" id="task_require" disabled="true" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
+						</div> <!-- end .input-group -->
+						<span class="help-block">可以根据到货后检查货物质量对司机进行申诉</span>
+					</div> <!-- end .form-group -->
+					<div class="form-group photo_thumbnails">
+						<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview1"></img>
+						<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview2"></img>
+						<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview3"></img>
+						<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview4"></img>
+					</div> <!-- end .form-group .photo_thumbnails -->
+					<div class="form-group listing-hours">
+						<div class="row">
+							<div class="col-sm-4" style="width: 50%">
+								<div class="input-group">
+									<span class="input-group-addon">拉货日期 :</span>
+									<input type="text" name="task_time" id="task_time" disabled="true" placeholder="2018-03-15">
+								</div> <!-- end .input-group -->
+							</div> <!-- end .col-sm-4 -->
+							<div class="col-sm-4" style="width: 50%">
+								<div class="input-group">
+									<span class="input-group-addon">薪金 :</span>
+									<input type="number" id="task_price" name="task_price" disabled="true">
+								</div> <!-- end .input-group -->
+							</div> <!-- end .col-sm-4 -->
+						</div> <!-- end .row -->
+					</div> <!-- end .form-group -->
+				</form>
+			</div> <!-- end .box -->
+		</div> <!-- end .container -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--选择司机Modal -->
+<div class="modal fade" id="selectDriverModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">选择司机</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container" style="width:100%!important">
+			<div class="box">
+				<form  class="add-listing-form light-inputs">
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">选择分类 :</span>
+							<select name="task_type" id="task_type" disabled="true">	    	
+								<option value="1">设备制造</option>
+								<option value="2">运输</option>
+								<option value="3">仓储</option>
+								<option value="4">装饰包装</option>
+								<option value="5">配送</option>
+								<option value="6">信息服务</option>
+							</select>
+						</div> <!-- end .input-group -->
+						<span class="help-block">分类必须要准确，如有运输触犯法律的货物，将会受到刑事处理</span>
+					</div> <!-- end .form-group -->
+				</form>
+			</div> <!-- end .box -->
+		</div> <!-- end .container -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="affirmCarry"  onclick="affirmCarry(this)">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script id="selfCenterTemplate" type="text/x-dot-template">
+	{{ for(var x in it) { }}
+		<div class="col-sm-6">
+			<div class="product">
+				<img src="http://localhost:8081/trans/{{=it[x].task_pic1}}" class="img-responsive">
+				<div class="overlay"></div>
+				<div class="content">
+					<h3><a href="">{{=it[x].task_title}}</a></h3>
+					<p>￥ {{=it[x].task_price}}</p>
+				</div>
+				<div class="product-label"><span>{{=it[x].add_time}}</span></div>
+				<a data-taskId="{{=it[x].task_id}}" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)" class="button">查看详情</a>
+			</div>
+		</div>
+	{{ }}}
+</script>
+
+<script id="selectDriverTemplate" type="text/x-dot-template">
+	{{ for(var x in it) { }}
+		<div class="col-sm-6">
+			<div class="product">
+				<img src="http://localhost:8081/trans/{{=it[x].task_pic1}}" class="img-responsive">
+				<div class="overlay"></div>
+				<div class="content">
+					<h3><a href="">{{=it[x].task_title}}</a></h3>
+					<p>￥ {{=it[x].task_price}}</p>
+				</div>
+				<div class="product-label"><span>{{=it[x].add_time}}</span></div>
+				<a data-taskId="{{=it[x].task_id}}" data-toggle="modal" data-target="#selectDriverModal" onclick="getTaskDriver(this)" class="button">选择司机</a>
+			</div>
+		</div>
+	{{ }}}
+</script>
+
 <script type="text/javascript">
 	window.onload=function(){
-		CKEDITOR.replace('TextArea1');
-		$("#time").datetimepicker({
-            format: 'yyyy-mm',
-            minView:'month',
-            language: 'zh-CN',
-            autoclose:true,
-
-        }).on("click",function(){
-           $("#time").datetimepicker("setEndDate",$("#time").val())
-        });
+		getTaskList(1)
 	}
-	function preview(el){
-		for (var i = 0; i < 4; i++) {
-			$("#preview"+(i+1)).attr("src","");
+
+	//change选项卡
+	function changeTab(el){
+		var objects = $(".tab")
+		for (var i = 0; i < objects.length; i++) {
+			$(objects[i]).removeClass("active");
 		}
-		var fileData = el.files
+		$(el).addClass("active");
+		var tabId = $(el).attr("data-tab");
+		getTaskList(tabId);
 		
-		if (fileData.length ==1) {
-			var reader = new FileReader();   
-	        reader.readAsDataURL(fileData[0]);   
-	        reader.onload = function(e){   
-	        	$("#preview1").attr("src",this.result);
-	        	
-   			}   
-
-		}else if(fileData.length == 2){
-			var reader1 = new FileReader();   
-	        reader1.readAsDataURL(fileData[0]);   
-	        reader1.onload = function(e){   
-	        	$("#preview1").attr("src",this.result);
-	        	
-   			}  
-
-   			var reader2 = new FileReader();   
-	        reader2.readAsDataURL(fileData[1]);   
-	        reader2.onload = function(e){   
-	        	$("#preview2").attr("src",this.result);
-	        	
-   			}  
-
-
-		}else if(fileData.length == 3){
-			var reader1 = new FileReader();   
-	        reader1.readAsDataURL(fileData[0]);   
-	        reader1.onload = function(e){   
-	        	$("#preview1").attr("src",this.result);
-	        	
-   			}  
-
-   			var reader2 = new FileReader();   
-	        reader2.readAsDataURL(fileData[1]);   
-	        reader2.onload = function(e){   
-	        	$("#preview2").attr("src",this.result);
-	        	
-   			}  
-
-   			var reader3 = new FileReader();   
-	        reader3.readAsDataURL(fileData[2]);   
-	        reader3.onload = function(e){   
-	        	$("#preview3").attr("src",this.result);
-	        	
-   			}
-
-		}else if(fileData.length == 4){
-			var reader1 = new FileReader();   
-	        reader1.readAsDataURL(fileData[0]);   
-	        reader1.onload = function(e){   
-	        	$("#preview1").attr("src",this.result);
-	        	
-   			}  
-
-   			var reader2 = new FileReader();   
-	        reader2.readAsDataURL(fileData[1]);   
-	        reader2.onload = function(e){   
-	        	$("#preview2").attr("src",this.result);
-	        	
-   			}  
-
-   			var reader3 = new FileReader();   
-	        reader3.readAsDataURL(fileData[2]);   
-	        reader3.onload = function(e){   
-	        	$("#preview3").attr("src",this.result);
-	        	
-   			}
-
-   			var reader4 = new FileReader();   
-	        reader4.readAsDataURL(fileData[3]);   
-	        reader4.onload = function(e){   
-	        	$("#preview4").attr("src",this.result);
-	        	
-   			}
-		}
-
-        
-    }
-	function getObjectURL(file) {
-	    var url = new Array() ; 
-	    if (window.createObjectURL!=undefined) { // basic
-	        url = window.createObjectURL(file) ;
-	    } else if (window.URL!=undefined) { // mozilla(firefox)
-	        url = window.URL.createObjectURL(file) ;
-	    } else if (window.webkitURL!=undefined) { // webkit or chrome
-	        url = window.webkitURL.createObjectURL(file) ;
-	    }
-	    return url ;
 	}
 
-	function beforeSubmit(){
-		for (instance in CKEDITOR.instances)
-            CKEDITOR.instances[instance].updateElement();
+	function getTaskList(tabId){
+		$.ajax({
+			url:"/trans/index.php/Home/OwnerSelfCenter/getMyTask?tabId="+tabId,
+			method:"POST",
+			dataType:"json",
+			success:function(res){
+				console.log(res)
+				if (tabId == 1) {
+					//全部任务
+					var selfCenterTemplate = doT.template(document.getElementById("selfCenterTemplate").innerHTML);
+					document.getElementById("selfCenterContainer").innerHTML = selfCenterTemplate(res);
+				}else if (tabId == 2) {
+					//选择司机
+					var selectDriverTemplate = doT.template(document.getElementById("selectDriverTemplate").innerHTML);
+				document.getElementById("selfCenterContainer").innerHTML = selectDriverTemplate(res);
+				}
+
+			}
+		})
+	}
+
+	//获取任务详情
+	function getTaskDetail(el){
+		var id = $(el).attr("data-taskId");
+		if (!id) {
+			alert("出错了！");
+			return ;
+		}
+		$.ajax({
+           url:"../TaskList/getTaskDetail?taskId="+id,
+           type:"GET",
+           dataType:"JSON",
+           success:function(data){
+           		for(var i in data[0]){
+           			$("#"+i).val(data[0][i])
+           		}
+               $("#myModalLabel").text(data[0].task_title)
+               for (var i = 0; i < 4; i++) {
+               		if (data[0]["task_pic"+(i+1)]) {
+               			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
+               		}
+               		
+               }
+               var html = (data[0].task_describe);
+               document.getElementById("task_describe").innerHTML = html;
+           }      
+   		});
+	}
+
+	//获取当前任务的报名司机
+	function getTaskDriver(el){
+		$("#affirmCarry").attr("data-taskId",'')
+		var id = $(el).attr("data-taskId");
+		if (!id) {
+			alert("出错了！");
+			return ;
+		}
+		$("#affirmCarry").attr("data-taskId",id)
+		$.ajax({
+           url:"OwnerSelfCenter/getTaskDriver?taskId="+id,
+           type:"GET",
+           dataType:"JSON",
+           success:function(data){
+           		console.log(data);
+	       		// for(var i in data[0]){
+	       		// 	$("#"+i).val(data[0][i])
+	       		// }
+          //       $("#myModalLabel").text(data[0].task_title)
+               
+           }      
+   		});
 	}
 </script>
 <footer class="footer">

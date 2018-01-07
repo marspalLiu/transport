@@ -1,77 +1,75 @@
 <include file="Public/header" />
-		<div class="responsive-menu">
-			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
-			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
-		</div> <!-- end .responsive-menu -->
+<div class="responsive-menu">
+	<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
+	<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
+</div> <!-- end .responsive-menu -->
 
-		<div class="page-title" style="background-image: url('__PUBLIC__/images/background16.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background16.jpg*/;">
-			<div class="inner">
-				<h2>个人中心</h2>
-				<p>You can see the tasks of you</p>
-			</div> <!-- end .inner -->
-		</div> <!-- end .page-title -->
+<div class="page-title" style="background-image: url('__PUBLIC__/images/background16.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background16.jpg*/;">
+	<div class="inner">
+		<h2>个人中心</h2>
+		<p>You can see the tasks of you</p>
+	</div> <!-- end .inner -->
+</div> <!-- end .page-title -->
 
-		<div class="section boxed-section light">
-			<div class="inner">
-				<div class="container">
-					<div class="box transparent">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="shop-sidebar">
-									<!-- <div class="sidebar-widget">
-										<select>
-											<option>Default sorting</option>
-											<option>High to Low</option>
-										</select>
-									</div> --> <!-- end .sidebar-widget -->
-									<div class="sidebar-widget">
-										<h5>功能表</h5>
-										<form class="searchform">
-											<input type="text" placeholder="Search there...">
-											<button><i class="pe-7s-search"></i></button>
-										</form>
-									</div> <!-- end .sidebar-widget -->
-									<div class="sidebar-widget">
-										<h5>操作列表</h5>
-										<div class="categories" id="func">
-											<a href="{:U('SelfCenter/selfCenter')}" class="active" id="all_tesk">所有任务<i class="pe-7s-right-arrow"></i></a>
-											<a href="{:U('SelfCenter/applying')}">申请中<i class="pe-7s-right-arrow"></i></a>
-											<a  href="{:U('SelfCenter/waittrans')}">申请成功未处理<i class="pe-7s-right-arrow"></i></a>
-											<a  href="{:U('SelfCenter/transing')}">运输中<i class="pe-7s-right-arrow"></i></a>
-											<a href="{:U('SelfCenter/done')}">已完成<i class="pe-7s-right-arrow"></i></a>
-											<a href="{:U('SelfCenter/myCar')}" id="my_car">我的车辆<i class="pe-7s-right-arrow"></i></a>
-											<a href="" id="add_car" data-toggle="modal" data-target="#add_car_modal" >添加车辆<i class="pe-7s-right-arrow"></i></a>
-											<!-- <a href="">Nightlife<i class="pe-7s-right-arrow"></i></a>
-											<a href="">Visit<i class="pe-7s-right-arrow"></i></a>
-											<a href="">Shop<i class="pe-7s-right-arrow"></i></a> -->
-										</div>
-									</div> <!-- end .sidebar-widget -->
-								</div> 
-							</div> 
-							<div class="col-md-8">
-								<div class="row products" id="allTaskContainer">
+<div class="section boxed-section light">
+	<div class="inner">
+		<div class="container">
+			<div class="box transparent">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="shop-sidebar">
+							<!-- <div class="sidebar-widget">
+                                <select>
+                                    <option>Default sorting</option>
+                                    <option>High to Low</option>
+                                </select>
+                            </div> --> <!-- end .sidebar-widget -->
+							<div class="sidebar-widget">
+								<h5>功能表</h5>
+								<form class="searchform">
+									<input type="text" placeholder="Search there...">
+									<button><i class="pe-7s-search"></i></button>
+								</form>
+							</div> <!-- end .sidebar-widget -->
+							<div class="sidebar-widget">
+								<h5>操作列表</h5>
+								<div class="categories" id="func">
+									<a href="{:U('SelfCenter/selfCenter')}" >所有任务<i class="pe-7s-right-arrow"></i></a>
+									<a href="{:U('SelfCenter/applying')}" >申请中<i class="pe-7s-right-arrow"></i></a>
+									<a  href="{:U('SelfCenter/waittrans')}">申请成功未处理<i class="pe-7s-right-arrow"></i></a>
+									<a  href="{:U('SelfCenter/transing')}" class="active" id="all_tesk">运输中<i class="pe-7s-right-arrow"></i></a>
+									<a href="{:U('SelfCenter/done')}" >已完成<i class="pe-7s-right-arrow"></i></a>
+									<a href="{:U('SelfCenter/myCar')}" id="my_car">我的车辆<i class="pe-7s-right-arrow"></i></a>
+									<a href="" id="add_car" data-toggle="modal" data-target="#add_car_modal" >添加车辆<i class="pe-7s-right-arrow"></i></a>
+									<!-- <a href="">Nightlife<i class="pe-7s-right-arrow"></i></a>
+                                    <a href="">Visit<i class="pe-7s-right-arrow"></i></a>
+                                    <a href="">Shop<i class="pe-7s-right-arrow"></i></a> -->
+								</div>
+							</div> <!-- end .sidebar-widget -->
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="row products" id="allTaskContainer">
 
-									
-									<div class="col-sm-6">
-										<div class="product">
-											<div id="rowContainer">
+							<div class="col-sm-6">
+								<div class="product">
+									<div id="rowContainer">
 
-											</div>
-											</div> <!-- end .content -->
-											<a href="" class="button">查看详情</a>
-										</div> <!-- end .product -->
-									</div> <!-- end .col-sm-6 -->
-								</div> <!-- end .row -->
-							</div> <!-- end .col-md-8 -->
-						</div> <!-- end .row -->
-						<div class="text-center">
-							<a href="" id="products-load-more" class="button">Load More</a>
-						</div> <!-- end .blog-load-more -->
-					</div> <!-- end .box -->
-				</div> <!-- end .container -->
-			</div> <!-- end .inner -->
-		</div> <!-- end .section -->
-<!-- 任务详情Modal -->
+									</div>
+								</div> <!-- end .content -->
+								<a href="" class="button">查看详情</a>
+							</div> <!-- end .product -->
+						</div> <!-- end .col-sm-6 -->
+					</div> <!-- end .row -->
+				</div> <!-- end .col-md-8 -->
+			</div> <!-- end .row -->
+			<div class="text-center">
+				<a href="" id="products-load-more" class="button">Load More</a>
+			</div> <!-- end .blog-load-more -->
+		</div> <!-- end .box -->
+	</div> <!-- end .container -->
+</div> <!-- end .inner -->
+</div> <!-- end .section -->
 <!-- 任务详情Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -175,14 +173,14 @@
   </div>
 </div>
 <include file="Public/footer" />
-
 <script>
 	window.onload=function(){
 		$.ajax({
-			url:"__URL__/getTaskList",
+			url:"__URL__/transingList",
 			method:"get",
 			dataType:"json",
 			success:function(res){
+				console.log(res)
 				var topTemplate = doT.template(document.getElementById("selfCenterTemplate").innerHTML);
 				document.getElementById("allTaskContainer").innerHTML = topTemplate(res);
 			}
@@ -191,22 +189,16 @@
 	
 	function getTaskDetail(el){
 		var id = $(el).attr("data-taskId");
-		if (!id) {
-			alert("出错了！");
-			return ;
-		}
 		$.ajax({
-           url:"../TaskList/getTaskDetail?taskId="+id,
-           type:"GET",
-           dataType:"JSON",
-           success:function(data){
-           		for(var i in data[0]){
+			url:"getTaskDetail?taskId="+id,
+			type:"GET",
+			dataType:"JSON",
+			success:function(data){
+				for(var i in data[0]){
            			$("#"+i).val(data[0][i])
            		}
-           		var length;
                $("#myModalLabel").text(data[0].task_title)
                for (var i = 0; i < 4; i++) {
-               	console.log(data[0]["task_pic"+(i+1)]+(i+1))
                		if (data[0]["task_pic"+(i+1)]) {
                			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
                		}else{
@@ -216,8 +208,16 @@
                }
                var html = (data[0].task_describe);
                document.getElementById("task_describe").innerHTML = html;
-           }      
-   		});
+
+			}
+		});
+	}
+	function  makeTransing(el){
+		var id = $(el).attr("data-taskId");
+		$.post("makeDone", {id:id},function(e){
+			window.location.href = "__URL__/transing.html";
+		});
+
 	}
 </script>
 <script  id="selfCenterTemplate" type="text/x-dot-template">
@@ -227,12 +227,12 @@
 			<img src="__PUBLIC__/images/product08.jpg"  class="img-responsive"><!--http:localhost:80/transport{{=it[x].task_pic1}}-->
 			<div class="overlay"></div>
 			<div class="content">
+				<a href="javascript:void(0)" class="button" data-taskId= {{=it[x].task_id}}  onclick="makeTransing(this)">送达</a>
 				<h3><a href="">{{=it[x].task_title}}</a></h3>
 				<p>￥ {{=it[x].task_price}}</p>
 			</div>
-			<a href="" data-taskId="{{=it[x].task_id}}" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)" class="button">查看详情</a>
+			<a href="javascript:void(0)" class="button" data-taskId= {{=it[x].task_id}} data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">查看详情</a>
 		</div>
 	</div>
 	{{ }}}
-
 </script>

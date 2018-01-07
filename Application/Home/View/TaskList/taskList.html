@@ -1,4 +1,8 @@
 <include file="Public/header" />
+<script src="__PUBLIC__/lib/ckeditor/ckeditor.js"></script>
+<!-- <input type="text" id="search_task_title" value="{$param.task_title}" style="display: none">
+<input type="text" id="search_task_start" value="{$param.task_start}" style="display: none">
+<input type="text" id="search_task_end" value="{$param.task_end}" style="display: none"> -->
 		<div class="responsive-menu">
 			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
 			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
@@ -6,7 +10,7 @@
 		
 		<div class="page-title" style="background-image: url('__PUBLIC__/images/background14.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background14.jpg*/;">
 			<div class="inner">
-				<h2>所有信息全在这里 </h2>
+				<h2>所有信息全在这里</h2>
 				<p>All the information here.</p>
 			</div> <!-- end .inner -->
 		</div> <!-- end .page-title -->
@@ -15,8 +19,10 @@
 			<div class="inner">
 				<div class="container">
 					<div class="box transparent blog-grid">					
-						<div id="rowContainer">
-							
+						<div>
+							<div class="row"  id="rowContainer">
+								
+							</div>
 						</div>
 						<div class="text-center">
 							<a href="" id="blog-load-more" class="button">LOAD MORE</a>
@@ -46,7 +52,8 @@
 							</div> <!-- end .form-group -->
 							<div class="form-group">              
 							    <!-- <textarea name="task_describe" rows="4"></textarea> -->
-							    <textarea id="task_describe" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" class="ckeditor" disabled="true"></textarea>
+							    <!-- <textarea id="TextArea1" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" disabled="true"></textarea> -->
+							    <div style="width: 100%;height: auto;background:#f1f2f6;font-size:14px;line-height:48px;padding:5px 10px" id="task_describe"></div>
 							</div> <!-- end .form-group -->
 							<div class="form-group">
 								<div class="input-group">
@@ -119,43 +126,31 @@
 										<button type="button" class="button">Add Hours of Operation</button>
 									</div> --> <!-- end .col-sm-4 -->
 								</div> <!-- end .row -->
-								<!-- <div class="row">
-									<div class="col-sm-4">
-										<div class="hours">Monday - Sunday</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="hours">07:00 am – 22:00 pm</div>
-									</div> 
-									<div class="col-sm-4">
-										<a href="" class="remove"><i class="pe-7s-close-circle"></i></a>
-									</div> 
-								</div>  --><!-- end .row -->
 							</div> <!-- end .form-group -->
-							<div class="submit"><button type="submit" class="button" onclick="beforeSubmit()">提交任务</button></div>
+							<!-- <div class="submit"><button type="submit" class="button" onclick="beforeSubmit()">提交任务</button></div> -->
 						</form>
 					</div> <!-- end .box -->
 				</div> <!-- end .container -->
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-		        <button type="button" class="btn btn-primary">确认承运</button>
+		        <button type="button" class="btn btn-primary" id="affirmCarry"  onclick="affirmCarry(this)">确认承运</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
 		<script type="text/javascript">
 			window.onload=function(){
+				var data = 
 				$.ajax({
-					url:"__URL__/getTaskList",
+					url:"__URL__/getTaskList?task_title={$param.task_title}&task_start={$param.task_start}&task_end={$param.task_end}",
 					method:"get",
 					dataType:"json",
 					success:function(res){
-						console.log(res)
 						var html;
 						for (var i = 0; i < res.length; i++) {
-							if (i%3==0) {
-								html += '<div class="row">'
-								html += '<div class="col-md-4 col-sm-6" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">'
+							
+								html = '<div class="col-md-4 col-sm-6" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">'
 								html += '<div class="blog-post image">'
 								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
 								html += '<div class="overlay"></div>'
@@ -167,78 +162,96 @@
 								html += '</div> <!-- end .content -->'
 								html += '</div> <!-- end .blog-post -->'
 								html += '</div> <!-- end .col-md-4 -->'
-								++i;
-								html += '<div class="col-md-4 col-sm-6" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">'
-								html += '<div class="blog-post image">'
-								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
-								html += '<div class="overlay"></div>'
-								html += '<div class="avatar"><img src="__PUBLIC__/images/blog-author01.jpg" ></div>'
-								html += '<div class="content">'
-								html += '<p><img src="__PUBLIC__/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
-								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
-								html += '<div class="meta">￥ '+res[i].task_price+' - <a href="#">承运</a></div>'
-								html += '</div> <!-- end .content -->'
-								html += '</div> <!-- end .blog-post -->'
-								html += '</div> <!-- end .col-md-4 -->'
-								++i;
-								html += '<div class="col-md-4 col-sm-6" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">'
-								html += '<div class="blog-post image">'
-								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
-								html += '<div class="overlay"></div>'
-								html += '<div class="avatar"><img src="__PUBLIC__/images/blog-author01.jpg" ></div>'
-								html += '<div class="content">'
-								html += '<p><img src="__PUBLIC__/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
-								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
-								html += '<div class="meta">￥ '+res[i].task_price+' - <a href="#" >承运</a></div>'
-								html += '</div> <!-- end .content -->'
-								html += '</div> <!-- end .blog-post -->'
-								html += '</div> <!-- end .col-md-4 -->'
-								html += '</div>'
-								document.getElementById("rowContainer").innerHTML = html;
+								$("#rowContainer").append(html);
 							}
+							
 						}
-						
-						// var listTemplate = doT.template(document.getElementById("listTemplate").innerHTML);
-						// document.getElementById("rowContainer").innerHTML = listTemplate(res);
-					}
+					
 				})
 			}
 
 			function getTaskDetail(el){
+				$("#affirmCarry").attr("data-taskId",'')
 				var id = $(el).attr("data-taskId");
+				if (!id) {
+					alert("出错了！");
+					return ;
+				}
+				$("#affirmCarry").attr("data-taskId",id)
 				$.ajax({
 		           url:"getTaskDetail?taskId="+id,
 		           type:"GET",
 		           dataType:"JSON",
 		           success:function(data){
 		           		for(var i in data[0]){
-		           			console.log(i)
 		           			$("#"+i).val(data[0][i])
 		           		}
 		               $("#myModalLabel").text(data[0].task_title)
 		               for (var i = 0; i < 4; i++) {
 		               		if (data[0]["task_pic"+(i+1)]) {
 		               			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
-		               		}
+		               		}else{
+	               			$("#preview"+(i+1)).attr("style","display:none")
+	               		}
 		               		
 		               }
-		               var html = htmldecode(data[0].task_describe);
-		               $("#task_describe").innerHTML(html);
-		               
+		               var html = (data[0].task_describe);
+		               document.getElementById("task_describe").innerHTML = html;
 		           }      
 		   		});
 			}
 
-			function htmldecode(str) {
-				 str = str.replace(/&amp;/gi, '&');
-				 //str = str.replace(/&nbsp;/gi, '');
-				 str = str.replace(/&quot;/gi, '"');
-				 str = str.replace(/&#39;/g, "'");
-				 str = str.replace(/&lt;/gi, '<');
-				 str = str.replace(/&gt;/gi, '>');
-				//  str = str.replace(/<br[^>]*>(?:(rn)|r|n)?/gi, 'n');
-				 return str;
+			function affirmCarry(el){
+				var taskId = $("#affirmCarry").attr("data-taskId")
+				if (!taskId) {
+					alert("出错了！");
+					return ;
+				}
+				swal({ 
+				  title: "提示", 
+				  text: "您确定要承运嘛？", 
+				  type: "info", 
+				  showCancelButton: true, 
+				  closeOnConfirm: true,
+				},
+				function(res){ 
+					if (res == true) {
+				  		$.ajax({
+				           url:"affirmCarry?taskId="+taskId,
+				           type:"GET",
+				           dataType:"text",
+				           success:function(data){
+				           		if (data == "success") {
+				           			swal({ 
+									  title: "报名成功！", 
+									  text: "", 
+									  type: "success",
+									  showCancelButton: false, 
+									  confirmButtonColor: "#DD6B55",
+									  confirmButtonText: "确定", 
+									  closeOnConfirm: true, 
+									},
+									function(isConfirm){ 
+									  if (isConfirm) { 
+									    	location.reload() 
+									  } 
+									});
+				  				}else if (data == "haveAffirm") {
+									alert("您已报过名！")
+				  				}else if(data == "fail"){
+				           			alert("报名失败，请重试！")
+				  				}
+				  				else if (data == "nologinIn"){
+				  					alert("您还未登录！")
+				  				}
+				           }     
+				   		});
+					}else{
+				  		swal.close();
+				  	}
+				});
 			}
+
 		</script>
 		
 <include file="Public/footer" />

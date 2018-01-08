@@ -47,11 +47,17 @@ class TaskListController extends Controller {
     //承运货物
     public function affirmCarry(){
     	if (!$_SESSION["userId"]) {
-    		#判断是否登陆
+            #判断是否登陆
             echo "nologinIn";
             return ;
-    	}
+        }
+        if ($_SESSION["type"] == 2) {
+            #判断是否司机
+            echo "noDriver";
+            return ;
+        }
     	$condition["task_id"] = $data["task_id"]   = I("get.taskId");
+        $data["car_id"]       = I("get.carId");
     	$condition["driver_id"] = $data["driver_id"] = $_SESSION["userId"];
     	$data["add_time"]  = date("Y-m-d H:i:s");
     	$info = D("driver_list")->where($condition)->select();
@@ -66,4 +72,10 @@ class TaskListController extends Controller {
     		}
     	}
  	}
+
+    public function getCarList(){
+        $condition["driver_id"] = $_SESSION["userId"];
+        $data = D("car")->where($condition)->select();
+        echo json_encode($data);
+    }
 }

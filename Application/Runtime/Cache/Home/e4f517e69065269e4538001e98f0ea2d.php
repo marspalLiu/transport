@@ -187,17 +187,17 @@
 						</div>
 						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
 					</div>
+					<input id="tel1" class="form-control" type="text" placeholder="联系方式" name="tel">
 					<div id="master" hidden="">
-            			<input id="tel1" class="form-control" type="text" placeholder="联系方式" name="tel">
             			<input id="address" class="form-control" type="text" placeholder="住址" name="add">
             		</div>
             		<div id="car">
-            			<input id="tel2" class="form-control" type="text" placeholder="联系方式" name="tel">
+            			
             		</div>
 					<div class="text-center">
 						<p>完成后请及时对信息进行完善</p>
 					</div> <!-- end .text-center -->
-					<div class="button-wrapper"><button type="submit" class="button" onclick="register()">注册</button></div>
+					<div class="button-wrapper"><button type="submit" class="button">注册</button></div>
 					<div class="text-center">
 						<p>Already have an account? <a href="" class="login-open">Log in</a></p>
 					</div>
@@ -307,7 +307,7 @@
 											<a class="tab active" data-tab="1" onclick="changeTab(this)">全部<i class="pe-7s-right-arrow"></i></a>
 											<a class="tab" data-tab="2" onclick="changeTab(this)">待选司机<i class="pe-7s-right-arrow"></i></a>
 											<a class="tab" data-tab="3" onclick="changeTab(this)">查看物流状态<i class="pe-7s-right-arrow"></i></a>
-											<a class="tab" data-tab="4" onclick="changeTab(this)">提醒司机（3天）<i class="pe-7s-right-arrow"></i></a>
+											<a class="tab" data-tab="4" onclick="changeTab(this)">已完成待收货<i class="pe-7s-right-arrow"></i></a>
 											<a class="tab" data-tab="5" onclick="changeTab(this)">已完成<i class="pe-7s-right-arrow"></i></a>
 										</div>
 									</div> <!-- end .sidebar-widget -->
@@ -446,12 +446,15 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon">报名司机 :</span>
-							<select name="taskDriverSelect" id="taskDriverSelect">	    	
+							<select name="taskDriverSelect" id="taskDriverSelect" onchange="changeDriver(this)">	    	
 								
 							</select>
 						</div> <!-- end .input-group -->
 						<span class="help-block">一旦确认不能修改，谨慎操作；您也可以先打电话了解一下情况哦！</span>
 					</div> <!-- end .form-group -->
+					<div id="driverCarContainer">
+						
+					</div>
 				</form>
 			</div> <!-- end .box -->
 		</div> <!-- end .container -->
@@ -499,7 +502,7 @@
 	{{ for(var x in it) { }}
 		<div class="col-sm-6">
 			<div class="product">
-				<img src="http://localhost:8081/trans/{{=it[x].task_pic1}}" class="img-responsive">
+				<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}" class="img-responsive">
 				<div class="overlay"></div>
 				<div class="content">
 					<h3><a href="">{{=it[x].task_title}}</a></h3>
@@ -517,7 +520,7 @@
 	{{ for(var x in it) { }}
 		<div class="col-sm-6">
 			<div class="product">
-				<img src="http://localhost:8081/trans/{{=it[x].task_pic1}}" class="img-responsive">
+				<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}" class="img-responsive">
 				<div class="overlay"></div>
 				<div class="content">
 					<h3><a href="">{{=it[x].task_title}}</a></h3>
@@ -535,7 +538,7 @@
 	{{ for(var x in it) { }}
 		<div class="col-sm-6">
 			<div class="product">
-				<img src="http://localhost:8081/trans/{{=it[x].task_pic1}}" class="img-responsive">
+				<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}" class="img-responsive">
 				<div class="overlay"></div>
 				<div class="content">
 					<h3><a href="">{{=it[x].task_title}}</a></h3>
@@ -548,9 +551,31 @@
 	{{ }}}
 </script>
 
+<script  id="carTemplate" type="text/x-dot-template">
+	{{ for(var x in it) { }}
+	<div class="form-group">
+		<input type="text" placeholder="联系方式" value="{{=it[x].driver_tel}}" disabled="true" name="name">
+	</div>
+	<div class="col-sm-6">
+		<div class="product">
+			<img src="http://139.199.172.116:80/trans{{=it[x].car_pic}}"  class="img-responsive" ><!--http:139.199.172.116:80/transport{{=it[x].task_pic1}}-->
+			<div class="overlay"></div>
+			<div class="content">
+				<h3><a href="">{{=it[x].car_no}}</a></h3>
+				<p>车长（m）:{{=it[x].car_length}}</p>
+				<p>车宽（m）:{{=it[x].car_width}}</p>
+				<p>载重（kg）{{=it[x].car_weight}}</p>
+			</div>
+		</div>
+	</div>
+	{{ }}}
+
+</script>
+
 <script type="text/javascript">
+	var driverObj;
 	window.onload=function(){
-		getTaskList(1)
+		getTaskList(1);
 	}
 
 	//change选项卡
@@ -561,6 +586,7 @@
 		}
 		$(el).addClass("active");
 		var tabId = $(el).attr("data-tab");
+		document.getElementById("selfCenterContainer").innerHTML = "加载中";
 		getTaskList(tabId);
 		
 	}
@@ -607,7 +633,7 @@
                $("#myModalLabel").text(data[0].task_title)
                for (var i = 0; i < 4; i++) {
                		if (data[0]["task_pic"+(i+1)]) {
-               			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
+               			$("#preview"+(i+1)).attr("src","http://139.199.172.116:80/trans/"+data[0]["task_pic"+(i+1)])
                		}else{
                			$("#preview"+(i+1)).attr("style","display:none")
                		}
@@ -651,14 +677,31 @@
 					});
            			return ;
            		}
-           		var option;
+           		var option='';
+           		driverObj = data;
 	       		for(var i in data){
-	       			option +="<option value='"+data[i]["driver_id"]+"'>"+data[i]["driver_name"]+"||"+data[i]["driver_tel"]+"</option>"
+	       			option +="<option value='"+data[i]["driver_id"]+"' data-index='"+i+"'>"+data[i]["driver_name"]+"</option>"
 	       		}
+	       		var obj = new Array();
+				obj[0] = driverObj[0]
+	       		var carTemplate = doT.template(document.getElementById("carTemplate").innerHTML);
+				document.getElementById("driverCarContainer").innerHTML = carTemplate(obj);
                 $("#taskDriverSelect").html(option)
                
            }      
    		});
+	}
+
+	//切换司机相对应的联系方式及所报名的车辆
+	function changeDriver(el){
+		var index = $("#taskDriverSelect option:selected").attr("data-index")
+		console.log(driverObj[index])
+		//选择司机
+		var obj = new Array();
+		obj[0] = driverObj[index]
+		console.log(obj)
+		var carTemplate = doT.template(document.getElementById("carTemplate").innerHTML);
+		document.getElementById("driverCarContainer").innerHTML = carTemplate(obj);
 	}
 
 	//为某个任务添加司机
@@ -732,7 +775,23 @@
            type:"GET",
            dataType:"JSON",
            success:function(data){
-           		$("#statusInput").val(data[0]["task_status"])
+           		var html;
+           		switch(data[0]["status"]){
+           			case "1": 
+           				html = "司机待发货";
+           				break;
+           			case "3": 
+           				html = "运输中";
+           				break;
+           			case "4": 
+           				html = "已完成";
+           				break;
+           			case "5": 
+           				html = "已删除";
+           				break; 
+           		}
+           		console.log(html)
+           		$("#statusInput").val(html)
                
            }      
    		});

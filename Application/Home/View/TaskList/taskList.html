@@ -140,8 +140,8 @@
 		  </div>
 		</div>
 		<script type="text/javascript">
+		    var carList;
 			window.onload=function(){
-				var data = 
 				$.ajax({
 					url:"__URL__/getTaskList?task_title={$param.task_title}&task_start={$param.task_start}&task_end={$param.task_end}",
 					method:"get",
@@ -152,7 +152,7 @@
 							
 								html = '<div class="col-md-4 col-sm-6" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">'
 								html += '<div class="blog-post image">'
-								html += '<img src="http://localhost:8081/trans/'+res[i].task_pic1+'" class="img-responsive">'
+								html += '<img src="http://139.199.172.116:80/trans/'+res[i].task_pic1+'" class="img-responsive">'
 								html += '<div class="overlay"></div>'
 								html += '<div class="avatar"><img src="__PUBLIC__/images/blog-author01.jpg" ></div>'
 								html += '<div class="content">'
@@ -164,10 +164,22 @@
 								html += '</div> <!-- end .col-md-4 -->'
 								$("#rowContainer").append(html);
 							}
-							
 						}
-					
 				})
+
+				$.ajax({
+					url:"__URL__/getCarList",
+					method:"get",
+					dataType:"json",
+					success:function(res){
+						carList = "<label>请选择您的车辆</label><select style='text-align:center;border:1px solid #f7f7f7' id='car_select'>";
+						for (var i = 0; i < res.length; i++) {
+							carList += '<option value = "'+res[i]["car_id"]+'">'+res[i]["car_no"]+'</option>';
+						}
+						carList += "</select>";
+					}
+				})
+				
 			}
 
 			function getTaskDetail(el){
@@ -189,7 +201,7 @@
 		               $("#myModalLabel").text(data[0].task_title)
 		               for (var i = 0; i < 4; i++) {
 		               		if (data[0]["task_pic"+(i+1)]) {
-		               			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
+		               			$("#preview"+(i+1)).attr("src","http://139.199.172.116:80/trans/"+data[0]["task_pic"+(i+1)])
 		               		}else{
 	               			$("#preview"+(i+1)).attr("style","display:none")
 	               		}
@@ -209,15 +221,34 @@
 				}
 				swal({ 
 				  title: "提示", 
-				  text: "您确定要承运嘛？", 
+				  text: "您确定要承运嘛？"+carList, 
+				  html: true,
 				  type: "info", 
 				  showCancelButton: true, 
 				  closeOnConfirm: true,
 				},
 				function(res){ 
 					if (res == true) {
-				  		$.ajax({
-				           url:"affirmCarry?taskId="+taskId,
+						var carId = $("#car_select").val();
+						if (!carId) {
+							swal({ 
+							  title: "提醒", 
+							  text: "您还没有添加车辆，请前往个人中心先添加车辆！", 
+							  type: "warning",
+							  showCancelButton: false, 
+							  confirmButtonColor: "#DD6B55",
+							  confirmButtonText: "确定", 
+							  closeOnConfirm: true, 
+							},
+							function(isConfirm){ 
+							  if (isConfirm) { 
+							    	location.href="{:U('SelfCenter/selfCenter')}" 
+							  } 
+							});
+							return ;
+						}
+						$.ajax({
+				           url:"affirmCarry?taskId="+taskId+"&carId="+carId,
 				           type:"GET",
 				           dataType:"text",
 				           success:function(data){
@@ -238,6 +269,21 @@
 									});
 				  				}else if (data == "haveAffirm") {
 									alert("您已报过名！")
+				  				}else if (data == "noDriver") {
+				  					swal({ 
+									  title: "您不是司机，无法承运", 
+									  text: "", 
+									  type: "error",
+									  showCancelButton: false, 
+									  confirmButtonColor: "#DD6B55",
+									  confirmButtonText: "确定", 
+									  closeOnConfirm: false, 
+									},
+									function(isConfirm){ 
+									  if (isConfirm) { 
+									    	location.reload() 
+									  } 
+									});
 				  				}else if(data == "fail"){
 				           			alert("报名失败，请重试！")
 				  				}

@@ -29,7 +29,7 @@ class IndexController extends Controller {
         if ($_POST["type"] == 2) {//type==2  表示货主注册
             $owner = M("Owner"); // 实例化User对象
             // 查找driver.name 值为$_POST["name"]的用户数据
-            $condition["driver_account"] =$_POST["account"];
+            $condition["owner_account"] =$_POST["account"];
             if($data = $owner->where($condition)->find()){
                 $this->error("该账号已被注册，请重试");
             }

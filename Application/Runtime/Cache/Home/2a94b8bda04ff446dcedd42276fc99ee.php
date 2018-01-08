@@ -187,17 +187,17 @@
 						</div>
 						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
 					</div>
+					<input id="tel1" class="form-control" type="text" placeholder="联系方式" name="tel">
 					<div id="master" hidden="">
-            			<input id="tel1" class="form-control" type="text" placeholder="联系方式" name="tel">
             			<input id="address" class="form-control" type="text" placeholder="住址" name="add">
             		</div>
             		<div id="car">
-            			<input id="tel2" class="form-control" type="text" placeholder="联系方式" name="tel">
+            			
             		</div>
 					<div class="text-center">
 						<p>完成后请及时对信息进行完善</p>
 					</div> <!-- end .text-center -->
-					<div class="button-wrapper"><button type="submit" class="button" onclick="register()">注册</button></div>
+					<div class="button-wrapper"><button type="submit" class="button">注册</button></div>
 					<div class="text-center">
 						<p>Already have an account? <a href="" class="login-open">Log in</a></p>
 					</div>
@@ -863,7 +863,7 @@
 						for (var i = 0; i < res.length; i++) {
 							$("#top"+(i+1)).css("display:block")
 							$("#top"+(i+1)).attr("data-taskId",res[i]["task_id"])
-							$("#top"+(i+1)+"_pic1").attr("src","http://localhost:8081/trans/"+res[i]["task_pic1"])
+							$("#top"+(i+1)+"_pic1").attr("src","http://139.199.172.116:80/trans/"+res[i]["task_pic1"])
 							$("#top"+(i+1)+"_title").text(res[i]["task_title"])
 							$("#top"+(i+1)+"_describe").html(res[i]["task_describe"])
 							$("#top"+(i+1)+"_price").text(res[i]["task_price"])
@@ -893,7 +893,7 @@
 		               $("#myModalLabel").text(data[0].task_title)
 		               for (var i = 0; i < 4; i++) {
 		               		if (data[0]["task_pic"+(i+1)]) {
-		               			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
+		               			$("#preview"+(i+1)).attr("src","http://139.199.172.116:80/trans/"+data[0]["task_pic"+(i+1)])
 		               		}else{
 		               			$("#preview"+(i+1)).attr("style","display:none")
 		               		}

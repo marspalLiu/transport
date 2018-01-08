@@ -202,7 +202,7 @@
                $("#myModalLabel").text(data[0].task_title)
                for (var i = 0; i < 4; i++) {
                		if (data[0]["task_pic"+(i+1)]) {
-               			$("#preview"+(i+1)).attr("src","http://localhost:8081/trans/"+data[0]["task_pic"+(i+1)])
+               			$("#preview"+(i+1)).attr("src","http://139.199.172.116:80/trans/"+data[0]["task_pic"+(i+1)])
                		}else{
                			$("#preview"+(i+1)).attr("style","display:none")
                		}
@@ -224,7 +224,7 @@
 	{{ for(var x in it) { }}
 	<div class="col-sm-6">
 		<div class="product">
-			<img src="__PUBLIC__/images/product08.jpg"  class="img-responsive"><!--http:localhost:80/transport{{=it[x].task_pic1}}-->
+			<img src="__PUBLIC__/images/product08.jpg"  class="img-responsive"><!--http:139.199.172.116:80/transport{{=it[x].task_pic1}}-->
 			<div class="overlay"></div>
 			<div class="content">
 				<a href="javascript:void(0)" class="button" data-taskId= {{=it[x].task_id}} data-toggle="modal" data-target="#myModal" onclick="makeTransing(this)">发货</a>

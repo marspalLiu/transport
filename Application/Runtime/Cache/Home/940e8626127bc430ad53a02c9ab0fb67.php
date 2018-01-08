@@ -44,7 +44,12 @@
    		<!-- DateTime Picker-->
 	    <link href="/trans/Public/lib/bootstrapDatetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 	    <script src="/trans/Public/lib/bootstrapDatetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	    <style type="text/css">
 
+	    	/*.photo_preview_box{
+	    		display: none;
+	    	}*/
+	    </style>
 	</head>
 	<body>
 		
@@ -60,9 +65,9 @@
 				<nav class="main-nav">
 					<ul class="list-unstyled">
 						<li class="menu-item-has-children">
-							<a href="<?php echo U('NearBy/nearBy');?>">附近10km的信息</a>
+							<a href="<?php echo U('NearBy/nearBy');?>">地图查询</a>
 							<ul>
-								<li><a href="<?php echo U('NearBy/nearBy');?>">附近的信息</a></li>
+								<li><a href="<?php echo U('NearBy/nearBy');?>">地图查询</a></li>
 							</ul>
 						</li>
 						<?php if(strtoupper($_SESSION['userId']) != '' && strtoupper($_SESSION['type']) == '2'): ?><li class="menu-item-has-children">
@@ -81,13 +86,13 @@
 						<?php if(strtoupper($_SESSION['userId']) && strtoupper($_SESSION['type']) == '1'): ?><li class="menu-item-has-children">
 								<a href="<?php echo U('SelfCenter/selfCenter');?>" >与我相关</a>
 								<ul>
-									<li><a href="<?php echo U('SelfCenter/selfCenter');?>">我的</a></li>
+									<li><a href="<?php echo U('SelfCenter/selfCenter');?>">司机中心</a></li>
 								</ul>
 							</li><?php endif; ?>
 						<?php if(strtoupper($_SESSION['userId']) && strtoupper($_SESSION['type']) == '2'): ?><li class="menu-item-has-children">
 								<a href="<?php echo U('OwnerSelfCenter/ownerSelfCenter');?>" >与我相关</a>
 								<ul>
-									<li><a href="<?php echo U('OwnerSelfCenter/ownerSelfCenter');?>">货主我的</a></li>
+									<li><a href="<?php echo U('OwnerSelfCenter/ownerSelfCenter');?>">货主中心</a></li>
 								</ul>
 							</li><?php endif; ?>
 						
@@ -182,17 +187,17 @@
 						</div>
 						<!-- <a href="" class="lost-password">Lost your password ?</a> -->
 					</div>
+					<input id="tel1" class="form-control" type="text" placeholder="联系方式" name="tel">
 					<div id="master" hidden="">
-            			<input id="tel1" class="form-control" type="text" placeholder="联系方式" name="tel">
             			<input id="address" class="form-control" type="text" placeholder="住址" name="add">
             		</div>
             		<div id="car">
-            			<input id="tel2" class="form-control" type="text" placeholder="联系方式" name="tel">
+            			
             		</div>
 					<div class="text-center">
 						<p>完成后请及时对信息进行完善</p>
 					</div> <!-- end .text-center -->
-					<div class="button-wrapper"><button type="submit" class="button" onclick="register()">注册</button></div>
+					<div class="button-wrapper"><button type="submit" class="button">注册</button></div>
 					<div class="text-center">
 						<p>Already have an account? <a href="" class="login-open">Log in</a></p>
 					</div>
@@ -508,45 +513,107 @@
 	}
 </script>
 <footer class="footer">
-			<div class="top">
-				<div class="left">
-					<div class="logo"><a href="<?php echo U('Index/index');?>" style="width: 45px;height: auto;" ><img src="/trans/Public/images/logo.png" class="img-responsive"></a></div> <!-- end .logo -->
-				</div> <!-- end .left -->
-				<div class="social-icons">
-					<a href=""><i class="pe-so-facebook"></i></a>
-					<a href=""><i class="pe-so-twitter"></i></a>
-					<a href=""><i class="pe-so-vimeo"></i></a>
-					<a href=""><i class="pe-so-tripadvisor"></i></a>
-					<a href=""><i class="pe-so-instagram"></i></a>
-					<a href=""><i class="pe-so-google-plus"></i></a>
+	<div class="top">
+		<div class="left">
+			<div class="logo"><a href="<?php echo U('Index/index');?>" style="width: 45px;height: auto;" ><img src="/trans/Public/images/logo.png" class="img-responsive"></a></div> <!-- end .logo -->
+		</div> <!-- end .left -->
+		<div class="social-icons">
+			<a href=""><i class="pe-so-facebook"></i></a>
+			<a href=""><i class="pe-so-twitter"></i></a>
+			<a href=""><i class="pe-so-vimeo"></i></a>
+			<a href=""><i class="pe-so-tripadvisor"></i></a>
+			<a href=""><i class="pe-so-instagram"></i></a>
+			<a href=""><i class="pe-so-google-plus"></i></a>
+		</div>
+		<!-- <div class="right">Proudly Made in Viet Nam<a href="">+84 968796789</a></div> --> <!-- end .left -->
+	</div> <!-- end .top -->
+	<div class="bottom">Copyright &copy; 2018. All Rights Reserved By <a href="">天津物流信息科技有限公司</a></div>
+</footer> <!-- end .footer -->
+
+<!-- 添加车辆modal -->
+<div class="modal fade"  id="add_car_modal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" style="text-align: left" id="header">添加车辆</h4>
+			</div>
+			<div class="modal-body" style"padding-bottom: 0px">
+			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/Home/AddTask/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
+				<div class="row" >
+					<div class="col-md-2">
+						<h6>车牌号</h6>
+					</div>
+					<div class="col-md-10">
+						<input type="text" name="id" class="form-control" id="id"  >
+						<label class="control-label message"></label>
+					</div>
 				</div>
-				<!-- <div class="right">Proudly Made in Viet Nam<a href="">+84 968796789</a></div> --> <!-- end .left -->
-			</div> <!-- end .top -->
-			<div class="bottom">Copyright &copy; 2018. All Rights Reserved By <a href="">天津物流信息科技有限公司</a></div>
-		</footer> <!-- end .footer -->
+				<div class="row" style="margin-top: 10px;">
+					<div class="col-md-2">
+						<h6>载重（kg)</h6>
+					</div>
+					<div class="col-md-10">
+						<input type="text" name="weight" class="form-control"  id="weight" >
+						<label class="control-label message"></label>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 10px;">
+					<div class="col-md-2">
+						<h6>车长（m）</h6>
+					</div>
+					<div class="col-md-10">
+						<input type="text" name="length" class="form-control" id="length"  >
+						<label class="control-label message"></label>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 10px;">
+					<div class="col-md-2">
+						<h6>车宽（m）</h6>
+					</div>
+					<div class="col-md-10">
+						<input type="text" class="form-control" name="width" id="width"  >
+						<label class="control-label message"></label>
+					</div>
+				</div>
+				<div class="form-group add_photo">
+					<button onclick="getElementById('file').click()" type="button" class="button">上传图片</button>
+					<input type="file" multiple="multiple" id="file" name='car_pic' style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" onchange="preview(this)" /><!--原来按钮的样式-->
+					<span>1 Photo</span>
+				</div> <!-- end .text-left .add_photo -->
+			
 
-		
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal" id="close">关闭</button>
+			<button type="submit" class="btn btn-primary" id="save">添加</button>
+		</div>
+		</form>
+	</div>
+</div>
 
-		<!-- jQuery -->
-		<script src="/trans/Public/js/jquery-3.1.0.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/jquery-3.1.0.min.js"></script>
-		<!-- Bootstrap -->
-		<script src="/trans/Public/js/bootstrap.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/bootstrap.min.js"></script>
-		<!-- google maps -->
-		<script src="../../../../../../ditu.google.cn/maps/api/js-key=AIzaSyAy-PboZ3O_A25CcJ9eoiSrKokTnWyAmt8.js" tppabs="http://ditu.google.cn/maps/api/js?key=AIzaSyAy-PboZ3O_A25CcJ9eoiSrKokTnWyAmt8"></script>
-		<!-- rich marker -->
-		<script src="/trans/Public/js/richmarker.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/richmarker.js"></script>
-		<!-- Owl Carousel -->
-		<script src="/trans/Public/js/owl.carousel.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/owl.carousel.min.js"></script>
-		<!-- Countdown -->
-		<script src="/trans/Public/js/countdown.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/countdown.js"></script>
-		<!-- Sweet Alert -->
-		<script src="/trans/Public/js/sweetalert.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/sweetalert.min.js"></script>
-		<!-- Nivo Lightbox -->
-		<script src="/trans/Public/scripts/Nivo-Lightbox/nivo-lightbox.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/scripts/Nivo-Lightbox/nivo-lightbox.min.js"></script>
-		<!-- NoUISlider -->
-		<script src="/trans/Public/js/jquery.nouislider.all.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/jquery.nouislider.all.min.js"></script>
-		<!-- Scripts.js -->
-		<script src="/trans/Public/js/scripts.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/scripts.js"></script>
 
-	</body>
+<!-- jQuery -->
+<script src="/trans/Public/js/jquery-3.1.0.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/jquery-3.1.0.min.js"></script>
+<!-- Bootstrap -->
+<script src="/trans/Public/js/bootstrap.min.js" tppabs="http://view.jqueryfuns.·com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/bootstrap.min.js"></script>
+
+<!-- BaiDu maps -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=	kh7UFEyOR81HUvnaY81VFVxqGu0SimDa"></script>
+<!-- rich marker -->
+<script src="/trans/Public/js/richmarker.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/richmarker.js"></script>
+<!-- Owl Carousel -->
+<script src="/trans/Public/js/owl.carousel.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/owl.carousel.min.js"></script>
+<!-- Countdown -->
+<script src="/trans/Public/js/countdown.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/countdown.js"></script>
+<!-- Sweet Alert -->
+<script src="/trans/Public/js/sweetalert.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/sweetalert.min.js"></script>
+<!-- Nivo Lightbox -->
+<script src="/trans/Public/scripts/Nivo-Lightbox/nivo-lightbox.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/scripts/Nivo-Lightbox/nivo-lightbox.min.js"></script>
+<!-- NoUISlider -->
+<script src="/trans/Public/js/jquery.nouislider.all.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/jquery.nouislider.all.min.js"></script>
+<!-- Scripts.js -->
+<script src="/trans/Public/js/scripts.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/scripts.js"></script>
+
+</body>
 </html>

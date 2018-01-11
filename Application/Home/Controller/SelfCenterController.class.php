@@ -58,7 +58,7 @@ class SelfCenterController extends Controller {
 					driver_list d , task t
 				WHERE
 				d.task_id= t.task_id and
-					d.driver_id = ".$_SESSION["userId"]."  and d.status = 4
+					d.driver_id = ".$_SESSION["userId"]."  and d.status >= 4
 				";
         $data = D()->query($sql);
         echo json_encode($data);
@@ -206,5 +206,12 @@ class SelfCenterController extends Controller {
         }else{
             echo "fail";
         }
+    }
+
+    //获取评价
+    function getComment(){
+        $sql = "select * from task t left join driver_list dl on t.task_id = dl.task_id where t.task_carrier = dl.driver_id and t.task_id = ".I("get.taskId");
+        $data = D()->query($sql);
+        echo json_encode($data);
     }
 }

@@ -16,7 +16,18 @@ class OwnerSelfCenterController extends Controller {
         }
         if ($_GET["tabId"]==1) {
         	# 个人中心全部task
-        	$sql = "select task_id,task_title,task_price,task_pic1,substring(add_time, 1, 11) as add_time  from task where owner_id = ".$_SESSION["userId"]." order by add_time desc";
+        	$sql = "SELECT
+						task_id,
+						task_title,
+						task_price,
+						task_pic1,
+						substring(add_time, 1, 11) AS add_time
+					FROM
+						task
+					WHERE
+						owner_id = ".$_SESSION["userId"]."
+					ORDER BY
+						add_time DESC";
         }else if ($_GET["tabId"] == 2) {
         	# 选择司机
         	$sql = "SELECT
@@ -35,8 +46,58 @@ class OwnerSelfCenterController extends Controller {
 						t.add_time DESC";
         }else if ($_GET["tabId"] == 3) {
         	# 查看物流状态
-        	# 选择司机
-        	$sql = "select task_id,task_title,task_price,task_pic1,substring(add_time, 1, 11) as add_time  from task where owner_id = ".$_SESSION["userId"]." and task_carrier != 0 order by add_time desc";
+        	$sql = "SELECT
+						t.task_id,
+						t.task_title,
+						t.task_price,
+						t.task_pic1,
+						substring(t.add_time, 1, 11) AS add_time
+					FROM
+						task t
+					LEFT JOIN driver_list dl on t.task_id = dl.task_id
+					WHERE
+						t.owner_id = ".$_SESSION["userId"]."
+					AND t.task_carrier != 0
+					and t.task_carrier = dl.driver_id
+					and dl.status <= 3
+					ORDER BY
+						t.add_time DESC";
+        }else if ($_GET["tabId"] == 4) {
+        	# 已完成确定收货列表
+        	$sql = "SELECT
+						t.task_id,
+						t.task_title,
+						t.task_price,
+						t.task_pic1,
+						substring(t.add_time, 1, 11) AS add_time
+					FROM
+						task t
+					LEFT JOIN driver_list dl on t.task_id = dl.task_id
+					WHERE
+						t.owner_id = ".$_SESSION["userId"]."
+					AND t.task_carrier != 0
+					and t.task_carrier = dl.driver_id
+					and dl.status = 4
+					ORDER BY
+						t.add_time DESC";
+        }else if ($_GET["tabId"] == 5) {
+        	# 已完成确定收货列表
+        	$sql = "SELECT
+						t.task_id,
+						t.task_title,
+						t.task_price,
+						t.task_pic1,
+						substring(t.add_time, 1, 11) AS add_time
+					FROM
+						task t
+					LEFT JOIN driver_list dl on t.task_id = dl.task_id
+					WHERE
+						t.owner_id = ".$_SESSION["userId"]."
+					AND t.task_carrier != 0
+					and t.task_carrier = dl.driver_id
+					and dl.status = 6
+					ORDER BY
+						t.add_time DESC";
         }
         $data = D()->query($sql);
 		echo json_encode($data);
@@ -104,6 +165,36 @@ class OwnerSelfCenterController extends Controller {
 		$data = D()->query($sql);
 		echo json_encode($data);
 		
+	}
+
+	//确认收货
+	function affirmGet(){
+		$condition["task_id"] = $_GET["taskId"];
+		$res = D("task")->where($condition)->select();
+		if ($res[0]["task_carrier"]) {
+			# 承运人
+			$condition["driver_id"] = $res[0]["task_carrier"];
+			//扣除货主金额
+			$sql = "update owner set owner_money = owner_money-".$res[0]["task_price"].' where owner_id = '.$_SESSION["userId"];
+			if ($info1 = D()->execute($sql)) {
+				# 为司机加金额
+				$sql1 = "update driver set driver_money = driver_money+".$res[0]["task_price"]." where driver_id = ".$res[0]["task_carrier"];
+				if ($info2 = D()->execute($sql1)) {
+					# 更新订单状态
+					$data["status"]  = 6;
+					$data["comment"] = $_GET["comment"]?$_GET["comment"]:"货主对您进行了默认评论";
+					$info = D("driver_list")->where($condition)->save($data);
+					if ($info) {
+						# 添加评论成功
+						echo "success";
+					}else{
+						echo "fail";
+					}
+				}
+				
+			}
+			
+		}
 	}
 
 

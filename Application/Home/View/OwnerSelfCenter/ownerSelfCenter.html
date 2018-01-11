@@ -296,6 +296,42 @@
 
 </script>
 
+<!-- 确认收货 Template -->
+<script  id="affirmGetTemplate" type="text/x-dot-template">
+	{{ for(var x in it) { }}
+		<div class="col-sm-6">
+			<div class="product">
+				<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}" class="img-responsive">
+				<div class="overlay"></div>
+				<div class="content">
+					<h3><a href="">{{=it[x].task_title}}</a></h3>
+					<p>￥ {{=it[x].task_price}}</p>
+				</div>
+				<div class="product-label"><span>{{=it[x].add_time}}</span></div>
+				<a data-taskId="{{=it[x].task_id}}" onclick="affrimGet(this)" class="button">确认收货</a>
+			</div>
+		</div>
+	{{ }}}
+</script>
+
+<!-- 已完成 状态为6 Template -->
+<script  id="doneTemplate" type="text/x-dot-template">
+	{{ for(var x in it) { }}
+		<div class="col-sm-6">
+			<div class="product">
+				<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}" class="img-responsive">
+				<div class="overlay"></div>
+				<div class="content">
+					<h3><a href="">{{=it[x].task_title}}</a></h3>
+					<p>￥ {{=it[x].task_price}}</p>
+				</div>
+				<div class="product-label"><span>{{=it[x].add_time}}</span></div>
+				<a data-taskId="{{=it[x].task_id}}" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)" class="button">查看详情</a>
+			</div>
+		</div>
+	{{ }}}
+</script>
+
 <script type="text/javascript">
 	var driverObj;
 	window.onload=function(){
@@ -333,6 +369,12 @@
 					//查看物流状态
 					var statusTemplate = doT.template(document.getElementById("statusTemplate").innerHTML);
 					document.getElementById("selfCenterContainer").innerHTML = statusTemplate(res);
+				}else if (tabId == 4) {
+					var affirmGetTemplate = doT.template(document.getElementById("affirmGetTemplate").innerHTML);
+					document.getElementById("selfCenterContainer").innerHTML = affirmGetTemplate(res);
+				}else if (tabId == 5) {
+					var doneTemplate = doT.template(document.getElementById("doneTemplate").innerHTML);
+					document.getElementById("selfCenterContainer").innerHTML = doneTemplate(res);
 				}
 
 			}
@@ -519,6 +561,53 @@
                
            }      
    		});
+	}
+
+	function affrimGet(el){
+		var taskId = $(el).attr("data-taskId");
+		swal({ 
+		  title: "请输入您对司机的评价",
+		  text: "<input type='text' id='commentInput' placeholder='您的每一次评论都可以为您带来更好的服务' style='text-align:center;border:1px solid #f7f7f7'>", 
+		  html: true, 
+		  type: "info", 
+		  showCancelButton: false, 
+		  closeOnConfirm: false,
+		},function(res){ 
+			  if (res == true) { 
+			  		var comment = $("#commentInput").val()
+			    	$.ajax({
+			           url:"affirmGet?taskId="+taskId+"&comment="+comment,
+			           type:"GET",
+			           dataType:"text",
+			           success:function(data){
+			           		if (data == "success") {
+			           			swal({ 
+								  title: "收货成功，薪金已帮您打至司机账户！", 
+								  text: "", 
+								  type: "success",
+								  showCancelButton: false, 
+								  confirmButtonColor: "#DD6B55",
+								  confirmButtonText: "确定", 
+								  closeOnConfirm: true, 
+								},
+								function(isConfirm){ 
+								  if (isConfirm) { 
+								    	location.reload() 
+								  } 
+								});
+			  				}else if (data == "haveAffirm") {
+								alert("您已为该次运输选择了司机！")
+			  				}else if(data == "fail"){
+			           			alert("收货失败，请重试！")
+			  				}
+			  				else if (data == "nologinIn"){
+			  					alert("您还未登录！")
+			  				}
+			               
+			           }      
+			   		});
+			  } 
+		});
 	}
 </script>
 <include file="Public/footer" />

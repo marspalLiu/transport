@@ -158,7 +158,7 @@
 
 		<div class="signup-wrapper">
 			<div class="signup">
-				<form action="/trans/index.php/Home/TaskList/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
+				<form action="/trans/index.php/home/task_list/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
 					<div class="form-group">
 						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="姓名" id="register_name" name="name">
 					</div>
@@ -439,7 +439,7 @@
 		    var carList;
 			window.onload=function(){
 				$.ajax({
-					url:"/trans/index.php/Home/TaskList/getTaskList?task_title=<?php echo ($param["task_title"]); ?>&task_start=<?php echo ($param["task_start"]); ?>&task_end=<?php echo ($param["task_end"]); ?>",
+					url:"/trans/index.php/home/task_list/getTaskList?task_title=<?php echo ($param["task_title"]); ?>&task_start=<?php echo ($param["task_start"]); ?>&task_end=<?php echo ($param["task_end"]); ?>",
 					method:"get",
 					dataType:"json",
 					success:function(res){
@@ -464,7 +464,7 @@
 				})
 
 				$.ajax({
-					url:"/trans/index.php/Home/TaskList/getCarList",
+					url:"/trans/index.php/home/task_list/getCarList",
 					method:"get",
 					dataType:"json",
 					success:function(res){
@@ -623,7 +623,7 @@
 				<h4 class="modal-title" style="text-align: left" id="header">添加车辆</h4>
 			</div>
 			<div class="modal-body" style"padding-bottom: 0px">
-			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/Home/TaskList/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
+			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/home/task_list/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
 				<div class="row" >
 					<div class="col-md-2">
 						<h6>车牌号</h6>

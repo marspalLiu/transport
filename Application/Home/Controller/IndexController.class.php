@@ -114,5 +114,19 @@ class IndexController extends Controller {
         echo json_encode($data);
     }
 
+    public function getAccount(){
+        if ($_SESSION["type"]==1) {
+            # 司机用户
+            $condition["driver_id"] = $_SESSION["userId"];
+            $data = D("driver")->where($condition)->select();
+            echo ($data[0]["driver_money"]);
+        }else{
+            #货主用户
+            $condition["owner_id"] = $_SESSION["userId"];
+            $data = D("owner")->where($condition)->select();
+            echo ($data[0]["owner_money"]);
+        }
+    }
+
 
 }

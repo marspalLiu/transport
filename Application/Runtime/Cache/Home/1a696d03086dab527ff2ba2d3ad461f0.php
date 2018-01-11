@@ -158,7 +158,7 @@
 
 		<div class="signup-wrapper">
 			<div class="signup">
-				<form action="/trans/index.php/Home/OwnerSelfCenter/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
+				<form action="/trans/index.php/Home/SelfCenter/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
 					<div class="form-group">
 						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="姓名" id="register_name" name="name">
 					</div>
@@ -295,59 +295,77 @@
 			// }
 </script>
 
-		<div class="responsive-menu">
-			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
-			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
-		</div> <!-- end .responsive-menu -->
+<div class="responsive-menu">
+	<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
+	<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
+</div> <!-- end .responsive-menu -->
 
-		<div class="page-title" style="background-image: url('/trans/Public/images/background16.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background16.jpg*/;">
-			<div class="inner">
-				<h2>个人中心</h2>
-				<p>You can see the tasks of you</p>
-			</div> <!-- end .inner -->
-		</div> <!-- end .page-title -->
+<div class="page-title" style="background-image: url('/trans/Public/images/background16.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background16.jpg*/;">
+	<div class="inner">
+		<h2>个人中心</h2>
+		<p>You can see the tasks of you</p>
+	</div> <!-- end .inner -->
+</div> <!-- end .page-title -->
 
-		<div class="section boxed-section light">
-			<div class="inner">
-				<div class="container">
-					<div class="box transparent">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="shop-sidebar">
-									<div class="sidebar-widget">
-										<h5>功能表</h5>
-										<form class="searchform">
-											<input type="text" placeholder="Search there...">
-											<button><i class="pe-7s-search"></i></button>
-										</form>
-									</div> <!-- end .sidebar-widget -->
-									<div class="sidebar-widget">
-										<h5>Product Categories</h5>
-										<div class="categories">
-											<a class="tab active" data-tab="1" onclick="changeTab(this)">全部<i class="pe-7s-right-arrow"></i></a>
-											<a class="tab" data-tab="2" onclick="changeTab(this)">待选司机<i class="pe-7s-right-arrow"></i></a>
-											<a class="tab" data-tab="3" onclick="changeTab(this)">查看物流状态<i class="pe-7s-right-arrow"></i></a>
-											<a class="tab" data-tab="4" onclick="changeTab(this)">已完成待收货<i class="pe-7s-right-arrow"></i></a>
-											<a class="tab" data-tab="5" onclick="changeTab(this)">已完成<i class="pe-7s-right-arrow"></i></a>
-										</div>
-									</div> <!-- end .sidebar-widget -->
-								</div> 
-							</div> 
-							<div class="col-md-8">
-								<div class="row products" id="selfCenterContainer">
-									
-									
-								</div> <!-- end .row -->
-							</div> <!-- end .col-md-8 -->
-						</div> <!-- end .row -->
-						<div class="text-center">
-							<a href="" id="products-load-more" class="button">Load More</a>
-						</div> <!-- end .blog-load-more -->
-					</div> <!-- end .box -->
-				</div> <!-- end .container -->
-			</div> <!-- end .inner -->
-		</div> <!-- end .section -->
+<div class="section boxed-section light">
+	<div class="inner">
+		<div class="container">
+			<div class="box transparent">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="shop-sidebar">
+							<!-- <div class="sidebar-widget">
+                                <select>
+                                    <option>Default sorting</option>
+                                    <option>High to Low</option>
+                                </select>
+                            </div> --> <!-- end .sidebar-widget -->
+							<div class="sidebar-widget">
+								<h5>功能表</h5>
+								<form class="searchform">
+									<input type="text" placeholder="Search there...">
+									<button><i class="pe-7s-search"></i></button>
+								</form>
+							</div> <!-- end .sidebar-widget -->
+							<div class="sidebar-widget">
+								<h5>操作列表</h5>
+								<div class="categories" id="func">
+									<a href="<?php echo U('SelfCenter/selfCenter');?>" >所有任务<i class="pe-7s-right-arrow"></i></a>
+									<a href="<?php echo U('SelfCenter/applying');?>" >申请中<i class="pe-7s-right-arrow"></i></a>
+									<a  href="<?php echo U('SelfCenter/waittrans');?>">申请成功未处理<i class="pe-7s-right-arrow"></i></a>
+									<a  href="<?php echo U('SelfCenter/transing');?>" class="active" id="all_tesk">运输中<i class="pe-7s-right-arrow"></i></a>
+									<a href="<?php echo U('SelfCenter/done');?>" >已完成<i class="pe-7s-right-arrow"></i></a>
+									<a href="<?php echo U('SelfCenter/myCar');?>" id="my_car">我的车辆<i class="pe-7s-right-arrow"></i></a>
+									<a href="" id="add_car" data-toggle="modal" data-target="#add_car_modal" >添加车辆<i class="pe-7s-right-arrow"></i></a>
+									<!-- <a href="">Nightlife<i class="pe-7s-right-arrow"></i></a>
+                                    <a href="">Visit<i class="pe-7s-right-arrow"></i></a>
+                                    <a href="">Shop<i class="pe-7s-right-arrow"></i></a> -->
+								</div>
+							</div> <!-- end .sidebar-widget -->
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="row products" id="allTaskContainer">
 
+							<div class="col-sm-6">
+								<div class="product">
+									<div id="rowContainer">
+
+									</div>
+								</div> <!-- end .content -->
+								<a href="" class="button">查看详情</a>
+							</div> <!-- end .product -->
+						</div> <!-- end .col-sm-6 -->
+					</div> <!-- end .row -->
+				</div> <!-- end .col-md-8 -->
+			</div> <!-- end .row -->
+			<div class="text-center">
+				<a href="" id="products-load-more" class="button">Load More</a>
+			</div> <!-- end .blog-load-more -->
+		</div> <!-- end .box -->
+	</div> <!-- end .container -->
+</div> <!-- end .inner -->
+</div> <!-- end .section -->
 <!-- 任务详情Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -450,462 +468,6 @@
     </div>
   </div>
 </div>
-
-<!--选择司机Modal -->
-<div class="modal fade" id="selectDriverModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">选择司机</h4>
-      </div>
-      <div class="modal-body">
-        <div class="container" style="width:100%!important">
-			<div class="box">
-				<form  class="add-listing-form light-inputs">
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon">报名司机 :</span>
-							<select name="taskDriverSelect" id="taskDriverSelect" onchange="changeDriver(this)">	    	
-								
-							</select>
-						</div> <!-- end .input-group -->
-						<span class="help-block">一旦确认不能修改，谨慎操作；您也可以先打电话了解一下情况哦！</span>
-					</div> <!-- end .form-group -->
-					<div id="driverCarContainer">
-						
-					</div>
-				</form>
-			</div> <!-- end .box -->
-		</div> <!-- end .container -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" id="affirmCarry"  onclick="affirmDriver(this)">确定</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--物流状态Modal -->
-<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">当前状态</h4>
-      </div>
-      <div class="modal-body">
-        <div class="container" style="width:100%!important">
-			<div class="box">
-				<form  class="add-listing-form light-inputs">
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon">当前状态 :</span>
-							<input name="taskDriverSelect" id="statusInput"/>
-						</div> <!-- end .input-group -->
-						<span class="help-block">物流状态可能会有时间差，您也可以先打电话了解一下情况哦！</span>
-					</div> <!-- end .form-group -->
-				</form>
-			</div> <!-- end .box -->
-		</div> <!-- end .container -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script id="selfCenterTemplate" type="text/x-dot-template">
-	{{ for(var x in it) { }}
-		<div class="col-sm-6">
-			<div class="product">
-				<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}" class="img-responsive">
-				<div class="overlay"></div>
-				<div class="content">
-					<h3><a href="">{{=it[x].task_title}}</a></h3>
-					<p>￥ {{=it[x].task_price}}</p>
-				</div>
-				<div class="product-label"><span>{{=it[x].add_time}}</span></div>
-				<a data-taskId="{{=it[x].task_id}}" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)" class="button">查看详情</a>
-			</div>
-		</div>
-	{{ }}}
-</script>
-
-<!-- 选择司机Template -->
-<script id="selectDriverTemplate" type="text/x-dot-template">
-	{{ for(var x in it) { }}
-		<div class="col-sm-6">
-			<div class="product">
-				<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}" class="img-responsive">
-				<div class="overlay"></div>
-				<div class="content">
-					<h3><a href="">{{=it[x].task_title}}</a></h3>
-					<p>￥ {{=it[x].task_price}}</p>
-				</div>
-				<div class="product-label"><span>{{=it[x].add_time}}</span></div>
-				<a data-taskId="{{=it[x].task_id}}" data-toggle="modal" data-target="#selectDriverModal" onclick="getTaskDriver(this)" class="button">选择司机</a>
-			</div>
-		</div>
-	{{ }}}
-</script>
-
-<!-- 物流状态Template -->
-<script id="statusTemplate" type="text/x-dot-template">
-	{{ for(var x in it) { }}
-		<div class="col-sm-6">
-			<div class="product">
-				<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}" class="img-responsive">
-				<div class="overlay"></div>
-				<div class="content">
-					<h3><a href="">{{=it[x].task_title}}</a></h3>
-					<p>￥ {{=it[x].task_price}}</p>
-				</div>
-				<div class="product-label"><span>{{=it[x].add_time}}</span></div>
-				<a data-taskId="{{=it[x].task_id}}" data-toggle="modal" data-target="#statusModal" onclick="getTaskStatus(this)" class="button">查看物流状态</a>
-			</div>
-		</div>
-	{{ }}}
-</script>
-
-<script  id="carTemplate" type="text/x-dot-template">
-	{{ for(var x in it) { }}
-	<div class="form-group">
-		<input type="text" placeholder="联系方式" value="{{=it[x].driver_tel}}" disabled="true" name="name">
-	</div>
-	<div class="col-sm-6">
-		<div class="product">
-			<img src="http://139.199.172.116:80/trans{{=it[x].car_pic}}"  class="img-responsive" ><!--http:139.199.172.116:80/transport{{=it[x].task_pic1}}-->
-			<div class="overlay"></div>
-			<div class="content">
-				<h3><a href="">{{=it[x].car_no}}</a></h3>
-				<p>车长（m）:{{=it[x].car_length}}</p>
-				<p>车宽（m）:{{=it[x].car_width}}</p>
-				<p>载重（kg）{{=it[x].car_weight}}</p>
-			</div>
-		</div>
-	</div>
-	{{ }}}
-
-</script>
-
-<!-- 确认收货 Template -->
-<script  id="affirmGetTemplate" type="text/x-dot-template">
-	{{ for(var x in it) { }}
-		<div class="col-sm-6">
-			<div class="product">
-				<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}" class="img-responsive">
-				<div class="overlay"></div>
-				<div class="content">
-					<h3><a href="">{{=it[x].task_title}}</a></h3>
-					<p>￥ {{=it[x].task_price}}</p>
-				</div>
-				<div class="product-label"><span>{{=it[x].add_time}}</span></div>
-				<a data-taskId="{{=it[x].task_id}}" onclick="affrimGet(this)" class="button">确认收货</a>
-			</div>
-		</div>
-	{{ }}}
-</script>
-
-<!-- 已完成 状态为6 Template -->
-<script  id="doneTemplate" type="text/x-dot-template">
-	{{ for(var x in it) { }}
-		<div class="col-sm-6">
-			<div class="product">
-				<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}" class="img-responsive">
-				<div class="overlay"></div>
-				<div class="content">
-					<h3><a href="">{{=it[x].task_title}}</a></h3>
-					<p>￥ {{=it[x].task_price}}</p>
-				</div>
-				<div class="product-label"><span>{{=it[x].add_time}}</span></div>
-				<a data-taskId="{{=it[x].task_id}}" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)" class="button">查看详情</a>
-			</div>
-		</div>
-	{{ }}}
-</script>
-
-<script type="text/javascript">
-	var driverObj;
-	window.onload=function(){
-		getTaskList(1);
-	}
-
-	//change选项卡
-	function changeTab(el){
-		var objects = $(".tab")
-		for (var i = 0; i < objects.length; i++) {
-			$(objects[i]).removeClass("active");
-		}
-		$(el).addClass("active");
-		var tabId = $(el).attr("data-tab");
-		document.getElementById("selfCenterContainer").innerHTML = "加载中";
-		getTaskList(tabId);
-		
-	}
-
-	function getTaskList(tabId){
-		$.ajax({
-			url:"/trans/index.php/Home/OwnerSelfCenter/getMyTask?tabId="+tabId,
-			method:"POST",
-			dataType:"json",
-			success:function(res){
-				if (tabId == 1) {
-					//全部任务
-					var selfCenterTemplate = doT.template(document.getElementById("selfCenterTemplate").innerHTML);
-					document.getElementById("selfCenterContainer").innerHTML = selfCenterTemplate(res);
-				}else if (tabId == 2) {
-					//选择司机
-					var selectDriverTemplate = doT.template(document.getElementById("selectDriverTemplate").innerHTML);
-					document.getElementById("selfCenterContainer").innerHTML = selectDriverTemplate(res);
-				}else if (tabId == 3) {
-					//查看物流状态
-					var statusTemplate = doT.template(document.getElementById("statusTemplate").innerHTML);
-					document.getElementById("selfCenterContainer").innerHTML = statusTemplate(res);
-				}else if (tabId == 4) {
-					var affirmGetTemplate = doT.template(document.getElementById("affirmGetTemplate").innerHTML);
-					document.getElementById("selfCenterContainer").innerHTML = affirmGetTemplate(res);
-				}else if (tabId == 5) {
-					var doneTemplate = doT.template(document.getElementById("doneTemplate").innerHTML);
-					document.getElementById("selfCenterContainer").innerHTML = doneTemplate(res);
-				}
-
-			}
-		})
-	}
-
-	//获取任务详情
-	function getTaskDetail(el){
-		var id = $(el).attr("data-taskId");
-		if (!id) {
-			alert("出错了！");
-			return ;
-		}
-		$.ajax({
-           url:"../TaskList/getTaskDetail?taskId="+id,
-           type:"GET",
-           dataType:"JSON",
-           success:function(data){
-           		for(var i in data[0]){
-           			$("#"+i).val(data[0][i])
-           		}
-               $("#myModalLabel").text(data[0].task_title)
-               for (var i = 0; i < 4; i++) {
-               		if (data[0]["task_pic"+(i+1)]) {
-               			$("#preview"+(i+1)).attr("src","http://139.199.172.116:80/trans/"+data[0]["task_pic"+(i+1)])
-               		}else{
-               			$("#preview"+(i+1)).attr("style","display:none")
-               		}
-               		
-               }
-               var html = (data[0].task_describe);
-               document.getElementById("task_describe").innerHTML = html;
-           }      
-   		});
-	}
-
-	//获取当前任务的报名司机
-	function getTaskDriver(el){
-		$("#affirmCarry").attr("data-taskId",'')
-		$("#taskDriverSelect").html("")
-		var id = $(el).attr("data-taskId");
-		if (!id) {
-			alert("出错了！");
-			return ;
-		}
-		$("#affirmCarry").attr("data-taskId",id)
-		$.ajax({
-           url:"getTaskDriver?taskId="+id,
-           type:"GET",
-           dataType:"JSON",
-           success:function(data){
-           		if (data.length==0) {
-           			swal({ 
-					  title: "当前运输还没有司机报名！", 
-					  text: "", 
-					  type: "warning",
-					  showCancelButton: false, 
-					  confirmButtonColor: "#DD6B55",
-					  confirmButtonText: "确定", 
-					  closeOnConfirm: true, 
-					},
-					function(isConfirm){ 
-					  if (isConfirm) { 
-					    	$("#selectDriverModal").modal('hide');
-					  } 
-					});
-           			return ;
-           		}
-           		var option='';
-           		driverObj = data;
-	       		for(var i in data){
-	       			option +="<option value='"+data[i]["driver_id"]+"' data-index='"+i+"'>"+data[i]["driver_name"]+"</option>"
-	       		}
-	       		var obj = new Array();
-				obj[0] = driverObj[0]
-	       		var carTemplate = doT.template(document.getElementById("carTemplate").innerHTML);
-				document.getElementById("driverCarContainer").innerHTML = carTemplate(obj);
-                $("#taskDriverSelect").html(option)
-               
-           }      
-   		});
-	}
-
-	//切换司机相对应的联系方式及所报名的车辆
-	function changeDriver(el){
-		var index = $("#taskDriverSelect option:selected").attr("data-index")
-		console.log(driverObj[index])
-		//选择司机
-		var obj = new Array();
-		obj[0] = driverObj[index]
-		console.log(obj)
-		var carTemplate = doT.template(document.getElementById("carTemplate").innerHTML);
-		document.getElementById("driverCarContainer").innerHTML = carTemplate(obj);
-	}
-
-	//为某个任务添加司机
-	function affirmDriver(el){
-		var taskId = $("#affirmCarry").attr("data-taskId");
-		var driverId = $("#taskDriverSelect").val();
-		if (!taskId) {
-			alert("出错了！");
-			return ;
-		}
-		if (!driverId) {
-			alert("您还没有选择司机");
-			return ;
-		}
-		swal({ 
-		  	title: "提示", 
-		  	text: "您确定要承运嘛？", 
-		  	type: "info", 
-		  	showCancelButton: true, 
-		  	closeOnConfirm: true,
-		},
-		function(res){ 
-			if (res == true) {
-				$.ajax({
-		           url:"affirmDriver?taskId="+taskId+"&driverId="+driverId,
-		           type:"GET",
-		           dataType:"text",
-		           success:function(data){
-		           		if (data == "success") {
-		           			swal({ 
-								  title: "选择司机成功！", 
-								  text: "", 
-								  type: "success",
-								  showCancelButton: false, 
-								  confirmButtonColor: "#DD6B55",
-								  confirmButtonText: "确定", 
-								  closeOnConfirm: true, 
-								},
-								function(isConfirm){ 
-								  if (isConfirm) { 
-								    	location.reload() 
-								  } 
-								});
-		  				}else if (data == "haveAffirm") {
-							alert("您已为该次运输选择了司机！")
-		  				}else if(data == "fail"){
-		           			alert("选择司机，请重试！")
-		  				}
-		  				else if (data == "nologinIn"){
-		  					alert("您还未登录！")
-		  				}
-		               
-		           }      
-		   		});
-		  	}else{
-		  		swal.close();
-		  	}
-		});
-		
-	}
-
-	function getTaskStatus(el){
-		$("#statusInput").val("")
-		var id = $(el).attr("data-taskId");
-		if (!id) {
-			alert("出错了！");
-			return ;
-		}
-		$.ajax({
-           url:"getTaskStatus?taskId="+id,
-           type:"GET",
-           dataType:"JSON",
-           success:function(data){
-           		var html;
-           		switch(data[0]["status"]){
-           			case "1": 
-           				html = "司机待发货";
-           				break;
-           			case "3": 
-           				html = "运输中";
-           				break;
-           			case "4": 
-           				html = "已完成";
-           				break;
-           			case "5": 
-           				html = "已删除";
-           				break; 
-           		}
-           		console.log(html)
-           		$("#statusInput").val(html)
-               
-           }      
-   		});
-	}
-
-	function affrimGet(el){
-		var taskId = $(el).attr("data-taskId");
-		swal({ 
-		  title: "请输入您对司机的评价",
-		  text: "<input type='text' id='commentInput' placeholder='您的每一次评论都可以为您带来更好的服务' style='text-align:center;border:1px solid #f7f7f7'>", 
-		  html: true, 
-		  type: "info", 
-		  showCancelButton: false, 
-		  closeOnConfirm: false,
-		},function(res){ 
-			  if (res == true) { 
-			  		var comment = $("#commentInput").val()
-			    	$.ajax({
-			           url:"affirmGet?taskId="+taskId+"&comment="+comment,
-			           type:"GET",
-			           dataType:"text",
-			           success:function(data){
-			           		if (data == "success") {
-			           			swal({ 
-								  title: "收货成功，薪金已帮您打至司机账户！", 
-								  text: "", 
-								  type: "success",
-								  showCancelButton: false, 
-								  confirmButtonColor: "#DD6B55",
-								  confirmButtonText: "确定", 
-								  closeOnConfirm: true, 
-								},
-								function(isConfirm){ 
-								  if (isConfirm) { 
-								    	location.reload() 
-								  } 
-								});
-			  				}else if (data == "haveAffirm") {
-								alert("您已为该次运输选择了司机！")
-			  				}else if(data == "fail"){
-			           			alert("收货失败，请重试！")
-			  				}
-			  				else if (data == "nologinIn"){
-			  					alert("您还未登录！")
-			  				}
-			               
-			           }      
-			   		});
-			  } 
-		});
-	}
-</script>
 <footer class="footer">
 	<div class="top">
 		<div class="left">
@@ -933,7 +495,7 @@
 				<h4 class="modal-title" style="text-align: left" id="header">添加车辆</h4>
 			</div>
 			<div class="modal-body" style"padding-bottom: 0px">
-			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/Home/OwnerSelfCenter/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
+			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/Home/SelfCenter/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
 				<div class="row" >
 					<div class="col-md-2">
 						<h6>车牌号</h6>
@@ -1013,3 +575,66 @@
 
 </body>
 </html>
+<script>
+	window.onload=function(){
+		$.ajax({
+			url:"/trans/index.php/Home/SelfCenter/transingList",
+			method:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res)
+				var topTemplate = doT.template(document.getElementById("selfCenterTemplate").innerHTML);
+				document.getElementById("allTaskContainer").innerHTML = topTemplate(res);
+			}
+		})
+	}
+	
+	function getTaskDetail(el){
+		var id = $(el).attr("data-taskId");
+		$.ajax({
+			url:"getTaskDetail?taskId="+id,
+			type:"GET",
+			dataType:"JSON",
+			success:function(data){
+				for(var i in data[0]){
+           			$("#"+i).val(data[0][i])
+           		}
+               $("#myModalLabel").text(data[0].task_title)
+               for (var i = 0; i < 4; i++) {
+               		if (data[0]["task_pic"+(i+1)]) {
+               			$("#preview"+(i+1)).attr("src","http://139.199.172.116:80/trans/"+data[0]["task_pic"+(i+1)])
+               		}else{
+               			$("#preview"+(i+1)).attr("style","display:none")
+               		}
+               		
+               }
+               var html = (data[0].task_describe);
+               document.getElementById("task_describe").innerHTML = html;
+
+			}
+		});
+	}
+	function  makeTransing(el){
+		var id = $(el).attr("data-taskId");
+		$.post("makeDone", {id:id},function(e){
+			window.location.href = "/trans/index.php/Home/SelfCenter/transing.html";
+		});
+
+	}
+</script>
+<script  id="selfCenterTemplate" type="text/x-dot-template">
+	{{ for(var x in it) { }}
+	<div class="col-sm-6">
+		<div class="product">
+			<img src="http://139.199.172.116:80/trans/{{=it[x].task_pic1}}"  class="img-responsive"><!--http:139.199.172.116:80/transport{{=it[x].task_pic1}}-->
+			<div class="overlay"></div>
+			<div class="content">
+				<a href="javascript:void(0)" class="button" data-taskId= {{=it[x].task_id}}  onclick="makeTransing(this)">送达</a>
+				<h3><a href="">{{=it[x].task_title}}</a></h3>
+				<p>￥ {{=it[x].task_price}}</p>
+			</div>
+			<a href="javascript:void(0)" class="button" data-taskId= {{=it[x].task_id}} data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">查看详情</a>
+		</div>
+	</div>
+	{{ }}}
+</script>

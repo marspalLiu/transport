@@ -158,7 +158,7 @@
 
 		<div class="signup-wrapper">
 			<div class="signup">
-				<form action="/trans/index.php/Home/NearBy/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
+				<form action="/trans/index.php/home/near_by/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
 					<div class="form-group">
 						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="姓名" id="register_name" name="name">
 					</div>

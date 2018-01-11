@@ -3,6 +3,9 @@
 	.affirmTask{
 		background: #fff!important;color: #646e7b;font-size: 15px;text-align: center;width: 140px;height: 40px;line-height: 40px;border-radius: 30px;padding: 0px 10px
 	}
+	.owl-item{
+		display: none
+	}
 </style>
 		<div class="responsive-menu">
 			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
@@ -404,72 +407,7 @@
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
 
-		<!-- <div class="section dark">
-			<div class="inner">
-				<div class="container">
-					<h2 class="text-center">Share Your Experience<small>Browse the latest articles and tips from our blog.</small></h2>
-					<div class="row">
-						<div class="col-md-4 col-sm-6">
-							<div class="blog-post quote">
-								<img src="__PUBLIC__/images/blog-post01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post01.jpg" alt="image" class="img-responsive">
-								<div class="overlay"></div>
-								<div class="avatar"><img src="__PUBLIC__/images/blog-author01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author01.jpg" alt="author"></div>
-								<div class="type"><img src="__PUBLIC__/images/blog-category-quote.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-quote.png" alt="quote"></div>
-								<div class="content">
-									<p>By Quam Lobortis</p>
-									<h3><a href="">“Sed ut perspiciatis unde omnis iste ... ”</a></h3>
-									<div class="meta">July 09, 2016 - <a href="">Food</a></div>
-								</div>
-							</div> 
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<div class="blog-post gallery">
-								<div class="blog-gallery">
-									<div><img src="__PUBLIC__/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-									<div><img src="__PUBLIC__/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-									<div><img src="__PUBLIC__/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-								</div>
-								<div class="overlay"></div>
-								<div class="avatar"><img src="__PUBLIC__/images/blog-author02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author02.jpg" alt="author"></div>
-								<div class="type"><img src="__PUBLIC__/images/blog-category-gallery.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-gallery.png" alt="gallery"></div>
-								<div class="content">
-									<p>By Nam Jacinia</p>
-									<h3><a href="">Central Park Bike Rentals</a></h3>
-									<div class="meta">July 07, 2016 - <a href="">Sales</a> , <a href="">Tips</a></div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<div class="blog-post video">
-								<img src="__PUBLIC__/images/blog-post03.jpg" class="img-responsive">
-								<div class="overlay"></div>
-								<div class="avatar"><img src="__PUBLIC__/images/blog-author03.jpg" ></div>
-								<div class="type"><img src="__PUBLIC__/images/blog-category-video.png" ></div>
-								<div class="content">
-									<a href="" class="play-video"><i class="pe-7s-play"></i></a>
-									<p>By Proin Mattis</p>
-									<h3><a href="">Nightlife at NewYork</a></h3>
-									<div class="meta">July 03, 2016 - <a href="">Nightlife</a></div>
-								</div> 
-							</div> 
-						</div> 
-					</div>
-					<div class="blog-view-more"><a href="" class="button">View All</a></div>
-				</div>
-			</div>
-		</div> -->
-
-		<div class="section dark">
-			<div class="inner">
-				<div class="container">
-					<h2 class="text-center">Our Email<small>Get an e-mail to us when you have any question</small></h2>
-					<form  method="get" id="mc-embedded-subscribe-form" class="newsletter-form">
-						<input type="email" id="mce-EMAIL" name="EMAIL" value="consult@tjLogistics.cn" placeholder="YourEmail@domain.com" disabled="true">
-						<button type="submit" id="mc-embedded-subscribe" name="subscribe" class="button">Subscribe</button>
-					</form>
-				</div> <!-- end .container -->
-			</div> <!-- end .inner -->
-		</div> <!-- end .section -->
+		
 
 		<!-- 任务详情Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -574,7 +512,6 @@
 		    </div>
 		  </div>
 		</div>
-		
 		<script type="text/javascript">
 			window.onload = function(){
 				//获取前十名的薪金
@@ -584,8 +521,10 @@
 					data:"",
 					dataType:"json",
 					success:function(res){
+						console.log()
+							
 						for (var i = 0; i < res.length; i++) {
-							$("#top"+(i+1)).css("display:block")
+							$("#top"+(i+1)).parent().css("display","block")
 							$("#top"+(i+1)).attr("data-taskId",res[i]["task_id"])
 							$("#top"+(i+1)+"_pic1").attr("src","http://139.199.172.116:80/trans/"+res[i]["task_pic1"])
 							$("#top"+(i+1)+"_title").text(res[i]["task_title"])
@@ -595,6 +534,19 @@
 						}
 					}
 				})
+
+				if ( window.clipboardData ) {  
+	                $('.copy_btn').click(function() {  
+	                    window.clipboardData.setData("Text", $(this).prev('input').val());  
+	                    alert('复制成功！');  
+	                });  
+	            } else {  
+	                $(".copy_btn").zclip({  
+	                    path:'http://img3.job1001.com/js/ZeroClipboard/ZeroClipboard.swf',  
+	                    copy:function(){return $(this).prev('input').val();},  
+	                    afterCopy:function(){alert('复制成功！');}  
+	                });  
+	            } 
 			}
 
 

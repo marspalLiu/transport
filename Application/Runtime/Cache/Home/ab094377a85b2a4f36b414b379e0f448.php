@@ -158,7 +158,7 @@
 
 		<div class="signup-wrapper">
 			<div class="signup">
-				<form action="/trans/index.php/Home/TaskList/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
+				<form action="/trans/index.php/home/add_task/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
 					<div class="form-group">
 						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="姓名" id="register_name" name="name">
 					</div>
@@ -296,65 +296,38 @@
 </script>
 
 <script src="/trans/Public/lib/ckeditor/ckeditor.js"></script>
-<!-- <input type="text" id="search_task_title" value="<?php echo ($param["task_title"]); ?>" style="display: none">
-<input type="text" id="search_task_start" value="<?php echo ($param["task_start"]); ?>" style="display: none">
-<input type="text" id="search_task_end" value="<?php echo ($param["task_end"]); ?>" style="display: none"> -->
 		<div class="responsive-menu">
 			<a href="" class="responsive-menu-close"><i class="fa fa-times"></i></a>
 			<nav class="responsive-nav"></nav> <!-- end .responsive-nav -->
 		</div> <!-- end .responsive-menu -->
-		
-		<div class="page-title" style="background-image: url('/trans/Public/images/background14.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background14.jpg*/;">
+			
+		<div class="page-title" style="background-image: url('/trans/Public/images/background04.jpg')/*tpa=http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/background04.jpg*/;">
 			<div class="inner">
-				<h2>所有信息全在这里</h2>
-				<p>All the information here.</p>
+				<p>Publish Task.</p>
+				<h2>发布任务</h2>
+				
 			</div> <!-- end .inner -->
 		</div> <!-- end .page-title -->
 
 		<div class="section boxed-section light">
 			<div class="inner">
 				<div class="container">
-					<div class="box transparent blog-grid">					
-						<div>
-							<div class="row"  id="rowContainer">
-								
-							</div>
-						</div>
-						<div class="text-center">
-							<a href="" id="blog-load-more" class="button">LOAD MORE</a>
-						</div> <!-- end .blog-load-more -->
-					</div> <!-- end .box -->
-				</div> <!-- end .container -->
-			</div> <!-- end .inner -->
-		</div> <!-- end .section -->
-
-		<!-- 任务详情Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-		      </div>
-		      <div class="modal-body">
-		        <div class="container" style="width:100%!important">
 					<div class="box">
-						<form  class="add-listing-form light-inputs">
+						<form action="/trans/index.php/home/add_task/addTaskFun" method="post" enctype="multipart/form-data" class="add-listing-form light-inputs">
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">任务名称 :</span>
-									<input type="text" id="task_title" name="task_title" disabled="true" placeholder="例如：运送一匹建材">
+									<input type="text" name="task_title" placeholder="例如：运送一匹建材">
 								</div> <!-- end .input-group -->
 							</div> <!-- end .form-group -->
 							<div class="form-group">              
 							    <!-- <textarea name="task_describe" rows="4"></textarea> -->
-							    <!-- <textarea id="TextArea1" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" disabled="true"></textarea> -->
-							    <div style="width: 100%;height: auto;background:#f1f2f6;font-size:14px;line-height:48px;padding:5px 10px" id="task_describe"></div>
+							    <textarea id="TextArea1" name="task_describe"  placeholder="任务描述，越详细越好" cols="20" rows="2" class="ckeditor"></textarea>
 							</div> <!-- end .form-group -->
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">选择分类 :</span>
-									<select name="task_type" id="task_type" disabled="true">	    	
+									<select name="task_type">	    	
 										<option value="1">设备制造</option>
 										<option value="2">运输</option>
 										<option value="3">仓储</option>
@@ -368,7 +341,7 @@
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">起点 :</span>
-									<select name="task_start" id="task_start" disabled="true">	    	
+									<select name="task_start">	    	
 											<option value="北辰区">北辰区</option>
 											<option value="红桥区">红桥区</option>
 											<option value="南开区">南开区</option>
@@ -381,7 +354,7 @@
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">目的地 :</span>
-									<select name="task_end" id="task_end" disabled="true">	    	
+									<select name="task_end">	    	
 											<option value="北辰区">北辰区</option>
 											<option value="红桥区">红桥区</option>
 											<option value="南开区">南开区</option>
@@ -394,208 +367,171 @@
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">其他要求 :</span>
-									<input type="text" name="task_require" id="task_require" disabled="true" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
+									<input type="text" name="task_require" placeholder="例如：易燃易爆需要小心、易碎物品轻拿轻放等。">
 								</div> <!-- end .input-group -->
 								<span class="help-block">可以根据到货后检查货物质量对司机进行申诉</span>
 							</div> <!-- end .form-group -->
+							<div class="form-group add_photo">
+								<button onclick="getElementById('file').click()" type="button" class="button">上传图片</button>
+								<input type="file" multiple="multiple" id="file" name='task_pic[]' style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" onchange="preview(this)" /><!--原来按钮的样式-->
+								<span>4 Photos ( 570px × 400px)</span>
+							</div> <!-- end .text-left .add_photo -->
 							<div class="form-group photo_thumbnails">
-								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview1"></img>
-								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview2"></img>
-								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview3"></img>
-								<img class="photo_preview_box" style="vertical-align:top;width: 45%;" id="preview4"></img>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview1"></img>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview2"></img>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview3"></img>
+								<img class="photo_preview_box" style="vertical-align:top;" id="preview4"></img>
 							</div> <!-- end .form-group .photo_thumbnails -->
 							<div class="form-group listing-hours">
 								<div class="row">
-									<div class="col-sm-4" style="width: 50%">
+									<div class="col-sm-4">
 										<div class="input-group">
 											<span class="input-group-addon">拉货日期 :</span>
-											<input type="text" name="task_time" id="task_time" disabled="true" placeholder="2018-03-15">
+											<input type="text" name="task_time" id="time" placeholder="2018-03-15">
 										</div> <!-- end .input-group -->
 									</div> <!-- end .col-sm-4 -->
-									<div class="col-sm-4" style="width: 50%">
+									<div class="col-sm-4">
 										<div class="input-group">
 											<span class="input-group-addon">薪金 :</span>
-											<input type="number" id="task_price" name="task_price" disabled="true">
+											<input type="number" name="task_price">
 										</div> <!-- end .input-group -->
 									</div> <!-- end .col-sm-4 -->
 									<!-- <div class="col-sm-4">
 										<button type="button" class="button">Add Hours of Operation</button>
 									</div> --> <!-- end .col-sm-4 -->
 								</div> <!-- end .row -->
+								<!-- <div class="row">
+									<div class="col-sm-4">
+										<div class="hours">Monday - Sunday</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="hours">07:00 am – 22:00 pm</div>
+									</div> 
+									<div class="col-sm-4">
+										<a href="" class="remove"><i class="pe-7s-close-circle"></i></a>
+									</div> 
+								</div>  --><!-- end .row -->
 							</div> <!-- end .form-group -->
-							<!-- <div class="submit"><button type="submit" class="button" onclick="beforeSubmit()">提交任务</button></div> -->
+							<div class="submit"><button type="submit" class="button" onclick="beforeSubmit()">提交任务</button></div>
 						</form>
 					</div> <!-- end .box -->
 				</div> <!-- end .container -->
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-		        <button type="button" class="btn btn-primary" id="affirmCarry"  onclick="affirmCarry(this)">确认承运</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		<script type="text/javascript">
-		    var carList;
-			window.onload=function(){
-				$.ajax({
-					url:"/trans/index.php/Home/TaskList/getTaskList?task_title=<?php echo ($param["task_title"]); ?>&task_start=<?php echo ($param["task_start"]); ?>&task_end=<?php echo ($param["task_end"]); ?>",
-					method:"get",
-					dataType:"json",
-					success:function(res){
-						var html;
-						for (var i = 0; i < res.length; i++) {
-							
-								html = '<div class="col-md-4 col-sm-6" data-taskId="'+res[i].task_id+'" data-toggle="modal" data-target="#myModal" onclick="getTaskDetail(this)">'
-								html += '<div class="blog-post image">'
-								html += '<img src="http://139.199.172.116:80/trans/'+res[i].task_pic1+'" class="img-responsive">'
-								html += '<div class="overlay"></div>'
-								html += '<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" ></div>'
-								html += '<div class="content">'
-								html += '<p><img src="/trans/Public/images/directory-location.png" style="display: inline-block;margin-right: 10px">'+res[i].task_start+'</p>'
-								html += '<h3><a href="">'+res[i].task_title+'</a></h3>'
-								html += '<div class="meta">￥ '+res[i].task_price+' - <a href="#" >承运</a></div>'
-								html += '</div> <!-- end .content -->'
-								html += '</div> <!-- end .blog-post -->'
-								html += '</div> <!-- end .col-md-4 -->'
-								$("#rowContainer").append(html);
-							}
-						}
-				})
+			</div> <!-- end .inner -->
+		</div> <!-- end .section -->
+<script type="text/javascript">
+	window.onload=function(){
+		CKEDITOR.replace('TextArea1');
+		$("#time").datetimepicker({
+            format: 'yyyy-mm',
+            minView:'month',
+            language: 'zh-CN',
+            autoclose:true,
 
-				$.ajax({
-					url:"/trans/index.php/Home/TaskList/getCarList",
-					method:"get",
-					dataType:"json",
-					success:function(res){
-						carList = "<label>请选择您的车辆</label><select style='text-align:center;border:1px solid #f7f7f7' id='car_select'>";
-						for (var i = 0; i < res.length; i++) {
-							carList += '<option value = "'+res[i]["car_id"]+'">'+res[i]["car_no"]+'</option>';
-						}
-						carList += "</select>";
-					}
-				})
-				
-			}
-
-			function getTaskDetail(el){
-				$("#affirmCarry").attr("data-taskId",'')
-				var id = $(el).attr("data-taskId");
-				if (!id) {
-					alert("出错了！");
-					return ;
-				}
-				$("#affirmCarry").attr("data-taskId",id)
-				$.ajax({
-		           url:"getTaskDetail?taskId="+id,
-		           type:"GET",
-		           dataType:"JSON",
-		           success:function(data){
-		           		for(var i in data[0]){
-		           			$("#"+i).val(data[0][i])
-		           		}
-		               $("#myModalLabel").text(data[0].task_title)
-		               for (var i = 0; i < 4; i++) {
-		               		if (data[0]["task_pic"+(i+1)]) {
-		               			$("#preview"+(i+1)).attr("src","http://139.199.172.116:80/trans/"+data[0]["task_pic"+(i+1)])
-		               		}else{
-	               			$("#preview"+(i+1)).attr("style","display:none")
-	               		}
-		               		
-		               }
-		               var html = (data[0].task_describe);
-		               document.getElementById("task_describe").innerHTML = html;
-		           }      
-		   		});
-			}
-
-			function affirmCarry(el){
-				var taskId = $("#affirmCarry").attr("data-taskId")
-				if (!taskId) {
-					alert("出错了！");
-					return ;
-				}
-				swal({ 
-				  title: "提示", 
-				  text: "您确定要承运嘛？"+carList, 
-				  html: true,
-				  type: "info", 
-				  showCancelButton: true, 
-				  closeOnConfirm: true,
-				},
-				function(res){ 
-					if (res == true) {
-						var carId = $("#car_select").val();
-						if (!carId) {
-							swal({ 
-							  title: "提醒", 
-							  text: "您还没有添加车辆，请前往个人中心先添加车辆！", 
-							  type: "warning",
-							  showCancelButton: false, 
-							  confirmButtonColor: "#DD6B55",
-							  confirmButtonText: "确定", 
-							  closeOnConfirm: true, 
-							},
-							function(isConfirm){ 
-							  if (isConfirm) { 
-							    	location.href="<?php echo U('SelfCenter/selfCenter');?>" 
-							  } 
-							});
-							return ;
-						}
-						$.ajax({
-				           url:"affirmCarry?taskId="+taskId+"&carId="+carId,
-				           type:"GET",
-				           dataType:"text",
-				           success:function(data){
-				           		if (data == "success") {
-				           			swal({ 
-									  title: "报名成功！", 
-									  text: "", 
-									  type: "success",
-									  showCancelButton: false, 
-									  confirmButtonColor: "#DD6B55",
-									  confirmButtonText: "确定", 
-									  closeOnConfirm: true, 
-									},
-									function(isConfirm){ 
-									  if (isConfirm) { 
-									    	location.reload() 
-									  } 
-									});
-				  				}else if (data == "haveAffirm") {
-									alert("您已报过名！")
-				  				}else if (data == "noDriver") {
-				  					swal({ 
-									  title: "您不是司机，无法承运", 
-									  text: "", 
-									  type: "error",
-									  showCancelButton: false, 
-									  confirmButtonColor: "#DD6B55",
-									  confirmButtonText: "确定", 
-									  closeOnConfirm: false, 
-									},
-									function(isConfirm){ 
-									  if (isConfirm) { 
-									    	location.reload() 
-									  } 
-									});
-				  				}else if(data == "fail"){
-				           			alert("报名失败，请重试！")
-				  				}
-				  				else if (data == "nologinIn"){
-				  					alert("您还未登录！")
-				  				}
-				           }     
-				   		});
-					}else{
-				  		swal.close();
-				  	}
-				});
-			}
-
-		</script>
+        }).on("click",function(){
+           $("#time").datetimepicker("setEndDate",$("#time").val())
+        });
+	}
+	function preview(el){
+		for (var i = 0; i < 4; i++) {
+			$("#preview"+(i+1)).attr("src","");
+		}
+		var fileData = el.files
 		
+		if (fileData.length ==1) {
+			var reader = new FileReader();   
+	        reader.readAsDataURL(fileData[0]);   
+	        reader.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}   
+
+		}else if(fileData.length == 2){
+			var reader1 = new FileReader();   
+	        reader1.readAsDataURL(fileData[0]);   
+	        reader1.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader2 = new FileReader();   
+	        reader2.readAsDataURL(fileData[1]);   
+	        reader2.onload = function(e){   
+	        	$("#preview2").attr("src",this.result);
+	        	
+   			}  
+
+
+		}else if(fileData.length == 3){
+			var reader1 = new FileReader();   
+	        reader1.readAsDataURL(fileData[0]);   
+	        reader1.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader2 = new FileReader();   
+	        reader2.readAsDataURL(fileData[1]);   
+	        reader2.onload = function(e){   
+	        	$("#preview2").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader3 = new FileReader();   
+	        reader3.readAsDataURL(fileData[2]);   
+	        reader3.onload = function(e){   
+	        	$("#preview3").attr("src",this.result);
+	        	
+   			}
+
+		}else if(fileData.length == 4){
+			var reader1 = new FileReader();   
+	        reader1.readAsDataURL(fileData[0]);   
+	        reader1.onload = function(e){   
+	        	$("#preview1").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader2 = new FileReader();   
+	        reader2.readAsDataURL(fileData[1]);   
+	        reader2.onload = function(e){   
+	        	$("#preview2").attr("src",this.result);
+	        	
+   			}  
+
+   			var reader3 = new FileReader();   
+	        reader3.readAsDataURL(fileData[2]);   
+	        reader3.onload = function(e){   
+	        	$("#preview3").attr("src",this.result);
+	        	
+   			}
+
+   			var reader4 = new FileReader();   
+	        reader4.readAsDataURL(fileData[3]);   
+	        reader4.onload = function(e){   
+	        	$("#preview4").attr("src",this.result);
+	        	
+   			}
+		}
+
+        
+    }
+	function getObjectURL(file) {
+	    var url = new Array() ; 
+	    if (window.createObjectURL!=undefined) { // basic
+	        url = window.createObjectURL(file) ;
+	    } else if (window.URL!=undefined) { // mozilla(firefox)
+	        url = window.URL.createObjectURL(file) ;
+	    } else if (window.webkitURL!=undefined) { // webkit or chrome
+	        url = window.webkitURL.createObjectURL(file) ;
+	    }
+	    return url ;
+	}
+
+	function beforeSubmit(){
+		for (instance in CKEDITOR.instances)
+            CKEDITOR.instances[instance].updateElement();
+	}
+</script>
 <footer class="footer">
 	<!-- <div class="top"> -->
 		<!-- <div class="left">
@@ -623,7 +559,7 @@
 				<h4 class="modal-title" style="text-align: left" id="header">添加车辆</h4>
 			</div>
 			<div class="modal-body" style"padding-bottom: 0px">
-			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/Home/TaskList/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
+			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/home/add_task/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
 				<div class="row" >
 					<div class="col-md-2">
 						<h6>车牌号</h6>

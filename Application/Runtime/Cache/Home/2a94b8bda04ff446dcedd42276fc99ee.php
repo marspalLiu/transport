@@ -108,7 +108,7 @@
 					<div class="right">
 						<div class="user">
 							<div class="avatar"><img src="/trans/Public/images/avatar04.jpg"></div>
-							<?php echo (session('userName')); ?> <a href="<?php echo U('Index/loginOut');?>">注销</a>
+							<?php echo (session('userName')); ?> 余额：<a href="javascript:void(0)" style="color: blue" onclick="getAccount()">XXX元</a> <a href="<?php echo U('Index/loginOut');?>">注销</a>
 						</div>
 					</div><?php endif; ?>
 
@@ -158,7 +158,7 @@
 
 		<div class="signup-wrapper">
 			<div class="signup">
-				<form action="/trans/index.php/Home/Index/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
+				<form action="/trans/index.php/home/index/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
 					<div class="form-group">
 						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="姓名" id="register_name" name="name">
 					</div>
@@ -259,6 +259,26 @@
 
 			}
 
+			//获取当前账户的余额
+			function getAccount(){
+				$.ajax({
+					url:"../Index/getAccount",
+					method:"get",
+					dataType:"text",
+					success:function(res){
+						console.log(res)
+						swal({ 
+						  title: "当前账户余额", 
+						  text: "<h3>"+res+"元</h3>", 
+						  timer: 2000, 
+						  showConfirmButton: false,
+						  html:true 
+						});
+					}
+				})
+				
+			}
+
 			//注册方法
 			// function register(){
 			// 	var register_userName= $("#register_userName").val();
@@ -278,6 +298,9 @@
 <style type="text/css">
 	.affirmTask{
 		background: #fff!important;color: #646e7b;font-size: 15px;text-align: center;width: 140px;height: 40px;line-height: 40px;border-radius: 30px;padding: 0px 10px
+	}
+	.owl-item{
+		display: none
 	}
 </style>
 		<div class="responsive-menu">
@@ -680,72 +703,7 @@
 			</div> <!-- end .inner -->
 		</div> <!-- end .section -->
 
-		<!-- <div class="section dark">
-			<div class="inner">
-				<div class="container">
-					<h2 class="text-center">Share Your Experience<small>Browse the latest articles and tips from our blog.</small></h2>
-					<div class="row">
-						<div class="col-md-4 col-sm-6">
-							<div class="blog-post quote">
-								<img src="/trans/Public/images/blog-post01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post01.jpg" alt="image" class="img-responsive">
-								<div class="overlay"></div>
-								<div class="avatar"><img src="/trans/Public/images/blog-author01.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author01.jpg" alt="author"></div>
-								<div class="type"><img src="/trans/Public/images/blog-category-quote.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-quote.png" alt="quote"></div>
-								<div class="content">
-									<p>By Quam Lobortis</p>
-									<h3><a href="">“Sed ut perspiciatis unde omnis iste ... ”</a></h3>
-									<div class="meta">July 09, 2016 - <a href="">Food</a></div>
-								</div>
-							</div> 
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<div class="blog-post gallery">
-								<div class="blog-gallery">
-									<div><img src="/trans/Public/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-									<div><img src="/trans/Public/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-									<div><img src="/trans/Public/images/blog-post02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-post02.jpg" alt="image" class="img-responsive"></div>
-								</div>
-								<div class="overlay"></div>
-								<div class="avatar"><img src="/trans/Public/images/blog-author02.jpg" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-author02.jpg" alt="author"></div>
-								<div class="type"><img src="/trans/Public/images/blog-category-gallery.png" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/images/blog-category-gallery.png" alt="gallery"></div>
-								<div class="content">
-									<p>By Nam Jacinia</p>
-									<h3><a href="">Central Park Bike Rentals</a></h3>
-									<div class="meta">July 07, 2016 - <a href="">Sales</a> , <a href="">Tips</a></div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<div class="blog-post video">
-								<img src="/trans/Public/images/blog-post03.jpg" class="img-responsive">
-								<div class="overlay"></div>
-								<div class="avatar"><img src="/trans/Public/images/blog-author03.jpg" ></div>
-								<div class="type"><img src="/trans/Public/images/blog-category-video.png" ></div>
-								<div class="content">
-									<a href="" class="play-video"><i class="pe-7s-play"></i></a>
-									<p>By Proin Mattis</p>
-									<h3><a href="">Nightlife at NewYork</a></h3>
-									<div class="meta">July 03, 2016 - <a href="">Nightlife</a></div>
-								</div> 
-							</div> 
-						</div> 
-					</div>
-					<div class="blog-view-more"><a href="" class="button">View All</a></div>
-				</div>
-			</div>
-		</div> -->
-
-		<div class="section dark">
-			<div class="inner">
-				<div class="container">
-					<h2 class="text-center">Our Email<small>Get an e-mail to us when you have any question</small></h2>
-					<form  method="get" id="mc-embedded-subscribe-form" class="newsletter-form">
-						<input type="email" id="mce-EMAIL" name="EMAIL" value="consult@tjLogistics.cn" placeholder="YourEmail@domain.com" disabled="true">
-						<button type="submit" id="mc-embedded-subscribe" name="subscribe" class="button">Subscribe</button>
-					</form>
-				</div> <!-- end .container -->
-			</div> <!-- end .inner -->
-		</div> <!-- end .section -->
+		
 
 		<!-- 任务详情Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -850,18 +808,19 @@
 		    </div>
 		  </div>
 		</div>
-		
 		<script type="text/javascript">
 			window.onload = function(){
 				//获取前十名的薪金
 				$.ajax({
-					url:"/trans/index.php/Home/Index/getTopPriceTask",
+					url:"/trans/index.php/home/index/getTopPriceTask",
 					method:"POST",
 					data:"",
 					dataType:"json",
 					success:function(res){
+						console.log()
+							
 						for (var i = 0; i < res.length; i++) {
-							$("#top"+(i+1)).css("display:block")
+							$("#top"+(i+1)).parent().css("display","block")
 							$("#top"+(i+1)).attr("data-taskId",res[i]["task_id"])
 							$("#top"+(i+1)+"_pic1").attr("src","http://139.199.172.116:80/trans/"+res[i]["task_pic1"])
 							$("#top"+(i+1)+"_title").text(res[i]["task_title"])
@@ -871,6 +830,19 @@
 						}
 					}
 				})
+
+				if ( window.clipboardData ) {  
+	                $('.copy_btn').click(function() {  
+	                    window.clipboardData.setData("Text", $(this).prev('input').val());  
+	                    alert('复制成功！');  
+	                });  
+	            } else {  
+	                $(".copy_btn").zclip({  
+	                    path:'http://img3.job1001.com/js/ZeroClipboard/ZeroClipboard.swf',  
+	                    copy:function(){return $(this).prev('input').val();},  
+	                    afterCopy:function(){alert('复制成功！');}  
+	                });  
+	            } 
 			}
 
 
@@ -979,20 +951,20 @@
 		</script> -->
 		
 <footer class="footer">
-	<div class="top">
-		<div class="left">
-			<div class="logo"><a href="<?php echo U('Index/index');?>" style="width: 45px;height: auto;" ><img src="/trans/Public/images/logo.png" class="img-responsive"></a></div> <!-- end .logo -->
-		</div> <!-- end .left -->
-		<div class="social-icons">
+	<!-- <div class="top"> -->
+		<!-- <div class="left">
+			<div class="logo"><a href="<?php echo U('Index/index');?>" style="width: 45px;height: auto;" ><img src="/trans/Public/images/logo.png" class="img-responsive"></a></div>
+		</div> -->
+		<!-- <div class="social-icons">
 			<a href=""><i class="pe-so-facebook"></i></a>
 			<a href=""><i class="pe-so-twitter"></i></a>
 			<a href=""><i class="pe-so-vimeo"></i></a>
 			<a href=""><i class="pe-so-tripadvisor"></i></a>
 			<a href=""><i class="pe-so-instagram"></i></a>
 			<a href=""><i class="pe-so-google-plus"></i></a>
-		</div>
+		</div> -->
 		<!-- <div class="right">Proudly Made in Viet Nam<a href="">+84 968796789</a></div> --> <!-- end .left -->
-	</div> <!-- end .top -->
+	<!-- </div> --> <!-- end .top -->
 	<div class="bottom">Copyright &copy; 2018. All Rights Reserved By <a href="">天津物流信息科技有限公司</a></div>
 </footer> <!-- end .footer -->
 
@@ -1005,7 +977,7 @@
 				<h4 class="modal-title" style="text-align: left" id="header">添加车辆</h4>
 			</div>
 			<div class="modal-body" style"padding-bottom: 0px">
-			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/Home/Index/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
+			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/home/index/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
 				<div class="row" >
 					<div class="col-md-2">
 						<h6>车牌号</h6>
@@ -1061,6 +1033,8 @@
 
 <!-- jQuery -->
 <script src="/trans/Public/js/jquery-3.1.0.min.js" tppabs="http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="http://img3.job1001.com/js/ZeroClipboard/jquery.zclip.min.js"></script> 
+		
 <!-- Bootstrap -->
 <script src="/trans/Public/js/bootstrap.min.js" tppabs="http://view.jqueryfuns.·com/%E9%A2%84%E8%A7%88-/2016/12/29/6a0a797a5260488eadc7cab49af24dac/js/bootstrap.min.js"></script>
 

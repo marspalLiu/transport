@@ -116,7 +116,7 @@
 					<div class="right">
 						<div class="user">
 							<div class="avatar"><img src="__PUBLIC__/images/avatar04.jpg"></div>
-							{$Think.session.userName} <a href="{:U('Index/loginOut')}">注销</a>
+							{$Think.session.userName} 余额：<a href="javascript:void(0)" style="color: blue" onclick="getAccount()">XXX元</a> <a href="{:U('Index/loginOut')}">注销</a>
 						</div>
 					</div>	
 			</if>
@@ -266,6 +266,26 @@
 			//登出方法
 			function loginOut(){
 
+			}
+
+			//获取当前账户的余额
+			function getAccount(){
+				$.ajax({
+					url:"../Index/getAccount",
+					method:"get",
+					dataType:"text",
+					success:function(res){
+						console.log(res)
+						swal({ 
+						  title: "当前账户余额", 
+						  text: "<h3>"+res+"元</h3>", 
+						  timer: 2000, 
+						  showConfirmButton: false,
+						  html:true 
+						});
+					}
+				})
+				
 			}
 
 			//注册方法

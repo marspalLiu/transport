@@ -158,7 +158,7 @@
 
 		<div class="signup-wrapper">
 			<div class="signup">
-				<form action="/trans/index.php/Home/OwnerSelfCenter/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
+				<form action="/trans/index.php/home/owner_self_center/register" method="POST" ><!-- <?php echo U('Login/regiser');?> -->
 					<div class="form-group">
 						<label style="color: red;display: inline-block;">*</label><input type="text" placeholder="姓名" id="register_name" name="name">
 					</div>
@@ -649,7 +649,7 @@
 
 	function getTaskList(tabId){
 		$.ajax({
-			url:"/trans/index.php/Home/OwnerSelfCenter/getMyTask?tabId="+tabId,
+			url:"/trans/index.php/home/owner_self_center/getMyTask?tabId="+tabId,
 			method:"POST",
 			dataType:"json",
 			success:function(res){
@@ -907,20 +907,20 @@
 	}
 </script>
 <footer class="footer">
-	<div class="top">
-		<div class="left">
-			<div class="logo"><a href="<?php echo U('Index/index');?>" style="width: 45px;height: auto;" ><img src="/trans/Public/images/logo.png" class="img-responsive"></a></div> <!-- end .logo -->
-		</div> <!-- end .left -->
-		<div class="social-icons">
+	<!-- <div class="top"> -->
+		<!-- <div class="left">
+			<div class="logo"><a href="<?php echo U('Index/index');?>" style="width: 45px;height: auto;" ><img src="/trans/Public/images/logo.png" class="img-responsive"></a></div>
+		</div> -->
+		<!-- <div class="social-icons">
 			<a href=""><i class="pe-so-facebook"></i></a>
 			<a href=""><i class="pe-so-twitter"></i></a>
 			<a href=""><i class="pe-so-vimeo"></i></a>
 			<a href=""><i class="pe-so-tripadvisor"></i></a>
 			<a href=""><i class="pe-so-instagram"></i></a>
 			<a href=""><i class="pe-so-google-plus"></i></a>
-		</div>
+		</div> -->
 		<!-- <div class="right">Proudly Made in Viet Nam<a href="">+84 968796789</a></div> --> <!-- end .left -->
-	</div> <!-- end .top -->
+	<!-- </div> --> <!-- end .top -->
 	<div class="bottom">Copyright &copy; 2018. All Rights Reserved By <a href="">天津物流信息科技有限公司</a></div>
 </footer> <!-- end .footer -->
 
@@ -933,7 +933,7 @@
 				<h4 class="modal-title" style="text-align: left" id="header">添加车辆</h4>
 			</div>
 			<div class="modal-body" style"padding-bottom: 0px">
-			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/Home/OwnerSelfCenter/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
+			<form name="addCarForm" enctype="Multipart/form-data" action="/trans/index.php/home/owner_self_center/addCar" method="post" id="addCarForm" class="add-listing-form light-inputs">
 				<div class="row" >
 					<div class="col-md-2">
 						<h6>车牌号</h6>

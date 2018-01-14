@@ -1,0 +1,37 @@
+[ 2018-01-11T11:24:15+08:00 ] ::1 /trans/index.php/home/task_list/getCarList
+ERR: SQLSTATE[HY000] [2002] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+
+[ 2018-01-11T11:30:27+08:00 ] ::1 /trans/index.php/home/task_list/getTaskList?task_title=&task_start=&task_end=
+ERR: 2006:MySQL server has gone away
+ [ SQL璇彞 ] : SELECT
+					*
+				FROM
+					task t
+				WHERE
+					t.task_carrier = 0 and t.task_id NOT in(select task_id from driver_list d WHERE d.driver_id = 9)  HAVING
+					substring(task_time, 1, 11) > 2018-01-11
+ERR: 2006:MySQL server has gone away
+ [ SQL璇彞 ] : SELECT
+					*
+				FROM
+					task t
+				WHERE
+					t.task_carrier = 0 and t.task_id NOT in(select task_id from driver_list d WHERE d.driver_id = 9)  HAVING
+					substring(task_time, 1, 11) > 2018-01-11
+
+[ 2018-01-11T11:30:48+08:00 ] ::1 /trans/index.php/home/task_list/getCarList
+ERR: SQLSTATE[HY000] [2002] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+
+[ 2018-01-11T11:31:14+08:00 ] ::1 /trans/index.php/home/index/getTopPriceTask
+ERR: SQLSTATE[HY000] [2006] MySQL server has gone away
+
+[ 2018-01-11T12:00:09+08:00 ] ::1 /trans/index.php/home/Index/getAccount
+ERR: SQLSTATE[HY000] [2002] 套接字操作尝试一个无法连接的主机。
+
+
+[ 2018-01-11T12:00:12+08:00 ] ::1 /trans/index.php/home/Index/getAccount
+ERR: SQLSTATE[HY000] [2002] 套接字操作尝试一个无法连接的主机。
+
+
